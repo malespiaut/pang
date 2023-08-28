@@ -1,6 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 # $Id$
-AC_INIT(README)
+AC_INIT
+AC_CONFIG_SRCDIR([README])
 
 # Detect the canonical host and target build environment
 AC_CANONICAL_HOST
@@ -29,7 +30,7 @@ case "$target" in
         SYS_GL_LIBS="-lGL"
         ;;
     *-*-aix*)
-        if test x$ac_cv_prog_gcc = xyes; then
+        if test x$ac_cv_c_compiler_gnu = xyes; then
             CFLAGS="-mthreads"
         fi
         ;;
@@ -110,7 +111,8 @@ fi
 
 
 # Finally create all the generated files
-AC_OUTPUT(Makefile src/Makefile)
+AC_CONFIG_FILES([Makefile src/Makefile])
+AC_OUTPUT
 
 echo ""
 echo "Features:"
