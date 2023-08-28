@@ -44,19 +44,19 @@ showScore(char* string, unsigned int x, unsigned int y)
 {
 
   unsigned char i, temp;
-  int positionxduzero = 148 * scale;
-  int positionyduzero = 226 * scale;
+  int positionxduzero = 148;
+  int positionyduzero = 226;
 
   temp = strlen(string);
   for (i = 0; i < temp; i++)
   {
     if (((*string - 48) * 13) == 0)
     {
-      blitImageToScreen(1, ((*string - 48) * 14 * scale) + positionxduzero, positionyduzero, 13 * scale, 13 * scale, x + (i * 6 * scale), y, 13 * scale, 13 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 6), y, 13, 13, 320, 240);
     }
     else
     {
-      blitImageToScreen(1, ((*string - 48) * 14 * scale) + positionxduzero + 1, positionyduzero, 13 * scale, 13 * scale, x + (i * 6 * scale), y, 13 * scale, 13 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 6), y, 13, 13, 320, 240);
     }
 
     string++;
@@ -132,7 +132,7 @@ showFond(int level)
     fond_loaded = 37;
   }
 
-  blitImageToScreen(0, 0, 0, 320 * scale, 240 * scale, 0, 0, 320 * scale, 240 * scale, 320 * scale, 240 * scale);
+  blitImageToScreen(0, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
 }
 
 int
@@ -164,31 +164,31 @@ common()
 
   loadBmp("", "", "romdisk/sprite1.png", "/rd/sprite1.png", 1);
 
-  y = y * scale;
+  y = y;
 
-  getImage(ANIM_RIGHT1, 70 * scale, 117 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_RIGHT2, 118 * scale, 117 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_RIGHT3, 164 * scale, 117 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_LEFT1, 70 * scale, 153 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_LEFT2, 118 * scale, 153 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_LEFT3, 164 * scale, 153 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_SHOOT, 67 * scale, 70 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_STOP, 67 * scale, 70 * scale, 31 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_DEAD, 168 * scale, 54 * scale, 48 * scale, 40 * scale, 1, 320 * scale, 240 * scale);
-  getImage(BIG, 10 * scale, 7 * scale, 48 * scale, 40 * scale, 1, 320 * scale, 240 * scale);
-  getImage(NORMAL, 70 * scale, 6 * scale, 32 * scale, 26 * scale, 1, 320 * scale, 240 * scale);
-  getImage(SMALL, 109 * scale, 20 * scale, 16 * scale, 14 * scale, 1, 320 * scale, 240 * scale);
-  getImage(MICRO, 131 * scale, 28 * scale, 8 * scale, 7 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_CASSABLE, 20 * scale, 78 * scale, 32 * scale, 8 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_INCASSABLE, 20 * scale, 88 * scale, 32 * scale, 8 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_CASSABLEV, 11 * scale, 102 * scale, 8 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_INCASSABLEV, 21 * scale, 102 * scale, 8 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_MOYEN_INCASSABLE, 38 * scale, 102 * scale, 16 * scale, 8 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_MOYEN_CASSABLE, 38 * scale, 112 * scale, 16 * scale, 8 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_MICRO_INCASSABLE, 45 * scale, 122 * scale, 8 * scale, 8 * scale, 1, 320 * scale, 240 * scale);
-  getImage(PF_MICRO_CASSABLE, 45 * scale, 132 * scale, 8 * scale, 8 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_LADDER1, 200 * scale, 191 * scale, 26 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
-  getImage(ANIM_LADDER2, 230 * scale, 191 * scale, 26 * scale, 32 * scale, 1, 320 * scale, 240 * scale);
+  getImage(ANIM_RIGHT1, 70, 117, 31, 32, 1, 320, 240);
+  getImage(ANIM_RIGHT2, 118, 117, 31, 32, 1, 320, 240);
+  getImage(ANIM_RIGHT3, 164, 117, 31, 32, 1, 320, 240);
+  getImage(ANIM_LEFT1, 70, 153, 31, 32, 1, 320, 240);
+  getImage(ANIM_LEFT2, 118, 153, 31, 32, 1, 320, 240);
+  getImage(ANIM_LEFT3, 164, 153, 31, 32, 1, 320, 240);
+  getImage(ANIM_SHOOT, 67, 70, 31, 32, 1, 320, 240);
+  getImage(ANIM_STOP, 67, 70, 31, 32, 1, 320, 240);
+  getImage(ANIM_DEAD, 168, 54, 48, 40, 1, 320, 240);
+  getImage(BIG, 10, 7, 48, 40, 1, 320, 240);
+  getImage(NORMAL, 70, 6, 32, 26, 1, 320, 240);
+  getImage(SMALL, 109, 20, 16, 14, 1, 320, 240);
+  getImage(MICRO, 131, 28, 8, 7, 1, 320, 240);
+  getImage(PF_CASSABLE, 20, 78, 32, 8, 1, 320, 240);
+  getImage(PF_INCASSABLE, 20, 88, 32, 8, 1, 320, 240);
+  getImage(PF_CASSABLEV, 11, 102, 8, 32, 1, 320, 240);
+  getImage(PF_INCASSABLEV, 21, 102, 8, 32, 1, 320, 240);
+  getImage(PF_MOYEN_INCASSABLE, 38, 102, 16, 8, 1, 320, 240);
+  getImage(PF_MOYEN_CASSABLE, 38, 112, 16, 8, 1, 320, 240);
+  getImage(PF_MICRO_INCASSABLE, 45, 122, 8, 8, 1, 320, 240);
+  getImage(PF_MICRO_CASSABLE, 45, 132, 8, 8, 1, 320, 240);
+  getImage(ANIM_LADDER1, 200, 191, 26, 32, 1, 320, 240);
+  getImage(ANIM_LADDER2, 230, 191, 26, 32, 1, 320, 240);
 
   initBalls();
   initPlateformes();
@@ -211,7 +211,7 @@ common()
       loadBmp("", "", "romdisk/title.png", "/rd/title.png", 2);
 #endif
 
-      blitImageToScreen(2, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
 
       present_frame();
       while (keyAction1 == 0 && keyQuit == 0)
@@ -260,13 +260,13 @@ common()
       {
         if (player.bonus_protection_timer == -1)
         {
-          blitImageToScreen(1, 231 * scale, 123 * scale, 43 * scale, 43 * scale, player.posx - (5 * scale), player.posy - (5 * scale), 43 * scale, 43 * scale, 320 * scale, 240 * scale);
+          blitImageToScreen(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43, 320, 240);
         }
         else
         {
           if (gbl_timer % 2 == 0)
           {
-            blitImageToScreen(1, 231 * scale, 123 * scale, 43 * scale, 43 * scale, player.posx - (5 * scale), player.posy - (5 * scale), 43 * scale, 43 * scale, 320 * scale, 240 * scale);
+            blitImageToScreen(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43, 320, 240);
           }
         }
       }
@@ -320,18 +320,18 @@ common()
         if (i < 3)
         {
           // blitImageToScreen(1,358,382,36,36,(10+i*20)*scale,430,36,36,320*scale,240*scale);
-          blitImageToScreen(1, 179 * scale, 191 * scale, 18 * scale, 18 * scale, (10 + i * 20) * scale, 214 * scale, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+          blitImageToScreen(1, 179, 191, 18, 18, (10 + i * 20), 214, 18, 18, 320, 240);
         }
       }
       char chaine[10];
       sprintf(chaine, "%d", player.score);
       //        		blitImageToScreen(1,484,130,76,22,(110+20)*scale,420,76,22,320*scale,240*scale); // Affiche SCORE:
-      blitImageToScreen(1, 242 * scale, 65 * scale, 38 * scale, 11 * scale, (110 + 20) * scale, 210 * scale, 38 * scale, 11 * scale, 320 * scale, 240 * scale); // Affiche SCORE:
-      showScore(chaine, 170 * scale, 209 * scale);
+      blitImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11, 320, 240); // Affiche SCORE:
+      showScore(chaine, 170, 209);
       sprintf(chaine, "%d", currentLevel);
       //        		blitImageToScreen(1,198,88,72,28,260,448,72,28,320*scale,240*scale); // Affiche LEVEL:
-      blitImageToScreen(1, 99 * scale, 44 * scale, 36 * scale, 14 * scale, 130 * scale, 224 * scale, 36 * scale, 14 * scale, 320 * scale, 240 * scale); // Affiche LEVEL:
-      showScore(chaine, 170 * scale, 224 * scale);
+      blitImageToScreen(1, 99, 44, 36, 14, 130, 224, 36, 14, 320, 240); // Affiche LEVEL:
+      showScore(chaine, 170, 224);
       sprintf(chaine, "%d", chrono);
 
       sprintf(debug, "%s", "");
@@ -403,17 +403,17 @@ common()
       if ((currentLevel % 2) == 0)
       {
         loadBmp("", "", "romdisk/nextlevel1.png", "/rd/nextlevel1.png", 2);
-        blitImageToScreen(2, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 320 * scale, 240 * scale);
+        blitImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
       }
       else
       {
         loadBmp("", "", "romdisk/nextlevel2.png", "/rd/nextlevel2.png", 2);
-        blitImageToScreen(2, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 320 * scale, 240 * scale);
+        blitImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
       }
       char chaine[10];
       sprintf(chaine, "%d", player.score);
-      blitImageToScreen(1, 242 * scale, 65 * scale, 38 * scale, 11 * scale, 110 * scale, 217 * scale, 38 * scale, 11 * scale, 320 * scale, 240 * scale); // Affiche SCORE:
-      showScore(chaine, 183 * scale, 217 * scale);
+      blitImageToScreen(1, 242, 65, 38, 11, 110, 217, 38, 11, 320, 240); // Affiche SCORE:
+      showScore(chaine, 183, 217);
 
       present_frame();
 
@@ -449,15 +449,15 @@ common()
         /* reaffiche le fond */
         showFond(currentLevel);
         /* anime le game over */
-        blitImageToScreen(1, 8 * scale, 218 * scale, 130 * scale, 15 * scale, (320 - cpt) * scale, 100 * scale, 130 * scale, 15 * scale, 320 * scale, 240 * scale);
+        blitImageToScreen(1, 8, 218, 130, 15, (320 - cpt), 100, 130, 15, 320, 240);
         cpt += 3;
         char chaine[10];
         sprintf(chaine, "%d", player.score);
-        blitImageToScreen(1, 242 * scale, 65 * scale, 38 * scale, 11 * scale, (110 + 20) * scale, 210 * scale, 38 * scale, 11 * scale, 320 * scale, 240 * scale); // Affiche SCORE:
-        showScore(chaine, (80 + 70 + 20) * scale, 209 * scale);
+        blitImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11, 320, 240); // Affiche SCORE:
+        showScore(chaine, (80 + 70 + 20), 209);
         sprintf(chaine, "%d", currentLevel);
-        blitImageToScreen(1, 99 * scale, 44 * scale, 36 * scale, 14 * scale, (110 + 20) * scale, 224 * scale, 36 * scale, 14 * scale, 320 * scale, 240 * scale); // Affiche LEVEL:
-        showScore(chaine, (80 + 70 + 20) * scale, 224 * scale);
+        blitImageToScreen(1, 99, 44, 36, 14, (110 + 20), 224, 36, 14, 320, 240); // Affiche LEVEL:
+        showScore(chaine, (80 + 70 + 20), 224);
 
         present_frame();
       }

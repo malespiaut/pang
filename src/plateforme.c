@@ -29,8 +29,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_INCASSABLE;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 8 * scale;
-    pforme[i].largeur = 32 * scale;
+    pforme[i].hauteur = 8;
+    pforme[i].largeur = 32;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -39,8 +39,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_CASSABLE;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 8 * scale;
-    pforme[i].largeur = 32 * scale;
+    pforme[i].hauteur = 8;
+    pforme[i].largeur = 32;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -49,8 +49,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_CASSABLEV;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 32 * scale;
-    pforme[i].largeur = 8 * scale;
+    pforme[i].hauteur = 32;
+    pforme[i].largeur = 8;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -59,8 +59,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_INCASSABLEV;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 32 * scale;
-    pforme[i].largeur = 8 * scale;
+    pforme[i].hauteur = 32;
+    pforme[i].largeur = 8;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -69,8 +69,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_MOYEN_INCASSABLE;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 8 * scale;
-    pforme[i].largeur = 16 * scale;
+    pforme[i].hauteur = 8;
+    pforme[i].largeur = 16;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -79,8 +79,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_MOYEN_CASSABLE;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 8 * scale;
-    pforme[i].largeur = 16 * scale;
+    pforme[i].hauteur = 8;
+    pforme[i].largeur = 16;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -89,8 +89,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_MICRO_INCASSABLE;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 8 * scale;
-    pforme[i].largeur = 8 * scale;
+    pforme[i].hauteur = 8;
+    pforme[i].largeur = 8;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }
@@ -99,8 +99,8 @@ createPlateforme(int posx, int posy, int typepf)
     pforme[i].type = PF_MICRO_CASSABLE;
     pforme[i].posx = posx;
     pforme[i].posy = posy;
-    pforme[i].hauteur = 8 * scale;
-    pforme[i].largeur = 8 * scale;
+    pforme[i].hauteur = 8;
+    pforme[i].largeur = 8;
     pforme[i].utilise = 1;
     pforme[i].bonus = 0;
   }

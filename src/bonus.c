@@ -52,10 +52,10 @@ createBonus(int type, int x, int y)
 
   bonus[i].posx = x;
   bonus[i].posy = y;
-  bonus[i].xbox = 0 * scale;
-  bonus[i].ybox = 0 * scale;
-  bonus[i].hbox = 18 * scale;
-  bonus[i].lbox = 18 * scale;
+  bonus[i].xbox = 0;
+  bonus[i].ybox = 0;
+  bonus[i].hbox = 18;
+  bonus[i].lbox = 18;
   bonus[i].type = type;
   bonus[i].utilise = 1;
   bonus[i].etat = DOWN;
@@ -91,7 +91,7 @@ updateBonus(int i)
     }
 
     /* On check les collision avec le bas */
-    if (bonus[i].posy + bonus[i].hbox > 200 * scale)
+    if (bonus[i].posy + bonus[i].hbox > 200)
     {
       // bonus[i].posy=200*scale-bonus[i].hbox;
       bonus[i].etat = STOP;
@@ -120,16 +120,16 @@ showBonus(int i)
     //		else if (bonus[i].type==BONUS_PROTECTION) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 158, 191, 320, 240,INVISIBLE_COLOR);
 
     if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
-      blitImageToScreen(1, 53 * scale, 191 * scale, 18 * scale, 18 * scale, bonus[i].posx, bonus[i].posy, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 53, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == WEAPON_GLUE_SHOOT)
-      blitImageToScreen(1, 11 * scale, 191 * scale, 18 * scale, 18 * scale, bonus[i].posx, bonus[i].posy, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 11, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_BOOM)
-      blitImageToScreen(1, 116 * scale, 191 * scale, 18 * scale, 18 * scale, bonus[i].posx, bonus[i].posy, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 116, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_FREEZE)
-      blitImageToScreen(1, 32 * scale, 191 * scale, 18 * scale, 18 * scale, bonus[i].posx, bonus[i].posy, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 32, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_LIFE)
-      blitImageToScreen(1, 74 * scale, 191 * scale, 18 * scale, 18 * scale, bonus[i].posx, bonus[i].posy, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 74, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_PROTECTION)
-      blitImageToScreen(1, 158 * scale, 191 * scale, 18 * scale, 18 * scale, bonus[i].posx, bonus[i].posy, 18 * scale, 18 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 158, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
   }
 }

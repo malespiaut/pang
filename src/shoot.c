@@ -34,16 +34,16 @@ createShoot(int type)
 
   if ((type == WEAPON_NORMAL_SHOOT) || (type == WEAPON_DOUBLE_SHOOT) || (type == WEAPON_GLUE_SHOOT))
   {
-    shoot[i].posx = player.posx + 12 * scale;
+    shoot[i].posx = player.posx + 12;
     shoot[i].posy = player.posy; /*-30;*/
-    shoot[i].xbox = 0 * scale;
-    shoot[i].ybox = 0 * scale;
-    shoot[i].hbox = 0 * scale;
-    shoot[i].lbox = 9 * scale;
+    shoot[i].xbox = 0;
+    shoot[i].ybox = 0;
+    shoot[i].hbox = 0;
+    shoot[i].lbox = 9;
     shoot[i].type = type;
     shoot[i].utilise = 1;
     shoot[i].duree = -1;
-    shoot[i].posy_depart = player.posy + 32 * scale;
+    shoot[i].posy_depart = player.posy + 32;
     playSound(3, 0);
   }
 }
@@ -56,9 +56,9 @@ updateShoot(int i)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {
-      shoot[i].posy = shoot[i].posy - 2 * scale;
+      shoot[i].posy = shoot[i].posy - 2;
       shoot[i].hbox = (shoot[i].posy_depart) - shoot[i].posy;
-      if (shoot[i].posy < 8 * scale)
+      if (shoot[i].posy < 8)
       {
         shoot[i].utilise = 0;
         player.nbtir--;
@@ -67,13 +67,13 @@ updateShoot(int i)
     if (shoot[i].type == WEAPON_GLUE_SHOOT)
     {
       if (shoot[i].duree == -1)
-        shoot[i].posy = shoot[i].posy - 2 * scale;
+        shoot[i].posy = shoot[i].posy - 2;
       shoot[i].hbox = (shoot[i].posy_depart) - shoot[i].posy;
-      if (shoot[i].posy < 8 * scale)
+      if (shoot[i].posy < 8)
       {
         if (shoot[i].duree == -1)
           shoot[i].duree = 120;
-        shoot[i].posy = 8 * scale;
+        shoot[i].posy = 8;
       }
     }
     if (shoot[i].duree > 0)
@@ -88,7 +88,7 @@ updateShoot(int i)
     {
       if (pforme[p].utilise == 1)
       {
-        if (isCollide(shoot[i].posx + shoot[i].xbox, shoot[i].posy + shoot[i].ybox, shoot[i].hbox - 5 * scale, shoot[i].lbox, pforme[p].posx, pforme[p].posy, pforme[p].hauteur, pforme[p].largeur))
+        if (isCollide(shoot[i].posx + shoot[i].xbox, shoot[i].posy + shoot[i].ybox, shoot[i].hbox - 5, shoot[i].lbox, pforme[p].posx, pforme[p].posy, pforme[p].hauteur, pforme[p].largeur))
         {
           // Si c un shoot normal ou un double shoot quelque soit la plateforme en collide ca dégage
           if ((shoot[i].type == WEAPON_DOUBLE_SHOOT) || (shoot[i].type == WEAPON_NORMAL_SHOOT))
@@ -128,12 +128,12 @@ updateShoot(int i)
               {
                 if ((player.bonus_life == 0) && (player.bonus_life_level != currentLevel))
                 {
-                  createBonus(pforme[p].bonus, pforme[p].posx + 4 * scale, pforme[p].posy);
+                  createBonus(pforme[p].bonus, pforme[p].posx + 4, pforme[p].posy);
                 }
               }
               else
               {
-                createBonus(pforme[p].bonus, pforme[p].posx + 4 * scale, pforme[p].posy);
+                createBonus(pforme[p].bonus, pforme[p].posx + 4, pforme[p].posy);
               }
             }
           }
@@ -153,7 +153,7 @@ showShoot(int i)
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {
       //			GpTransBlt(NULL, &gpDraw[nflip], shoot[i].posx, shoot[i].posy, shoot[i].lbox,shoot[i].hbox, (unsigned char*)sprite1, 305, 11, 320, 240,INVISIBLE_COLOR);
-      blitImageToScreen(1, 305 * scale, 11 * scale, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 305, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
     }
     if (shoot[i].type == WEAPON_GLUE_SHOOT)
     {
@@ -161,7 +161,7 @@ showShoot(int i)
       {
       }
       else
-        blitImageToScreen(1, 293 * scale, 11 * scale, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320 * scale, 240 * scale);
+        blitImageToScreen(1, 293, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
       //			{} else	GpTransBlt(NULL, &gpDraw[nflip], shoot[i].posx, shoot[i].posy, shoot[i].lbox,shoot[i].hbox, (unsigned char*)sprite1, 293, 11, 320, 240,INVISIBLE_COLOR);
     }
   }

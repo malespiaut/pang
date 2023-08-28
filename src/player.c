@@ -29,12 +29,12 @@ isCollideLadder(int r1x, int r1y, int r1h, int r1l, int r2x, int r2y, int r2h, i
 void
 initPlayer()
 {
-  player.posx = 150 * scale;
-  player.posy = (200 - 32) * scale;
-  player.xbox = 4 * scale;
-  player.ybox = 2 * scale;
-  player.hbox = 28 * scale; /* Hauteur et largeur de la boite de collision */
-  player.lbox = 18 * scale;
+  player.posx = 150;
+  player.posy = (200 - 32);
+  player.xbox = 4;
+  player.ybox = 2;
+  player.hbox = 28; /* Hauteur et largeur de la boite de collision */
+  player.lbox = 18;
   player.nblive = 3;
   player.weapon = WEAPON_NORMAL_SHOOT;
   player.score = 0;
@@ -59,12 +59,12 @@ initPlayer()
 void
 reInitPlayer()
 {
-  player.posx = 150 * scale;
-  player.posy = (200 - 32) * scale;
-  player.xbox = 4 * scale;
-  player.ybox = 2 * scale;
-  player.hbox = 28 * scale; /* Hauteur et largeur de la boite de collision */
-  player.lbox = 18 * scale;
+  player.posx = 150;
+  player.posy = (200 - 32);
+  player.xbox = 4;
+  player.ybox = 2;
+  player.hbox = 28; /* Hauteur et largeur de la boite de collision */
+  player.lbox = 18;
   player.weapon = WEAPON_NORMAL_SHOOT;
   /*player.score=0;*/
   player.nbtir = 0; /* Nombre de tir en cours ... */
@@ -111,18 +111,18 @@ updatePlayer()
 
     if (ech[i].utilise == 1)
     {
-      if ((isCollideLadder(player.posx + 12 * scale, player.posy + 30 * scale, 2 * scale, 10 * scale, ech[i].pad_milieu_x, ech[i].pad_milieu_y, ech[i].pad_milieu_hauteur, ech[i].pad_milieu_largeur)) && (player.en_descente < 3))
+      if ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_milieu_x, ech[i].pad_milieu_y, ech[i].pad_milieu_hauteur, ech[i].pad_milieu_largeur)) && (player.en_descente < 3))
       {
         whereIsPlayer = 2;
         echelleCollide = i;
       }
       /* bas */
-      if (isCollideLadder(player.posx + 12 * scale, player.posy + 30 * scale, 2 * scale, 10 * scale, ech[i].pad_bas_x, ech[i].pad_bas_y, ech[i].pad_bas_hauteur, ech[i].pad_bas_largeur) && (player.en_descente < 3))
+      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_bas_x, ech[i].pad_bas_y, ech[i].pad_bas_hauteur, ech[i].pad_bas_largeur) && (player.en_descente < 3))
       {
         whereIsPlayer = 1;
         echelleCollide = i;
       } /* haut */
-      if (isCollideLadder(player.posx + 12 * scale, player.posy + 30 * scale, 2 * scale, 10 * scale, ech[i].pad_haut_x, ech[i].pad_haut_y, ech[i].pad_haut_hauteur, ech[i].pad_haut_largeur) && (player.en_descente < 3))
+      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_haut_x, ech[i].pad_haut_y, ech[i].pad_haut_hauteur, ech[i].pad_haut_largeur) && (player.en_descente < 3))
       {
         whereIsPlayer = 3;
         echelleCollide = i;
@@ -137,7 +137,7 @@ updatePlayer()
     {
       if (whereIsPlayer > 3)
       {
-        while ((isCollideLadder(player.posx + 12 * scale, player.posy + 30 * scale, 2 * scale, 6 * scale, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
+        while ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 6, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
         {
           whereIsPlayer = 4;
           plateformeCollide = i;
@@ -157,7 +157,7 @@ updatePlayer()
   /* Si on est pas sur une échelle ou est on ? */
   if (whereIsPlayer == 999)
   {
-    if (player.posy == (200 - 32) * scale)
+    if (player.posy == (200 - 32))
     {
       whereIsPlayer = 0;
       player.en_descente = 0;
@@ -177,21 +177,21 @@ updatePlayer()
   }
   if (whereIsPlayer == 4)
   {
-    player.posy = pforme[plateformeCollide].posy - 32 * scale;
+    player.posy = pforme[plateformeCollide].posy - 32;
   }
 
   /*player.old_etat = player.etat;*/
   if ((keyLeft == 1) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
   {
-    player.xbox = 8 * scale;
-    player.ybox = 2 * scale;
-    player.hbox = 28 * scale; /* Hauteur et largeur de la boite de collision */
-    player.lbox = 22 * scale;
+    player.xbox = 8;
+    player.ybox = 2;
+    player.hbox = 28; /* Hauteur et largeur de la boite de collision */
+    player.lbox = 22;
 
     if (gbl_timer % 3 == 0)
-      player.posx -= 2 * scale;
+      player.posx -= 2;
     else
-      player.posx -= 1 * scale; // doppelt ?
+      player.posx -= 1; // doppelt ?
 
     int sortie = 0;
     while (sortie == 0)
@@ -201,7 +201,7 @@ updatePlayer()
       {
         if (pforme[i].utilise == 1)
         {
-          if ((isCollideLadder(player.posx + 5 * scale, player.posy + 6 * scale, 19 * scale, 2 * scale, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
+          if ((isCollideLadder(player.posx + 5, player.posy + 6, 19, 2, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
           {
             plateformeCollideBlock = i;
           }
@@ -214,9 +214,9 @@ updatePlayer()
       else
       {
         if (gbl_timer % 3 == 0)
-          player.posx += 2 * scale;
+          player.posx += 2;
         else
-          player.posx += 1 * scale;
+          player.posx += 1;
       }
     }
 
@@ -225,15 +225,15 @@ updatePlayer()
   }
   else if ((keyRight) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
   {
-    player.xbox = 4 * scale;
-    player.ybox = 2 * scale;
-    player.hbox = 28 * scale; /* Hauteur et largeur de la boite de collision */
-    player.lbox = 18 * scale;
+    player.xbox = 4;
+    player.ybox = 2;
+    player.hbox = 28; /* Hauteur et largeur de la boite de collision */
+    player.lbox = 18;
 
     if (gbl_timer % 3 == 0)
-      player.posx += 2 * scale;
+      player.posx += 2;
     else
-      player.posx += 1 * scale;
+      player.posx += 1;
 
     int sortie = 0;
     while (sortie == 0)
@@ -243,7 +243,7 @@ updatePlayer()
       {
         if (pforme[i].utilise == 1)
         {
-          if ((isCollideLadder(player.posx + 25 * scale, player.posy + 6 * scale, 19 * scale, 2 * scale, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
+          if ((isCollideLadder(player.posx + 25, player.posy + 6, 19, 2, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
           {
             plateformeCollideBlock = i;
           }
@@ -256,9 +256,9 @@ updatePlayer()
       else
       {
         if (gbl_timer % 3 == 0)
-          player.posx -= 2 * scale;
+          player.posx -= 2;
         else
-          player.posx -= 1 * scale;
+          player.posx -= 1;
       }
     }
 
@@ -274,7 +274,7 @@ updatePlayer()
   }
   else if ((keyDown) && (whereIsPlayer > 0) && (whereIsPlayer < 4))
   {
-    player.posy += 1 * scale;
+    player.posy += 1;
     player.posx = ech[echelleCollide].posx;
     player.old_etat = player.etat;
     player.etat = PLAYER_LADDER;
@@ -301,10 +301,10 @@ updatePlayer()
   if (((keyAction1 == 1) || (keyAction2 == 1)) && (player.shoot_timer == 0))
 
   {
-    player.xbox = 2 * scale;
-    player.ybox = 2 * scale;
-    player.hbox = 30 * scale; /* Hauteur et largeur de la boite de collision */
-    player.lbox = 30 * scale;
+    player.xbox = 2;
+    player.ybox = 2;
+    player.hbox = 30; /* Hauteur et largeur de la boite de collision */
+    player.lbox = 30;
     if ((player.nbtir < 1) && (player.weapon == WEAPON_NORMAL_SHOOT))
     {
       createShoot(WEAPON_NORMAL_SHOOT);
@@ -344,13 +344,13 @@ updatePlayer()
     player.shoot_timer = 0;
 
   /* Test des collisions droite gauche*/
-  if (player.posx < 8 * scale)
-    player.posx = 8 * scale;
-  if (player.posx > 283 * scale)
-    player.posx = 283 * scale;
+  if (player.posx < 8)
+    player.posx = 8;
+  if (player.posx > 283)
+    player.posx = 283;
 
-  if (player.posy > (200 - 32) * scale)
-    player.posy = (200 - 32) * scale;
+  if (player.posy > (200 - 32))
+    player.posy = (200 - 32);
 
   if (!(CHEAT))
   {

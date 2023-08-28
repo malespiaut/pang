@@ -340,8 +340,8 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
 
   ball[i].posx = posx;
   ball[i].posy = posy;
-  ball[i].hauteurmax = 180 * scale;
-  ball[i].hauteurmax_cpt = 160 * scale;
+  ball[i].hauteurmax = 180;
+  ball[i].hauteurmax_cpt = 160;
   ball[i].speedx = 1;
   ball[i].speedy = 3;
   ball[i].lr = RIGHT;
@@ -349,10 +349,10 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].coefdivaccell = 10;
   ball[i].speed_cpt = 0;
   ball[i].utilise = 1;
-  ball[i].xbox = 6 * scale;
-  ball[i].ybox = 4 * scale;
-  ball[i].hbox = (40 - 6) * scale;
-  ball[i].lbox = (48 - 10) * scale;
+  ball[i].xbox = 6;
+  ball[i].ybox = 4;
+  ball[i].hbox = (40 - 6);
+  ball[i].lbox = (48 - 10);
   ball[i].type = BIG;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
@@ -394,8 +394,8 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
 
   ball[i].posx = posx;
   ball[i].posy = posy;
-  ball[i].hauteurmax = 120 * scale;
-  ball[i].hauteurmax_cpt = 100 * scale;
+  ball[i].hauteurmax = 120;
+  ball[i].hauteurmax_cpt = 100;
   ball[i].speedx = 1;
   ball[i].speedy = 3;
   ball[i].lr = RIGHT;
@@ -403,10 +403,10 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].coefdivaccell = 20;
   ball[i].speed_cpt = 0;
   ball[i].utilise = 1;
-  ball[i].xbox = 3 * scale;
-  ball[i].ybox = 3 * scale;
+  ball[i].xbox = 3;
+  ball[i].ybox = 3;
   ball[i].hbox = (26 - 6);
-  ball[i].lbox = (32 - 6) * scale;
+  ball[i].lbox = (32 - 6);
   ball[i].type = NORMAL;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
@@ -447,8 +447,8 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
 
   ball[i].posx = posx;
   ball[i].posy = posy;
-  ball[i].hauteurmax = 80 * scale;
-  ball[i].hauteurmax_cpt = 60 * scale;
+  ball[i].hauteurmax = 80;
+  ball[i].hauteurmax_cpt = 60;
   ball[i].speedx = 1;
   ball[i].speedy = 3;
   ball[i].lr = RIGHT;
@@ -456,10 +456,10 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].coefdivaccell = 30;
   ball[i].speed_cpt = 0;
   ball[i].utilise = 1;
-  ball[i].xbox = 1 * scale;
-  ball[i].ybox = 1 * scale;
-  ball[i].hbox = (14 - 3) * scale;
-  ball[i].lbox = (16 - 3) * scale;
+  ball[i].xbox = 1;
+  ball[i].ybox = 1;
+  ball[i].hbox = (14 - 3);
+  ball[i].lbox = (16 - 3);
   ball[i].type = SMALL;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
@@ -501,8 +501,8 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
 
   ball[i].posx = posx;
   ball[i].posy = posy;
-  ball[i].hauteurmax = 60 * scale;
-  ball[i].hauteurmax_cpt = 30 * scale;
+  ball[i].hauteurmax = 60;
+  ball[i].hauteurmax_cpt = 30;
   ball[i].speedx = 1;
   ball[i].speedy = 3;
   ball[i].lr = RIGHT;
@@ -510,10 +510,10 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].coefdivaccell = 40;
   ball[i].speed_cpt = 0;
   ball[i].utilise = 1;
-  ball[i].xbox = 1 * scale;
-  ball[i].ybox = 1 * scale;
-  ball[i].hbox = (5) * scale;
-  ball[i].lbox = (6) * scale;
+  ball[i].xbox = 1;
+  ball[i].ybox = 1;
+  ball[i].hbox = (5);
+  ball[i].lbox = (6);
   ball[i].type = MICRO;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
@@ -649,12 +649,12 @@ sans collision.
                 moveSprite(ball[tmp].spriteno, (int)old_posx, (int)old_posy);
             }
 
-            ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20 * scale;
+            ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20;
             ball[tmp].vel = 2.0;
             if (ball[i].bonus_parent != 0)
               ball[tmp].bonus = ball[i].bonus_parent;
             tmp = createBall(ball[i].posx, ball[i].posy, ball[i].type + 1, RIGHT, UP);
-            ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20 * scale;
+            ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20;
             ball[tmp].vel = 2.0;
           }
           /* score ! */
@@ -695,12 +695,12 @@ sans collision.
             {
               if ((player.bonus_life == 0) && (player.bonus_life_level != currentLevel))
               {
-                createBonus(ball[i].bonus, (int)ball[i].posx + 5 * scale, (int)ball[i].posy + 5 * scale);
+                createBonus(ball[i].bonus, (int)ball[i].posx + 5, (int)ball[i].posy + 5);
               }
             }
             else
             {
-              createBonus(ball[i].bonus, (int)ball[i].posx + 5 * scale, (int)ball[i].posy + 5 * scale);
+              createBonus(ball[i].bonus, (int)ball[i].posx + 5, (int)ball[i].posy + 5);
             }
           }
           releaseSprite(ball[i].spriteno);

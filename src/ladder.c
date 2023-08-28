@@ -26,24 +26,24 @@ createLadder(int x, int y, int nbBarreau)
   ech[i].utilise = 1;
   ech[i].posx = x;
   ech[i].posy = y;
-  ech[i].hauteur = 4 * nbBarreau * scale;
-  ech[i].largeur = 22 * scale;
+  ech[i].hauteur = 4 * nbBarreau;
+  ech[i].largeur = 22;
   ech[i].nbBarreau = nbBarreau;
 
   ech[i].pad_haut_x = x;
-  ech[i].pad_haut_y = y - 4 * scale;
+  ech[i].pad_haut_y = y - 4;
   ech[i].pad_haut_largeur = ech[i].largeur;
-  ech[i].pad_haut_hauteur = 4 * scale;
+  ech[i].pad_haut_hauteur = 4;
 
   ech[i].pad_milieu_x = x;
   ech[i].pad_milieu_y = y;
   ech[i].pad_milieu_largeur = ech[i].largeur;
-  ech[i].pad_milieu_hauteur = ech[i].hauteur - 4 * scale;
+  ech[i].pad_milieu_hauteur = ech[i].hauteur - 4;
 
   ech[i].pad_bas_x = x;
-  ech[i].pad_bas_y = y + ech[i].hauteur - 4 * scale;
+  ech[i].pad_bas_y = y + ech[i].hauteur - 4;
   ech[i].pad_bas_largeur = ech[i].largeur;
-  ech[i].pad_bas_hauteur = 4 * scale;
+  ech[i].pad_bas_hauteur = 4;
 
   return i;
 }
@@ -59,7 +59,7 @@ showLadder(int i)
     {
       /*GpTransBlt(NULL, &gpDraw[nflip], ech[i].posx, ech[i].posy+(e*4), 22,4, (unsigned char*)sprite1, 71, 53, 320, 240,INVISIBLE_COLOR);*/
 
-      blitImageToScreen(1, 71 * scale, 53 * scale, 22 * scale, 4 * scale, ech[i].posx, ech[i].posy + (e * 4 * scale), 22 * scale, 4 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, 71, 53, 22, 4, ech[i].posx, ech[i].posy + (e * 4), 22, 4, 320, 240);
     }
   }
 }

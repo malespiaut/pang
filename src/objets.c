@@ -9,19 +9,19 @@ showNumber(char* string, unsigned int x, unsigned int y)
 {
 
   unsigned char i, temp;
-  int positionxduzero = 148 * scale;
-  int positionyduzero = 226 * scale;
+  int positionxduzero = 148;
+  int positionyduzero = 226;
 
   temp = strlen(string);
   for (i = 0; i < temp; i++)
   {
     if (((*string - 48) * 13) == 0)
     {
-      blitImageToScreen(1, ((*string - 48) * 14 * scale) + positionxduzero, positionyduzero, 13 * scale, 13 * scale, x + (i * 13), y * scale, 13 * scale, 13 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 13), y, 13, 13, 320, 240);
     }
     else
     {
-      blitImageToScreen(1, ((*string - 48) * 14 * scale) + positionxduzero + 1, positionyduzero, 13 * scale, 13 * scale, x + (i * 13), y, 13 * scale, 13 * scale, 320 * scale, 240 * scale);
+      blitImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 13), y, 13, 13, 320, 240);
     }
 
     string++;
@@ -82,7 +82,7 @@ showObjet(int i)
         //   			GpTextOut(NULL, &gpDraw[nflip], obj[i].posx, obj[i].posy, "x", INVISIBLE_COLOR);
         char chaine[3];
         sprintf(chaine, "%d", obj[i].value);
-        blitImageToScreen(1, 247 * scale, 90 * scale, 7 * scale, 9 * scale, obj[i].posx, obj[i].posy, 7 * scale, 9 * scale, 320 * scale, 240 * scale);
+        blitImageToScreen(1, 247, 90, 7, 9, obj[i].posx, obj[i].posy, 7, 9, 320, 240);
 
         showNumber(chaine, obj[i].posx + 8, obj[i].posy);
         //				GpTextOut(NULL, &gpDraw[nflip], obj[i].posx+8, obj[i].posy, chaine, INVISIBLE_COLOR);
@@ -100,7 +100,7 @@ showObjet(int i)
       if (obj[i].cpt > 0)
       {
         //				GpTextOut(NULL, &gpDraw[nflip], obj[i].posx, obj[i].posy, "1UP", INVISIBLE_COLOR);
-        blitImageToScreen(1, 240 * scale, 12 * scale, 21 * scale, 13 * scale, obj[i].posx, obj[i].posy, 21 * scale, 13 * scale, 320 * scale, 240 * scale);
+        blitImageToScreen(1, 240, 12, 21, 13, obj[i].posx, obj[i].posy, 21, 13, 320, 240);
         obj[i].cpt--;
         obj[i].posy--;
       }
