@@ -8,7 +8,7 @@ SRC_EXT = c
 # Path to the source directory, relative to the makefile
 SRC_PATH = .
 # Space-separated pkg-config libraries used by this project
-LIBS = sdl12_compat SDL_mixer
+LIBS = sdl12_compat SDL_mixer SDL_image
 # General compiler flags
 COMPILE_FLAGS = -D PC_VERSION -w
 # Additional release-specific flags

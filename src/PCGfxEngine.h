@@ -1,6 +1,9 @@
-#include "SDL.h"
+#pragma once
+
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "SDL.h"
 
 #define MAX_SPRITE 500
 #define MAX_IMAGE 30
@@ -31,8 +34,8 @@
 #define GP2X_BUTTON_VOLDOWN (17)
 #endif
 
-SDL_Surface* screen;
-SDL_Surface* imagesBMP[10];
+extern SDL_Surface* screen;
+extern SDL_Surface* imagesBMP[10];
 extern int mapTiles[MAX_MAP][MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
 extern int currentWorldMapX[MAX_MAP];
 extern int currentWorldMapY[MAX_MAP];
