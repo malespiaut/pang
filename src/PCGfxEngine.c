@@ -242,29 +242,16 @@ present_frame(void)
 int
 loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImage)
 {
-
   SDL_FreeSurface(imagesBMP[noImage]);
-
   SDL_Surface* temp;
 
   if ((temp = IMG_Load(pathfilename)) == NULL)
   {
     fprintf(stderr, "Error: %s\n", SDL_GetError());
-
-#ifndef GP2X_VERSION
-    chdir("/usr/gp2x");
-    execl("/usr/gp2x/gp2xmenu", "/usr/gp2x/gp2xmenu", NULL);
-#endif
     exit(1);
   }
-  // if (SDL_MUSTLOCK(temp)) SDL_LockSurface(temp);
-
-  SDL_Surface* tmpS = NULL;
-  tmpS = zoomSurface(temp, 0.5, 0.5, 0); // scale the image x0.5 when loaded into memory
-  temp = tmpS;
 
   imagesBMP[noImage] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
-  // if (SDL_MUSTLOCK(temp)) SDL_UnlockSurface(temp);
   SDL_FreeSurface(temp);
 
   if ((noImage == 1) || (noImage == 3))
