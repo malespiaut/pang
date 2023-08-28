@@ -1,0 +1,14 @@
+20.02.2006 : Fixed the sound speed bug with firmware 1.4.0, not sure if it works with 1.2.1.
+16.02.2006 : The guy now runs a bit faster, converted the images to png and use SDL_image to load them.
+	     Fixed the collision detection problem with help of Michel Louvet.
+	     No longer loose a live when touching a frozen ball.
+	     The dynamite no longer removes the active freeze.
+	     When no more serious bugs are reported, this is the last final release.
+	     Gp2x title screen created by FluffyPanda, thank you.
+12.02.2006 : Switched to the hardware accelerated sdl library, it now runs at full speed and
+	     the big balls now moves as smooth as it should.
+	     No need to reset the gp2x to start this pang port when it was already started once.
+15.01.2006 : Fixed the life count problem with help of the orignial author and the psx port author
+14.01.2006 : Added volume control (pc: keypad +/- ; gp2x: volup/voldown),
+	     score in 320x240 resolution is drawn on the correct position now
+13.01.2006 : Fixed typo in ball.c, now the ball physics work flawless in 320x240 resolution, too

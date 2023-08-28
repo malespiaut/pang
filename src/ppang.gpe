@@ -1,0 +1,2 @@
+#!/bin/bash
+./ppang > ppang.log.txt 2>&1
