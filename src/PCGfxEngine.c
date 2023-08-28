@@ -1,17 +1,18 @@
-#include "PCGfxEngine.h"
-#include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_mixer.h"
-#include "structures.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-#ifdef RES320X240
-#include <SDL_rotozoom.h>
-#endif
+#include <SDL.h>
+#include <SDL2_rotozoom.h>
+#include <SDL_image.h>
+#include <SDL_mixer.h>
 
-// Nouvelle version !!
+#include "PCGfxEngine.h"
+#include "structures.h"
+
+SDL_Window* window;
+SDL_Renderer* renderer;
+SDL_Texture* texture;
 SDL_Surface* screen;
 SDL_Joystick* stick;
 SDL_Surface* imagesBMP[10];
@@ -206,13 +207,15 @@ initGfxEngine()
 
   atexit(SDL_Quit);
 
-#ifdef RES320X240
-  screen = SDL_SetVideoMode(320, 240, 16, SDL_HWSURFACE | SDL_DOUBLEBUF);
-  printf("Resolution 320x240\n");
-#else
-  // screen = SDL_SetVideoMode(640,480,32,SDL_FULLSCREEN|SDL_HWSURFACE|SDL_DOUBLEBUF);
-  screen = SDL_SetVideoMode(640, 480, 16, SDL_HWSURFACE | SDL_DOUBLEBUF);
-#endif
+  window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 320, 240, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI);
+
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+  SDL_RenderSetLogicalSize(renderer, 320, 240);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, 320, 240);
+
+  screen = SDL_CreateRGBSurface(0, 320, 240, 32, 0, 0, 0, 0);
 
   SDL_ShowCursor(0);
   if (screen == NULL)
@@ -224,6 +227,15 @@ initGfxEngine()
 #endif
     exit(1);
   }
+}
+
+void
+present_frame(void)
+{
+  SDL_UpdateTexture(texture, NULL, screen->pixels, sizeof(Uint32) * 320);
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, texture, NULL, NULL);
+  SDL_RenderPresent(renderer);
 }
 
 // image 1 et 3 transparente
@@ -247,76 +259,16 @@ loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImag
   }
   // if (SDL_MUSTLOCK(temp)) SDL_LockSurface(temp);
 
-#ifdef RES320X240
   SDL_Surface* tmpS = NULL;
   tmpS = zoomSurface(temp, 0.5, 0.5, 0); // scale the image x0.5 when loaded into memory
   temp = tmpS;
-#endif
 
   imagesBMP[noImage] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
   // if (SDL_MUSTLOCK(temp)) SDL_UnlockSurface(temp);
   SDL_FreeSurface(temp);
 
   if ((noImage == 1) || (noImage == 3))
-    SDL_SetColorKey(imagesBMP[noImage], (SDL_SRCCOLORKEY | SDL_RLEACCEL), SDL_MapRGB(imagesBMP[noImage]->format, 255, 255, 255));
-
-  return 0;
-}
-
-void
-flipScreen()
-{
-  SDL_Flip(screen);
-}
-
-void
-waitInMs()
-{
-  static float lasttime = 0;
-  float currenttime = 0;
-  static int frames;
-  float oldwpf;
-  static float wpf = 0; // wait per frame
-
-  currenttime = SDL_GetTicks() * 0.001;
-  frames++;
-
-  oldwpf = wpf;
-  // recalc the wait per frame every 10 frames
-  if (currenttime - lasttime > 0.1)
-  {
-    // x frame per 0.2 seconds
-    int efps = frames * 10;
-
-    // wir haben ? aber wollen 42
-    wpf = (efps / 42.0) * 10;
-    //	printf("wait per frame: %f\n",wpf);
-
-    lasttime = currenttime;
-    frames = 0;
-  }
-  if (wpf > 0)
-    oldwpf = wpf;
-  SDL_Delay(oldwpf);
-}
-
-int
-synchroStart()
-{
-  sstart = SDL_GetTicks();
-  return 0;
-}
-
-int
-synchroEnd(int ms)
-{
-  ssend = SDL_GetTicks();
-  int t = (ms - (ssend - sstart));
-  if (t > 0)
-    if (t <= ms)
-    {
-      waitInMs((ms - (ssend - sstart)));
-    }
+    SDL_SetColorKey(imagesBMP[noImage], SDL_TRUE, SDL_MapRGB(imagesBMP[noImage]->format, 255, 255, 255));
 
   return 0;
 }

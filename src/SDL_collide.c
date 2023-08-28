@@ -1,5 +1,7 @@
-#include "SDL_collide.h"
+#include <stdbool.h>
+
 #include "SDL.h"
+#include "SDL_collide.h"
 
 /*if this header is not supported on your system comment out
 the assert function call in SDL_TransparentPixel*/
@@ -12,14 +14,15 @@ the assert function call in SDL_TransparentPixel*/
 /*
         SDL surface test if offset (u,v) is a transparent pixel
 */
-int
+bool
 SDL_CollideTransparentPixelTest(SDL_Surface* surface, int u, int v)
 {
-  /*assert that (u,v) offsets lie within surface*/
+  /*
+  // assert that (u,v) offsets lie within surface
   // assert( !((u < surface->w) || (v < surface->h)) );
 
   int bpp = surface->format->BytesPerPixel;
-  /*here p is the address to the pixel we want to retrieve*/
+  // here p is the address to the pixel we want to retrieve
   Uint8* p = (Uint8*)surface->pixels + v * surface->pitch + u * bpp;
 
   Uint32 pixelcolor;
@@ -46,8 +49,14 @@ SDL_CollideTransparentPixelTest(SDL_Surface* surface, int u, int v)
       break;
   }
 
-  /*test whether pixels color == color of transparent pixels for that surface*/
+  // test whether pixels color == color of transparent pixels for that surface
   return (pixelcolor == surface->format->colorkey);
+  */
+  Uint8* p = (Uint8*)surface->pixels + v * surface->pitch + u * 32;
+  Uint32 pixelcolor = *(Uint32*)p;
+  Uint32 key = 0;
+  SDL_GetColorKey(surface, &key);
+  return pixelcolor == key;
 }
 
 /*

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "SDL.h"
+#include <SDL.h>
 
 #define MAX_SPRITE 500
 #define MAX_IMAGE 30
@@ -34,6 +34,9 @@
 #define GP2X_BUTTON_VOLDOWN (17)
 #endif
 
+extern SDL_Window* window;
+extern SDL_Renderer* renderer;
+extern SDL_Texture* texture;
 extern SDL_Surface* screen;
 extern SDL_Surface* imagesBMP[10];
 extern int mapTiles[MAX_MAP][MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
@@ -95,26 +98,22 @@ extern ssprite sprite[MAX_SPRITE];
 extern simage imageBank[MAX_IMAGE];
 extern stile tiles[MAX_TILE];
 
-void initTileEngine();
+void initTileEngine(void);
+void present_frame(void);
 void blitImageToScreen(int imageNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth);
 void createTile(int n, int imageNo, int a1, int a2, int a3);
 void setTileInMap(int mapNo, int x, int y, int tileNo);
 void setWorldView(int mapNo, int x, int y);
 void mapDraw(int mapNo);
-void initGfxEngine();
+void initGfxEngine(void);
 int loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImage);
-void flipScreen();
-void waitInMs();
-int synchroStart();
-int synchroEnd(int ms);
-int getTicks();
-int checkController();
-void initSpriteEngine();
+int checkController(void);
+void initSpriteEngine(void);
 void getImage(int n, int x, int y, int l, int h, int imageNo, int w, int he);
 void initSprite(int n, int x, int y, int i);
 int initFreeSprite(int x, int y, int i);
 void releaseSprite(int n);
-void releaseAllSprite();
+void releaseAllSprite(void);
 void animateSprite(int s, int a);
 void setSpriteAnimation(int s, int a, int speed, int f0, int f1, int f2, int f3, int f4, int f5, int f6, int f7, int f8, int f9, int f10, int f11, int f12, int f13, int f14, int f15, int f16, int f17, int f18, int f19);
 void moveSprite(int n, int x, int y);
@@ -123,6 +122,6 @@ void pasteImage(int n, int x, int y);
 void showSprite(int n);
 void stopAnimateSprite(int s);
 void showLRSprite(int n);
-void showAllSprite();
+void showAllSprite(void);
 int isSpriteCollide(int sprite1, int sprite2);
 int CollideTransparentPixelTest(SDL_Surface* surface, int u, int v);

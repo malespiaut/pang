@@ -361,13 +361,8 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].last_posx = posx;
   ball[i].last_posy = posy;
 
-#ifdef RES320X240
   ball[i].vel = -10.0;
   ball[i].vel_cst = 12.5;
-#else
-  ball[i].vel = -10;
-  ball[i].vel_cst = 17.5;
-#endif
   ball[i].move = 2;
 
   if (hdirection == LEFT)
@@ -418,13 +413,8 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].bonus_parent = 0;
   ball[i].spriteno = initFreeSprite((int)posx, (int)posy, NORMAL);
 
-#ifdef RES320X240
   ball[i].vel = -10.0;
   ball[i].vel_cst = 10.0;
-#else
-  ball[i].vel = -10.0;
-  ball[i].vel_cst = 14.0;
-#endif
   ball[i].move = 2;
 
   ball[i].last_posx = posx;
@@ -476,13 +466,8 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].bonus_parent = 0;
   ball[i].spriteno = initFreeSprite((int)ball[i].posx, (int)ball[i].posy, SMALL);
 
-#ifdef RES320X240
   ball[i].vel = -8.0;
   ball[i].vel_cst = 8.0;
-#else
-  ball[i].vel = -8.0;
-  ball[i].vel_cst = 11.5;
-#endif
   ball[i].move = 2;
 
   ball[i].last_posx = posx;
@@ -535,13 +520,8 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].bonus_parent = 0;
   ball[i].spriteno = initFreeSprite((int)ball[i].posx, (int)ball[i].posy, MICRO);
 
-#ifdef RES320X240
   ball[i].vel = -6.5;
   ball[i].vel_cst = 6.5;
-#else
-  ball[i].vel = -8.5;
-  ball[i].vel_cst = 8.5;
-#endif
 
   ball[i].move = 2;
 

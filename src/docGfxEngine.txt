@@ -45,46 +45,6 @@ totalPath : chemin pour SDL (d:\\images\\toto.bmp)
 pathdc : chemin pour Dreamcast (/rd/blocks.bmp)
 
 
-void flipScreen() :
------------------
-
-Affiche les modifications graphique fait à l'écran
-
-void waitInMs(int ms) :
-------------------------------
-+ ms : temps en milliseconde +
-------------------------------
-
-Ne fait rien pendant ms millisecondes
-
-int synchroStart() :
-------------------
-
-Initialise la synchro de boucle
-
-int synchroEnd(int ms) :
--------------------------
-+ ms : temps de synchro +
--------------------------
-
-Finit la synchro de boucle et attend le temps restant pour atteindre ms milliseconde.
-
-EXEMPLE :
-        
-        While (1)
-        {
-               synchroStart()
-               
-               .. Traitement de jeu ..
-               .. Affichage ..
-               
-               synchroEnd(5);
-        }
-        
-        La boucle mettra au minimum 5 millisecondes à s'executer. Cela permet de synchroniser
-        la vitesse du jeu pour tout les PC. Sur un PC plus lent, elle ne bloquera pas le PC.
-     
-
 
 int checkController() :
 ---------------------

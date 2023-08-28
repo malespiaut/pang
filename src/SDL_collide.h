@@ -1,3 +1,7 @@
+#pragma once
+
+#include <stdbool.h>
+
 #include "SDL.h"
 
 /* Set up for C function definitions, even when using C++ */
@@ -5,7 +9,7 @@
 /*
         SDL surface test if offset (u,v) is a transparent pixel
 */
-int SDL_CollideTransparentPixelTest(SDL_Surface* surface, int u, int v);
+bool SDL_CollideTransparentPixelTest(SDL_Surface* surface, int u, int v);
 
 /*
         SDL pixel perfect collision test

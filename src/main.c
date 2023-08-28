@@ -213,8 +213,7 @@ common()
 
       blitImageToScreen(2, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 0 * scale, 0 * scale, 320 * scale, 240 * scale, 320 * scale, 240 * scale);
 
-      flipScreen();
-      //	    		waitInMs(100);
+      present_frame();
       while (keyAction1 == 0 && keyQuit == 0)
       {
         checkController();
@@ -234,8 +233,6 @@ common()
     }
     else if (gbl_evt == EVT_NULL)
     {
-      synchroStart();
-
       while (keyAction4 == 1)
       {
         pause = 1;
@@ -387,7 +384,7 @@ common()
           player.posx++;
         }
         cpt++;
-        flipScreen();
+        present_frame();
       }
       forceClearSound(0);
       releaseAllSprite();
@@ -418,8 +415,7 @@ common()
       blitImageToScreen(1, 242 * scale, 65 * scale, 38 * scale, 11 * scale, 110 * scale, 217 * scale, 38 * scale, 11 * scale, 320 * scale, 240 * scale); // Affiche SCORE:
       showScore(chaine, 183 * scale, 217 * scale);
 
-      flipScreen();
-      waitInMs();
+      present_frame();
 
       checkController();
       while (keyAction1 == 0)
@@ -463,7 +459,7 @@ common()
         blitImageToScreen(1, 99 * scale, 44 * scale, 36 * scale, 14 * scale, (110 + 20) * scale, 224 * scale, 36 * scale, 14 * scale, 320 * scale, 240 * scale); // Affiche LEVEL:
         showScore(chaine, (80 + 70 + 20) * scale, 224 * scale);
 
-        flipScreen();
+        present_frame();
       }
       while (keyAction1 == 0)
       {
@@ -483,7 +479,7 @@ common()
     }
     if (fpsshow == 1)
       showfps();
-    flipScreen();
+    present_frame();
     clearSound(3);
     clearSound(4);
     onetwo++;
@@ -496,7 +492,6 @@ common()
     checkController();
     if (keyQuit == 1)
       return 0;
-    synchroEnd(20);
   }
 }
 
