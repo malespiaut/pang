@@ -4,5 +4,5 @@
 #define scale 2
 #endif
 
-void showfps ();
-void showScore(char *string,unsigned int x,unsigned int y);
+void showfps();
+void showScore(char* string, unsigned int x, unsigned int y);

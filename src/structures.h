@@ -1,10 +1,10 @@
-#define INVISIBLE_COLOR		218
+#define INVISIBLE_COLOR 218
 #define MAX_LEVEL 25
 
 #define CHEAT 0
 #define GRAV 0.5
 
-#define MAX_PLATEFORME  50
+#define MAX_PLATEFORME 50
 #define MAX_BALL 32
 #define MAX_ECHELLE 10
 #define MAX_BONUS 5
@@ -59,15 +59,15 @@
 #define DOWN 1
 #define STOP 0
 
-#define TOUCH_HORIZONTAL	1
-#define TOUCH_VERTICAL		2
-#define TOUCH_EQUAL		4
+#define TOUCH_HORIZONTAL 1
+#define TOUCH_VERTICAL 2
+#define TOUCH_EQUAL 4
 
-#define BONUS_BOOM		5
-#define BONUS_FREEZE		6
-#define BONUS_LIFE		7
-#define BONUS_PROTECTION	8
-#define BONUS_RANDOM		99
+#define BONUS_BOOM 5
+#define BONUS_FREEZE 6
+#define BONUS_LIFE 7
+#define BONUS_PROTECTION 8
+#define BONUS_RANDOM 99
 
 #define OBJ_MUL 1
 #define OBJ_EXPL_BIG 2
@@ -84,144 +84,150 @@ extern int gbl_evt;
 extern int onetwo;
 extern int currentLevel;
 
-
-typedef struct splateforme{
-	int posx;
-	int posy;
-	int hauteur;
-	int largeur;
-	int utilise;
-	int xbox;
-	int ybox;
-	int hbox;		/* Hauteur et largeur de la boite de collision */
-	int lbox;
-	int type;
-	int spriteno;
-	int bonus;
+typedef struct splateforme
+{
+  int posx;
+  int posy;
+  int hauteur;
+  int largeur;
+  int utilise;
+  int xbox;
+  int ybox;
+  int hbox; /* Hauteur et largeur de la boite de collision */
+  int lbox;
+  int type;
+  int spriteno;
+  int bonus;
 } plateforme;
 
-typedef struct sobj{
-	int posx;
-	int posy;
-	int type;
-	int cpt;
-	int utilise;
-	int value;
+typedef struct sobj
+{
+  int posx;
+  int posy;
+  int type;
+  int cpt;
+  int utilise;
+  int value;
 } objet;
 
-typedef struct sechelle{
-	int posx;
-	int posy;
-	int hauteur;
-	int largeur;
-	int utilise;
-	int xbox;
-	int ybox;
-	int hbox;		/* Hauteur et largeur de la boite de collision */
-	int lbox;
-	int nbBarreau;
+typedef struct sechelle
+{
+  int posx;
+  int posy;
+  int hauteur;
+  int largeur;
+  int utilise;
+  int xbox;
+  int ybox;
+  int hbox; /* Hauteur et largeur de la boite de collision */
+  int lbox;
+  int nbBarreau;
 
-	int pad_haut_x;
-	int pad_haut_y;
-	int pad_haut_largeur;
-	int pad_haut_hauteur;
-	
-	int pad_milieu_x;
-	int pad_milieu_y;
-	int pad_milieu_largeur;
-	int pad_milieu_hauteur;
+  int pad_haut_x;
+  int pad_haut_y;
+  int pad_haut_largeur;
+  int pad_haut_hauteur;
 
-	int pad_bas_x;
-	int pad_bas_y;
-	int pad_bas_largeur;
-	int pad_bas_hauteur;
+  int pad_milieu_x;
+  int pad_milieu_y;
+  int pad_milieu_largeur;
+  int pad_milieu_hauteur;
+
+  int pad_bas_x;
+  int pad_bas_y;
+  int pad_bas_largeur;
+  int pad_bas_hauteur;
 } ladder;
- 
-typedef struct sballe{
-	double posx;		/* Position x dans l'écran (à initialiser) */
-	double posy;		/* Position y dans l'écran (à initialiser) */
-	double last_posx;   /* Dernière position x sans collision à l'écran */
-	double last_posy;	/* Dernière position y sans collision à l'écran */
-	int hauteurmax;		/* Hauteur maximum en pixel que peut prendre une boule (à initialiser)*/
-	int hauteurmax_cpt;	/* Compteur interne (à initialiser à 0) */
-	int speedx;		    /* Vitesse de déplacement horizontal */
-	int speedy;		    /* Vitesse de déplacement verticale (+ la valeur est grande + c lent) */
-	int speed_cpt;		/* Compteur interne (à initialiser à 0) */
-	int lr;			    /* Direction horizontale -1 = droite    +1 = gauche */
-	int ud;			    /* Direction verticale -1 = haut    +1 = bas */
-	int coefdivaccell;	/* Coefficient d'accélération (+ la valeur est grande + c lent) */
-	int utilise;		/* 0 = libre */
-	int xbox;           /*Position x dans l'image de la boite de collision */
-	int ybox;           /* Position y dans l'image de la boite de collision */
-	int hbox;		    /* Hauteur et largeur de la boite de collision */
-	int lbox;
-	int type;           /* Type de balle : MICRO,SMALL,NORMAL,BIG */
-	int suspend;		/* Suspend la balle en l'air si atteind de max */
-	int bonus;		    /* Bonus que contient la balle */
-	int bonus_parent;	/* bonus que contiendra la balle suivante ! */
-	int spriteno;       /* Cette balle est représentée par le sprite numéero <spriteno> */
-	double vel;
-	double vel_cst;
-	int move;
 
-	int nbtouch; /* variable qui évite les balles d'êtres bloquées */ 
-	int y_a_til_eu_collision_avant;
+typedef struct sballe
+{
+  double posx;        /* Position x dans l'écran (à initialiser) */
+  double posy;        /* Position y dans l'écran (à initialiser) */
+  double last_posx;   /* Dernière position x sans collision à l'écran */
+  double last_posy;   /* Dernière position y sans collision à l'écran */
+  int hauteurmax;     /* Hauteur maximum en pixel que peut prendre une boule (à initialiser)*/
+  int hauteurmax_cpt; /* Compteur interne (à initialiser à 0) */
+  int speedx;         /* Vitesse de déplacement horizontal */
+  int speedy;         /* Vitesse de déplacement verticale (+ la valeur est grande + c lent) */
+  int speed_cpt;      /* Compteur interne (à initialiser à 0) */
+  int lr;             /* Direction horizontale -1 = droite    +1 = gauche */
+  int ud;             /* Direction verticale -1 = haut    +1 = bas */
+  int coefdivaccell;  /* Coefficient d'accélération (+ la valeur est grande + c lent) */
+  int utilise;        /* 0 = libre */
+  int xbox;           /*Position x dans l'image de la boite de collision */
+  int ybox;           /* Position y dans l'image de la boite de collision */
+  int hbox;           /* Hauteur et largeur de la boite de collision */
+  int lbox;
+  int type;         /* Type de balle : MICRO,SMALL,NORMAL,BIG */
+  int suspend;      /* Suspend la balle en l'air si atteind de max */
+  int bonus;        /* Bonus que contient la balle */
+  int bonus_parent; /* bonus que contiendra la balle suivante ! */
+  int spriteno;     /* Cette balle est représentée par le sprite numéero <spriteno> */
+  double vel;
+  double vel_cst;
+  int move;
+
+  int nbtouch; /* variable qui évite les balles d'êtres bloquées */
+  int y_a_til_eu_collision_avant;
 } balle;
 
-typedef struct sjoueur{
-	int posx;
-	int posy;
-	int xbox;
-	int ybox;
-	int hbox;		/* Hauteur et largeur de la boite de collision */
-	int lbox;
-	int nblive;
-	int weapon;
-	int score;
-	int nbtir;		/* Nombre de tir en cours ... */
-	int etat;
-	int old_etat;
-	int anim_courante;
-	int anim_cpt;
-	int derniere_balle;
-	int multiplicateur; /* multiplicateur du score */
-	int shoot_timer;
-	int spriteno;
-	
-	int bonus_boom;
-	int bonus_freeze;
-	int bonus_life;
-	int bonus_life_level;
-	int bonus_protection;
-	int bonus_protection_timer;
-	
-	int en_descente;
+typedef struct sjoueur
+{
+  int posx;
+  int posy;
+  int xbox;
+  int ybox;
+  int hbox; /* Hauteur et largeur de la boite de collision */
+  int lbox;
+  int nblive;
+  int weapon;
+  int score;
+  int nbtir; /* Nombre de tir en cours ... */
+  int etat;
+  int old_etat;
+  int anim_courante;
+  int anim_cpt;
+  int derniere_balle;
+  int multiplicateur; /* multiplicateur du score */
+  int shoot_timer;
+  int spriteno;
+
+  int bonus_boom;
+  int bonus_freeze;
+  int bonus_life;
+  int bonus_life_level;
+  int bonus_protection;
+  int bonus_protection_timer;
+
+  int en_descente;
 } joueur;
 
-typedef struct stir{
-	int posx;		/* Position x dans l'écran (à initialiser) */
-	int posy;		/* Position y dans l'écran (à initialiser) */
-	int xbox;
-	int ybox;
-	int hbox;		/* Hauteur et largeur de la boite de collision */
-	int lbox;
-	int type;
-	int utilise;
-	int duree;
-	int posy_depart;
+typedef struct stir
+{
+  int posx; /* Position x dans l'écran (à initialiser) */
+  int posy; /* Position y dans l'écran (à initialiser) */
+  int xbox;
+  int ybox;
+  int hbox; /* Hauteur et largeur de la boite de collision */
+  int lbox;
+  int type;
+  int utilise;
+  int duree;
+  int posy_depart;
 } tir;
 
-typedef struct sb{
-	int posx;
-	int posy;
-	int duree_de_vie;
-	int xbox;
-	int ybox;
-	int hbox;
-	int lbox;
-	int etat;
-	int type;
-	int utilise;
+typedef struct sb
+{
+  int posx;
+  int posy;
+  int duree_de_vie;
+  int xbox;
+  int ybox;
+  int hbox;
+  int lbox;
+  int etat;
+  int type;
+  int utilise;
 } b;
 
 extern balle ball[MAX_BALL];
