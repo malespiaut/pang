@@ -107,37 +107,37 @@ int clearSound(int soundNumber)
 {
 #ifdef NO_SOUND
 #else
-     if (soundNumber==0){
+     if (soundNumber==0){
           if (Mix_Playing(0) != 0) {return 0;} else {Mix_HaltChannel(0);/*Mix_FreeChunk(sound0);*/soundUsed0=0;return 1;}
      }
-     if (soundNumber==1){
+     if (soundNumber==1){
           if (Mix_Playing(1) != 0) {return 0;} else {Mix_HaltChannel(1);/*Mix_FreeChunk(sound1);*/soundUsed1=0;return 1;}
      }
-     if (soundNumber==2){
+     if (soundNumber==2){
           if (Mix_Playing(2) != 0) {return 0;} else {Mix_HaltChannel(2);/*Mix_FreeChunk(sound2);*/soundUsed2=0;return 1;}
      }
-     if (soundNumber==3){
+     if (soundNumber==3){
           if (Mix_Playing(3) != 0) {return 0;} else {Mix_HaltChannel(3);/*Mix_FreeChunk(sound3);*/soundUsed3=0;return 1;}
      }
-     if (soundNumber==4){
+     if (soundNumber==4){
           if (Mix_Playing(4) != 0) {return 0;} else {Mix_HaltChannel(4);/*Mix_FreeChunk(sound4);*/soundUsed4=0;return 1;}
      }
-     if (soundNumber==5){
+     if (soundNumber==5){
           if (Mix_Playing(5) != 0) {return 0;} else {Mix_HaltChannel(5);/*Mix_FreeChunk(sound5);*/soundUsed5=0;return 1;}
      }
-     if (soundNumber==6){
+     if (soundNumber==6){
           if (Mix_Playing(6) != 0) {return 0;} else {Mix_HaltChannel(6);/*Mix_FreeChunk(sound6);*/soundUsed6=0;return 1;}
      }
-     if (soundNumber==7){
+     if (soundNumber==7){
           if (Mix_Playing(7) != 0) {return 0;} else {Mix_HaltChannel(7);/*Mix_FreeChunk(sound7);*/soundUsed7=0;return 1;}
      }
-     if (soundNumber==8){
+     if (soundNumber==8){
           if (Mix_Playing(8) != 0) {return 0;} else {Mix_HaltChannel(8);/*Mix_FreeChunk(sound8);*/soundUsed8=0;return 1;}
      }
-     if (soundNumber==9){
+     if (soundNumber==9){
           if (Mix_Playing(9) != 0) {return 0;} else {Mix_HaltChannel(9);/*Mix_FreeChunk(sound9);*/soundUsed9=0;return 1;}
      }
-     if (soundNumber==10){
+     if (soundNumber==10){
           if (Mix_Playing(10) != 0) {return 0;} else {Mix_HaltChannel(10);/*Mix_FreeChunk(sound10);*/soundUsed10=0;return 1;}
      }
 #endif
