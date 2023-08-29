@@ -693,9 +693,9 @@ isSpriteCollide(int sprite1, int sprite2)
   int sprite2w = imageBank[sprite[sprite2].image].imagel;
   int sprite2h = imageBank[sprite[sprite2].image].imageh;
 
-  if (sprite[sprite1].active == 0)
+  if (!sprite[sprite1].active)
     return 0;
-  if (sprite[sprite2].active == 0)
+  if (!sprite[sprite2].active)
     return 0;
 
   /*Détection par bounding box
