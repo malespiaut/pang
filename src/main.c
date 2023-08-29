@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "PCGfxEngine.h"
-#include "PCSoundEngine.h"
+#include "gfx.h"
+#include "sound.h"
 #include "ball.h"
 #include "bonus.h"
 #include "ladder.h"

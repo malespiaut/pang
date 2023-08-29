@@ -1,4 +1,4 @@
-#include "PCGfxEngine.h"
+#include "gfx.h"
 #include "main.h"
 #include "structures.h"
 

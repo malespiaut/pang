@@ -1,6 +1,6 @@
 #include "ball.h"
-#include "PCGfxEngine.h"
-#include "PCSoundEngine.h"
+#include "gfx.h"
+#include "sound.h"
 #include "actions.h"
 #include "bonus.h"
 #include "collisions.h"

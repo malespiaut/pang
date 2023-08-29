@@ -1,5 +1,5 @@
-#include "PCGfxEngine.h"
-#include "PCSoundEngine.h"
+#include "gfx.h"
+#include "sound.h"
 #include "bonus.h"
 #include "collisions.h"
 #include "main.h"

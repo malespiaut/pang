@@ -1,4 +1,4 @@
-#include "PCGfxEngine.h"
+#include "gfx.h"
 #include "ball.h"
 #include "collisions.h"
 #include "main.h"
