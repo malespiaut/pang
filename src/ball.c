@@ -707,7 +707,6 @@ sans collision.
     if (player.bonus_freeze == 0)
     {
       sortie2 = 0;
-      collide = 0;
       totalcollide = 0;
       p = 0;
       while (sortie2 == 0)

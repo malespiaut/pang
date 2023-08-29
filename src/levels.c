@@ -496,7 +496,7 @@ initLevel(size_t n)
     createLadder((332 - 32 - 22 + 10), (41 + (2 * 8)), 36);
     createLadder(((41 - 32) + 2), (41 + (2 * 8)), 36);
 
-    i = createPlatform((337 - 32 - 16) - (6 * 8) - 8, 41 + (6 * 8), PF_CASSABLE);
+    createPlatform((337 - 32 - 16) - (6 * 8) - 8, 41 + (6 * 8), PF_CASSABLE);
     i = createPlatform((41 - 32) + (6 * 8), 41 + (5 * 8), PF_CASSABLE);
 
     createPlatform((41 - 32) + (6 * 8) + 32, 41 + (6 * 8), PF_MOYEN_INCASSABLE);
