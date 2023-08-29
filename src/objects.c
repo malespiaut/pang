@@ -17,11 +17,11 @@ showNumber(char* string, unsigned int x, unsigned int y)
   {
     if (((*string - 48) * 13) == 0)
     {
-      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 13), y, 13, 13, 320, 240);
+      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 13), y, 13, 13);
     }
     else
     {
-      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 13), y, 13, 13, 320, 240);
+      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 13), y, 13, 13);
     }
 
     string++;
@@ -81,7 +81,7 @@ showObject(int i)
       {
         char chaine[3];
         sprintf(chaine, "%d", obj[i].value);
-        blitBMPImageToScreen(1, 247, 90, 7, 9, obj[i].posx, obj[i].posy, 7, 9, 320, 240);
+        blitBMPImageToScreen(1, 247, 90, 7, 9, obj[i].posx, obj[i].posy, 7, 9);
 
         showNumber(chaine, obj[i].posx + 8, obj[i].posy);
 
@@ -97,7 +97,7 @@ showObject(int i)
     {
       if (obj[i].cpt > 0)
       {
-        blitBMPImageToScreen(1, 240, 12, 21, 13, obj[i].posx, obj[i].posy, 21, 13, 320, 240);
+        blitBMPImageToScreen(1, 240, 12, 21, 13, obj[i].posx, obj[i].posy, 21, 13);
         obj[i].cpt--;
         obj[i].posy--;
       }

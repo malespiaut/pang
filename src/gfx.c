@@ -83,7 +83,7 @@ initTileEngine(void)
 }
 
 void
-blitBMPImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth)
+blitBMPImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
 {
   SDL_Rect dest;
   dest.x = dx;

@@ -30,11 +30,11 @@ showScore(char* string, unsigned int x, unsigned int y)
   {
     if (((*string - 48) * 13) == 0)
     {
-      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 6), y, 13, 13, 320, 240);
+      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 6), y, 13, 13);
     }
     else
     {
-      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 6), y, 13, 13, 320, 240);
+      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 6), y, 13, 13);
     }
 
     string++;
@@ -110,7 +110,7 @@ showFond(int level)
     fond_loaded = 37;
   }
 
-  blitBMPImageToScreen(0, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
+  blitBMPImageToScreen(0, 0, 0, 320, 240, 0, 0, 320, 240);
 }
 
 void
@@ -193,7 +193,7 @@ game(void)
 
       loadBmp("", "", "romdisk/title.png", "/rd/title.png", 2);
 
-      blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
+      blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240);
 
       present_frame();
       while (keyAction1 == 0 && keyQuit == 0)
@@ -238,13 +238,13 @@ game(void)
       {
         if (player.bonus_protection_timer == -1)
         {
-          blitBMPImageToScreen(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43, 320, 240);
+          blitBMPImageToScreen(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43);
         }
         else
         {
           if (gbl_timer % 2 == 0)
           {
-            blitBMPImageToScreen(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43, 320, 240);
+            blitBMPImageToScreen(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43);
           }
         }
       }
@@ -299,15 +299,15 @@ game(void)
       {
         if (i < 3)
         {
-          blitBMPImageToScreen(1, 179, 191, 18, 18, (10 + i * 20), 214, 18, 18, 320, 240);
+          blitBMPImageToScreen(1, 179, 191, 18, 18, (10 + i * 20), 214, 18, 18);
         }
       }
       char chaine[10];
       sprintf(chaine, "%d", player.score);
-      blitBMPImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11, 320, 240); // Affiche SCORE:
+      blitBMPImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11); // Affiche SCORE:
       showScore(chaine, 170, 209);
       sprintf(chaine, "%d", currentLevel);
-      blitBMPImageToScreen(1, 99, 44, 36, 14, 130, 224, 36, 14, 320, 240); // Affiche LEVEL:
+      blitBMPImageToScreen(1, 99, 44, 36, 14, 130, 224, 36, 14); // Affiche LEVEL:
       showScore(chaine, 170, 224);
       sprintf(chaine, "%d", chrono);
 
@@ -382,16 +382,16 @@ game(void)
       if ((currentLevel % 2) == 0)
       {
         loadBmp("", "", "romdisk/nextlevel1.png", "/rd/nextlevel1.png", 2);
-        blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
+        blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240);
       }
       else
       {
         loadBmp("", "", "romdisk/nextlevel2.png", "/rd/nextlevel2.png", 2);
-        blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
+        blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240);
       }
       char chaine[10];
       sprintf(chaine, "%d", player.score);
-      blitBMPImageToScreen(1, 242, 65, 38, 11, 110, 217, 38, 11, 320, 240); // Affiche SCORE:
+      blitBMPImageToScreen(1, 242, 65, 38, 11, 110, 217, 38, 11); // Affiche SCORE:
       showScore(chaine, 183, 217);
 
       present_frame();
@@ -426,14 +426,14 @@ game(void)
         /* reaffiche le fond */
         showFond(currentLevel);
         /* anime le game over */
-        blitBMPImageToScreen(1, 8, 218, 130, 15, (320 - cpt), 100, 130, 15, 320, 240);
+        blitBMPImageToScreen(1, 8, 218, 130, 15, (320 - cpt), 100, 130, 15);
         cpt += 3;
         char chaine[10];
         sprintf(chaine, "%d", player.score);
-        blitBMPImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11, 320, 240); // Affiche SCORE:
+        blitBMPImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11); // Affiche SCORE:
         showScore(chaine, (80 + 70 + 20), 209);
         sprintf(chaine, "%d", currentLevel);
-        blitBMPImageToScreen(1, 99, 44, 36, 14, (110 + 20), 224, 36, 14, 320, 240); // Affiche LEVEL:
+        blitBMPImageToScreen(1, 99, 44, 36, 14, (110 + 20), 224, 36, 14); // Affiche LEVEL:
         showScore(chaine, (80 + 70 + 20), 224);
 
         present_frame();
