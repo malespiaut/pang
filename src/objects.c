@@ -79,13 +79,11 @@ showObject(int i)
     {
       if (obj[i].cpt > 0)
       {
-        //   			GpTextOut(NULL, &gpDraw[nflip], obj[i].posx, obj[i].posy, "x", INVISIBLE_COLOR);
         char chaine[3];
         sprintf(chaine, "%d", obj[i].value);
         blitImageToScreen(1, 247, 90, 7, 9, obj[i].posx, obj[i].posy, 7, 9, 320, 240);
 
         showNumber(chaine, obj[i].posx + 8, obj[i].posy);
-        //				GpTextOut(NULL, &gpDraw[nflip], obj[i].posx+8, obj[i].posy, chaine, INVISIBLE_COLOR);
 
         obj[i].posy--;
         obj[i].cpt--;
@@ -99,7 +97,6 @@ showObject(int i)
     {
       if (obj[i].cpt > 0)
       {
-        //				GpTextOut(NULL, &gpDraw[nflip], obj[i].posx, obj[i].posy, "1UP", INVISIBLE_COLOR);
         blitImageToScreen(1, 240, 12, 21, 13, obj[i].posx, obj[i].posy, 21, 13, 320, 240);
         obj[i].cpt--;
         obj[i].posy--;
