@@ -5,6 +5,7 @@
 #include "main.h"
 #include "objects.h"
 #include "platform.h"
+#include "shoot.h"
 #include "sound.h"
 #include "structures.h"
 

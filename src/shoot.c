@@ -1,3 +1,4 @@
+#include "shoot.h"
 #include "bonus.h"
 #include "collisions.h"
 #include "gfx.h"
@@ -5,6 +6,8 @@
 #include "platform.h"
 #include "sound.h"
 #include "structures.h"
+
+Shoot shoot[MAX_SHOOT];
 
 void
 initShoot(void)

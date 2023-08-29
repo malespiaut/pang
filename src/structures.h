@@ -12,7 +12,6 @@
 #define MAX_BONUS 5
 #define MAX_OBJECTS 10
 
-#define MAX_SHOOT 15
 #define BIG 1
 #define NORMAL 2
 #define SMALL 3
@@ -156,20 +155,6 @@ typedef struct sjoueur
   int en_descente;
 } joueur;
 
-typedef struct stir
-{
-  int posx; /* Position x dans l'écran (à initialiser) */
-  int posy; /* Position y dans l'écran (à initialiser) */
-  int xbox;
-  int ybox;
-  int hbox; /* Hauteur et largeur de la boite de collision */
-  int lbox;
-  int type;
-  bool active;
-  int duree;
-  int posy_depart;
-} tir;
-
 typedef struct sb
 {
   int posx;
@@ -184,7 +169,6 @@ typedef struct sb
   bool active;
 } b;
 
-extern tir shoot[MAX_SHOOT];
 extern ladder ech[MAX_ECHELLE];
 extern b bonus[MAX_BONUS];
 extern joueur player;

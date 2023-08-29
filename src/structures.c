@@ -10,7 +10,6 @@ int gbl_evt = EVT_NULL;
 int onetwo = 0;
 int currentLevel = 1;
 
-tir shoot[MAX_SHOOT];
 ladder ech[MAX_ECHELLE];
 b bonus[MAX_BONUS];
 joueur player;
