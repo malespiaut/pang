@@ -22,11 +22,10 @@ initShoot(void)
 void
 createShoot(int type)
 {
-  int i;
-  i = 0;
-  while ((shoot[i].active) && (i < MAX_SHOOT))
+  size_t i = 0;
+  while ((i < MAX_SHOOT) && shoot[i].active)
   {
-    i++;
+    ++i;
   }
 
   if ((type == WEAPON_NORMAL_SHOOT) || (type == WEAPON_DOUBLE_SHOOT) || (type == WEAPON_GLUE_SHOOT))
@@ -48,7 +47,6 @@ createShoot(int type)
 void
 updateShoot(int i)
 {
-  int p;
   if (shoot[i].active)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
@@ -81,7 +79,7 @@ updateShoot(int i)
       shoot[i].active = 0;
       player.nbtir--;
     }
-    for (p = 0; p < MAX_PLATFORMS; p++)
+    for (size_t p = 0; p < MAX_PLATFORMS; p++)
     {
       if (pform[p].active)
       {
