@@ -583,9 +583,7 @@ updateBalls(int i)
   */
 
   int p = 0;
-  int sortie = 0;
   int sortie2 = 0;
-  int nbcollide = 0;
   int collide = 0;
   int totalcollide = 0;
 
@@ -708,9 +706,7 @@ sans collision.
 
     if (player.bonus_freeze == 0)
     {
-      sortie = 0;
       sortie2 = 0;
-      nbcollide = 0;
       collide = 0;
       totalcollide = 0;
       p = 0;
