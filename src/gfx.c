@@ -236,8 +236,7 @@ loadBmp(char* pathfilename, int noImage)
 void
 checkController(void)
 {
-  static int volume = 80;
-  SDL_Event event;
+  SDL_Event event = {0};
   while (SDL_PollEvent(&event))
   {
     switch (event.key.keysym.sym)
@@ -353,13 +352,13 @@ checkController(void)
 
       case SDL_QUIT:
         keyQuit = 1;
-        return (0);
+        g_quit = true;
+        break;
 
       default:
         break;
     }
   }
-  return 1;
 }
 
 void
@@ -375,9 +374,8 @@ initSpriteEngine(void)
 // Recupère une image n° n en x,y de taille h,l dans l'image BMP n° imageNo
 // void getImage(int n,int x,int y,int l,int h,int imageNo)
 void
-getImage(int n, int x, int y, int l, int h, int imageNo, int w, int he)
+getImage(int n, int x, int y, int l, int h, int imageNo)
 {
-
   Uint32 rmask, gmask, bmask, amask;
 
   /* SDL interprets each pixel as a 32-bit number, so our masks must depend
@@ -589,15 +587,9 @@ showSprite(int n)
 void
 stopAnimateSprite(int s)
 {
+  sprite[s].intern1 = sprite[s].animation_speed[sprite[s].current_animation];
   sprite[s].current_animation = -1;
   sprite[s].current_animation_frame = -1;
-  sprite[s].intern1 = sprite[s].animation_speed[sprite[s].current_animation];
-}
-
-void
-showLRSprite(int n)
-{
-  // Non implémentée !
 }
 
 void
