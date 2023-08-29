@@ -2,7 +2,6 @@
 
 #include <stdbool.h>
 
-#define INVISIBLE_COLOR 218
 #define MAX_LEVEL 25
 
 #define CHEAT 0
