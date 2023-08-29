@@ -10,6 +10,5 @@ int gbl_evt = EVT_NULL;
 int onetwo = 0;
 int currentLevel = 1;
 
-b bonus[MAX_BONUS];
 joueur player;
 object obj[MAX_OBJECTS];

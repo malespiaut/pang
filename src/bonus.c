@@ -1,3 +1,4 @@
+#include "bonus.h"
 #include "collisions.h"
 #include "gfx.h"
 #include "main.h"
@@ -5,8 +6,10 @@
 #include "stdlib.h"
 #include "structures.h"
 
+Bonus bonus[MAX_BONUS] = {0};
+
 void
-initBonus()
+initBonus(void)
 {
   int i;
   for (i = 0; i < MAX_BONUS; i++)
@@ -16,7 +19,7 @@ initBonus()
 }
 
 int
-getRandomBonus()
+getRandomBonus(void)
 {
   int i;
   i = 10;

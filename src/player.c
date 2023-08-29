@@ -1,4 +1,5 @@
 #include "ball.h"
+#include "bonus.h"
 #include "collisions.h"
 #include "gfx.h"
 #include "ladder.h"

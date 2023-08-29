@@ -7,7 +7,6 @@
 #define CHEAT 0
 #define GRAV 0.5
 
-#define MAX_BONUS 5
 #define MAX_OBJECTS 10
 
 #define BIG 1
@@ -124,20 +123,5 @@ typedef struct sjoueur
   int en_descente;
 } joueur;
 
-typedef struct sb
-{
-  int posx;
-  int posy;
-  int duree_de_vie;
-  int xbox;
-  int ybox;
-  int hbox;
-  int lbox;
-  int etat;
-  int type;
-  bool active;
-} b;
-
-extern b bonus[MAX_BONUS];
 extern joueur player;
 extern object obj[MAX_OBJECTS];
