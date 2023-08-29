@@ -1,5 +1,7 @@
-void initBonus();
-int getRandomBonus();
+#pragma once
+
+void initBonus(void);
+int getRandomBonus(void);
 int createBonus(int type, int x, int y);
 void updateBonus(int i);
 void showBonus(int i);
