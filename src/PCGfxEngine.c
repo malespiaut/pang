@@ -73,7 +73,7 @@ simage imageBank[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
 void
-initTileEngine()
+initTileEngine(void)
 {
   int m, x, y;
   for (m = 0; m < MAX_MAP; m++)
@@ -192,7 +192,7 @@ mapDraw(int mapNo)
 }
 
 void
-initGfxEngine()
+initGfxEngine(void)
 {
   if (SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
   {
@@ -383,7 +383,7 @@ checkController(void)
 }
 
 void
-initSpriteEngine()
+initSpriteEngine(void)
 {
   int i;
   for (i = 0; i < MAX_SPRITE; i++)
@@ -507,7 +507,7 @@ releaseSprite(int n)
 }
 
 void
-releaseAllSprite()
+releaseAllSprite(void)
 {
   int i;
 
@@ -621,7 +621,7 @@ showLRSprite(int n)
 }
 
 void
-showAllSprite()
+showAllSprite(void)
 {
   int i;
   for (i = 0; i < MAX_SPRITE; i++)

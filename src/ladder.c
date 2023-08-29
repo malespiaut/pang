@@ -57,8 +57,6 @@ showLadder(int i)
 
     for (e = 0; e < ech[i].nbBarreau; e++)
     {
-      /*GpTransBlt(NULL, &gpDraw[nflip], ech[i].posx, ech[i].posy+(e*4), 22,4, (unsigned char*)sprite1, 71, 53, 320, 240,INVISIBLE_COLOR);*/
-
       blitImageToScreen(1, 71, 53, 22, 4, ech[i].posx, ech[i].posy + (e * 4), 22, 4, 320, 240);
     }
   }

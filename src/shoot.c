@@ -1,19 +1,12 @@
-#ifdef PC_VERSION
-#include "PCSoundEngine.h"
-#endif
-
-#ifdef DC_VERSION
-#include "DCSoundEngine.h"
-#endif
-
 #include "PCGfxEngine.h"
+#include "PCSoundEngine.h"
 #include "bonus.h"
 #include "collisions.h"
 #include "main.h"
 #include "structures.h"
 
 void
-initShoot()
+initShoot(void)
 {
   int i;
   for (i = 0; i < MAX_SHOOT; i++)
@@ -152,7 +145,6 @@ showShoot(int i)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {
-      //			GpTransBlt(NULL, &gpDraw[nflip], shoot[i].posx, shoot[i].posy, shoot[i].lbox,shoot[i].hbox, (unsigned char*)sprite1, 305, 11, 320, 240,INVISIBLE_COLOR);
       blitImageToScreen(1, 305, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
     }
     if (shoot[i].type == WEAPON_GLUE_SHOOT)
@@ -162,7 +154,6 @@ showShoot(int i)
       }
       else
         blitImageToScreen(1, 293, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
-      //			{} else	GpTransBlt(NULL, &gpDraw[nflip], shoot[i].posx, shoot[i].posy, shoot[i].lbox,shoot[i].hbox, (unsigned char*)sprite1, 293, 11, 320, 240,INVISIBLE_COLOR);
     }
   }
 }

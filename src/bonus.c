@@ -93,7 +93,6 @@ updateBonus(int i)
     /* On check les collision avec le bas */
     if (bonus[i].posy + bonus[i].hbox > 200)
     {
-      // bonus[i].posy=200*scale-bonus[i].hbox;
       bonus[i].etat = STOP;
     }
 
@@ -111,14 +110,6 @@ showBonus(int i)
 {
   if (bonus[i].utilise == 1)
   {
-
-    //		if (bonus[i].type==WEAPON_DOUBLE_SHOOT) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 53, 191, 320, 240,INVISIBLE_COLOR);
-    //		else if (bonus[i].type==WEAPON_GLUE_SHOOT) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 11, 191, 320, 240,INVISIBLE_COLOR);
-    ///		else if (bonus[i].type==BONUS_BOOM) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 116, 191, 320, 240,INVISIBLE_COLOR);
-    ///		else if (bonus[i].type==BONUS_FREEZE) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 32, 191, 320, 240,INVISIBLE_COLOR);
-    //		else if (bonus[i].type==BONUS_LIFE) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 74, 191, 320, 240,INVISIBLE_COLOR);
-    //		else if (bonus[i].type==BONUS_PROTECTION) GpTransLRBlt(NULL, &gpDraw[nflip], bonus[i].posx, bonus[i].posy, 18,18, (unsigned char*)sprite1, 158, 191, 320, 240,INVISIBLE_COLOR);
-
     if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
       blitImageToScreen(1, 53, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == WEAPON_GLUE_SHOOT)

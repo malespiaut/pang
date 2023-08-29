@@ -290,17 +290,14 @@ game(void)
       {
         if (i < 3)
         {
-          // blitImageToScreen(1,358,382,36,36,(10+i*20)*scale,430,36,36,320*scale,240*scale);
           blitImageToScreen(1, 179, 191, 18, 18, (10 + i * 20), 214, 18, 18, 320, 240);
         }
       }
       char chaine[10];
       sprintf(chaine, "%d", player.score);
-      //        		blitImageToScreen(1,484,130,76,22,(110+20)*scale,420,76,22,320*scale,240*scale); // Affiche SCORE:
       blitImageToScreen(1, 242, 65, 38, 11, (110 + 20), 210, 38, 11, 320, 240); // Affiche SCORE:
       showScore(chaine, 170, 209);
       sprintf(chaine, "%d", currentLevel);
-      //        		blitImageToScreen(1,198,88,72,28,260,448,72,28,320*scale,240*scale); // Affiche LEVEL:
       blitImageToScreen(1, 99, 44, 36, 14, 130, 224, 36, 14, 320, 240); // Affiche LEVEL:
       showScore(chaine, 170, 224);
       sprintf(chaine, "%d", chrono);

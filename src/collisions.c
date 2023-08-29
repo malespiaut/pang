@@ -1,12 +1,6 @@
-#include "structures.h"
-#ifdef PC_VERSION
 #include "PCGfxEngine.h"
-#endif
-#ifdef DREAMCAST_VERSION
-#include "DCGfxEngine.h"
-#endif
-
 #include "main.h"
+#include "structures.h"
 
 int
 checkBallCollisionWithBorder(int i)

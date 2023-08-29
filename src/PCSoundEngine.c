@@ -1,13 +1,8 @@
-#ifdef PC_VERSION
 #include <stdlib.h>
-#ifdef NO_SOUND
-#else
-#include "SDL.h"
-#include "SDL_mixer.h"
-#endif
 
-#ifdef NO_SOUND
-#else
+#include <SDL.h>
+#include <SDL_mixer.h>
+
 Mix_Chunk* sound0;
 Mix_Chunk* sound1;
 Mix_Chunk* sound2;
@@ -31,37 +26,26 @@ int soundUsed7 = 0;
 int soundUsed8 = 0;
 int soundUsed9 = 0;
 int soundUsed10 = 0;
-#endif
 
 void
 initSoundEngine()
 {
-#ifdef NO_SOUND
-#else
   int tmp = 0;
   int audio_rate = 44100;
   Uint16 audio_format = AUDIO_S16SYS;
   int audio_channels = 2;
   int audio_buffers = 4096;
 
-#ifdef GP2X_VERSION
-  audio_rate = 44100;
-  audio_buffers = 128;
-#endif
-
   if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) != 0)
   {
     fprintf(stderr, "Unable to initialize audio: %s\n", Mix_GetError());
     exit(1);
   }
-#endif
 }
 
 void
 loadSound(char* filenamePC, char* filenameDreamcast, int soundNumber)
 {
-#ifdef NO_SOUND
-#else
   if (soundNumber == 0)
     sound0 = Mix_LoadWAV(filenamePC);
   else if (soundNumber == 1)
@@ -84,14 +68,11 @@ loadSound(char* filenamePC, char* filenameDreamcast, int soundNumber)
     sound9 = Mix_LoadWAV(filenamePC);
   else if (soundNumber == 10)
     sound10 = Mix_LoadWAV(filenamePC);
-#endif
 }
 
 void
 playSound(int soundNumber, int numberLoop)
 {
-#ifdef NO_SOUND
-#else
   int channel = 0;
 
   if ((soundNumber == 0) && (soundUsed0 == 0))
@@ -154,7 +135,6 @@ playSound(int soundNumber, int numberLoop)
   {
     fprintf(stderr, "Unable to play WAV file: %s\n", Mix_GetError());
   }
-#endif
 }
 
 /*
@@ -164,8 +144,6 @@ playSound(int soundNumber, int numberLoop)
 int
 clearSound(int soundNumber)
 {
-#ifdef NO_SOUND
-#else
   if (soundNumber == 0)
   {
     if (Mix_Playing(0) != 0)
@@ -309,14 +287,11 @@ clearSound(int soundNumber)
       return 1;
     }
   }
-#endif
 }
 
 void
 forceClearSound(int soundNumber)
 {
-#ifdef NO_SOUND
-#else
   if (soundNumber == 0)
   {
     Mix_HaltChannel(0); /*Mix_FreeChunk(sound0);*/
@@ -372,16 +347,10 @@ forceClearSound(int soundNumber)
     Mix_HaltChannel(10); /*Mix_FreeChunk(sound10);*/
     soundUsed10 = 0;
   }
-#endif
 }
 
 void
 quitSoundEngine()
 {
-#ifdef NO_SOUND
-#else
   Mix_CloseAudio();
-#endif
 }
-
-#endif

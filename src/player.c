@@ -1,15 +1,10 @@
+#include "PCGfxEngine.h"
 #include "ball.h"
 #include "collisions.h"
 #include "main.h"
 #include "objets.h"
 #include "shoot.h"
 #include "structures.h"
-#ifdef PC_VERSION
-#include "PCGfxEngine.h"
-#endif
-#ifdef DREAMCAST_VERSIONc
-#include "DCGfxEngine.h"
-#endif
 
 int
 isCollideLadder(int r1x, int r1y, int r1h, int r1l, int r2x, int r2y, int r2h, int r2l)
@@ -27,7 +22,7 @@ isCollideLadder(int r1x, int r1y, int r1h, int r1l, int r2x, int r2y, int r2h, i
 }
 
 void
-initPlayer()
+initPlayer(void)
 {
   player.posx = 150;
   player.posy = (200 - 32);
@@ -57,7 +52,7 @@ initPlayer()
 }
 
 void
-reInitPlayer()
+reInitPlayer(void)
 {
   player.posx = 150;
   player.posy = (200 - 32);
@@ -86,7 +81,7 @@ reInitPlayer()
 }
 
 void
-updatePlayer()
+updatePlayer(void)
 {
   int i;
   // unsigned char keydata; // evilo
@@ -519,7 +514,7 @@ updatePlayer()
 }
 
 void
-showPlayer()
+showPlayer(void)
 {
   moveSprite(0, player.posx, player.posy);
   changeSpriteImage(0, player.anim_courante);

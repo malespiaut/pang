@@ -1,14 +1,7 @@
-#ifdef PC_VERSION
-#include "PCSoundEngine.h"
-#endif
-#ifdef DREAMCAST_VERSION
-#include "DCSoundEngine.h"
-#endif
-
-#include "PCGfxEngine.h"
-
-#include "actions.h"
 #include "ball.h"
+#include "PCGfxEngine.h"
+#include "PCSoundEngine.h"
+#include "actions.h"
 #include "bonus.h"
 #include "collisions.h"
 #include "main.h"

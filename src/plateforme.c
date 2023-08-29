@@ -1,11 +1,9 @@
-#include "structures.h"
-#ifdef PC_VERSION
 #include "PCGfxEngine.h"
-#endif
 #include "main.h"
+#include "structures.h"
 
 void
-initPlateformes()
+initPlateformes(void)
 {
   int i;
   for (i = 0; i < MAX_PLATEFORME; i++)
