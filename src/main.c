@@ -140,7 +140,7 @@ game(void)
   loadSound("romdisk/shoot_sound.wav", "/rd/shoot_sound.wav", 3);
   loadSound("romdisk/ball_explode.wav", "/rd/ball_explode.wav", 4);
 
-  loadBmp("", "", "romdisk/sprite1.png", "/rd/sprite1.png", 1);
+  loadBmp("", "", "romdisk/sprites.png", "/rd/sprites.png", 1);
 
   y = y;
 

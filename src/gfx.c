@@ -248,7 +248,9 @@ loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImag
   SDL_FreeSurface(temp);
 
   if ((noImage == 1) || (noImage == 3))
-    SDL_SetColorKey(imagesBMP[noImage], SDL_TRUE, SDL_MapRGB(imagesBMP[noImage]->format, 255, 255, 255));
+  {
+    SDL_SetColorKey(imagesBMP[noImage], SDL_TRUE, 0xff00ff);
+  }
 
   return 0;
 }
