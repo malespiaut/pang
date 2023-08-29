@@ -1,3 +1,4 @@
+#include "ladder.h"
 #include "ball.h"
 #include "collisions.h"
 #include "gfx.h"
@@ -99,26 +100,26 @@ updatePlayer(void)
   int platformCollide = -1;
   int platformCollideBlock = -1;
 
-  for (i = 0; i < MAX_ECHELLE; i++)
+  for (i = 0; i < MAX_LADDER; i++)
   {
     /* Si le joueur est sur une base (en bas) --> BAS */
     /* Si les pieds du joueur sont en haut de l'echelle --> HAUT */
     /* SINON Si le joueur est sur un milieu UNIQUEMENT */
 
-    if (ech[i].active)
+    if (ladder[i].active)
     {
-      if ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_milieu_x, ech[i].pad_milieu_y, ech[i].pad_milieu_hauteur, ech[i].pad_milieu_largeur)) && (player.en_descente < 3))
+      if ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ladder[i].pad_milieu_x, ladder[i].pad_milieu_y, ladder[i].pad_milieu_hauteur, ladder[i].pad_milieu_largeur)) && (player.en_descente < 3))
       {
         whereIsPlayer = 2;
         echelleCollide = i;
       }
       /* bas */
-      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_bas_x, ech[i].pad_bas_y, ech[i].pad_bas_hauteur, ech[i].pad_bas_largeur) && (player.en_descente < 3))
+      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ladder[i].pad_bas_x, ladder[i].pad_bas_y, ladder[i].pad_bas_hauteur, ladder[i].pad_bas_largeur) && (player.en_descente < 3))
       {
         whereIsPlayer = 1;
         echelleCollide = i;
       } /* haut */
-      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_haut_x, ech[i].pad_haut_y, ech[i].pad_haut_hauteur, ech[i].pad_haut_largeur) && (player.en_descente < 3))
+      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ladder[i].pad_haut_x, ladder[i].pad_haut_y, ladder[i].pad_haut_hauteur, ladder[i].pad_haut_largeur) && (player.en_descente < 3))
       {
         whereIsPlayer = 3;
         echelleCollide = i;
@@ -264,14 +265,14 @@ updatePlayer(void)
   else if ((keyUp) && (whereIsPlayer > 0) && (whereIsPlayer < 3))
   {
     player.posy--;
-    player.posx = ech[echelleCollide].posx;
+    player.posx = ladder[echelleCollide].posx;
     player.old_etat = player.etat;
     player.etat = PLAYER_LADDER;
   }
   else if ((keyDown) && (whereIsPlayer > 0) && (whereIsPlayer < 4))
   {
     player.posy += 1;
-    player.posx = ech[echelleCollide].posx;
+    player.posx = ladder[echelleCollide].posx;
     player.old_etat = player.etat;
     player.etat = PLAYER_LADDER;
   }

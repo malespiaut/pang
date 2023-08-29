@@ -246,7 +246,7 @@ game(void)
       {
         showPlatform(i);
       }
-      for (i = 0; i < MAX_ECHELLE; i++)
+      for (i = 0; i < MAX_LADDER; i++)
         showLadder(i);
       updatePlayer();
       for (i = 0; i < MAX_SHOOT; i++)
@@ -330,7 +330,7 @@ game(void)
       while (cpt != 70)
       {
         showFond(currentLevel);
-        for (i = 0; i < MAX_ECHELLE; i++)
+        for (i = 0; i < MAX_LADDER; i++)
           showLadder(i);
         for (i = 0; i < MAX_BALL; i++)
         {

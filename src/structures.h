@@ -8,7 +8,6 @@
 #define CHEAT 0
 #define GRAV 0.5
 
-#define MAX_ECHELLE 10
 #define MAX_BONUS 5
 #define MAX_OBJECTS 10
 
@@ -95,35 +94,6 @@ typedef struct sobj
   int value;
 } object;
 
-typedef struct sechelle
-{
-  int posx;
-  int posy;
-  int hauteur;
-  int largeur;
-  bool active;
-  int xbox;
-  int ybox;
-  int hbox; /* Hauteur et largeur de la boite de collision */
-  int lbox;
-  int nbBarreau;
-
-  int pad_haut_x;
-  int pad_haut_y;
-  int pad_haut_largeur;
-  int pad_haut_hauteur;
-
-  int pad_milieu_x;
-  int pad_milieu_y;
-  int pad_milieu_largeur;
-  int pad_milieu_hauteur;
-
-  int pad_bas_x;
-  int pad_bas_y;
-  int pad_bas_largeur;
-  int pad_bas_hauteur;
-} ladder;
-
 typedef struct sjoueur
 {
   int posx;
@@ -169,7 +139,6 @@ typedef struct sb
   bool active;
 } b;
 
-extern ladder ech[MAX_ECHELLE];
 extern b bonus[MAX_BONUS];
 extern joueur player;
 extern object obj[MAX_OBJECTS];
