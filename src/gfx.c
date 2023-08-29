@@ -211,7 +211,7 @@ present_frame(void)
 
 // image 1 et 3 transparente
 int
-loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImage)
+loadBmp(char* pathfilename, int noImage)
 {
   SDL_FreeSurface(imagesBMP[noImage]);
   SDL_Surface* temp;

@@ -85,7 +85,7 @@ void setTileInMap(int mapNo, int x, int y, int tileNo);
 void setWorldView(int mapNo, int x, int y);
 void mapDraw(int mapNo);
 void initGfxEngine(void);
-int loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImage);
+int loadBmp(char* pathfilename, int noImage);
 void checkController(void);
 void initSpriteEngine(void);
 void getImage(int n, int x, int y, int l, int h, int imageNo, int w, int he);

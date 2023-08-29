@@ -46,67 +46,67 @@ showFond(int level)
 {
   if ((level == 1) && (fond_loaded != 1))
   {
-    loadBmp("", "", "romdisk/fond1.png", "/rd/fond1.png", 0);
+    loadBmp("romdisk/fond1.png", 0);
     fond_loaded = 1;
   }
   else if ((level == 4) && (fond_loaded != 4))
   {
-    loadBmp("", "", "romdisk/fond2.png", "/rd/fond2.png", 0);
+    loadBmp("romdisk/fond2.png", 0);
     fond_loaded = 4;
   }
   else if ((level == 7) && (fond_loaded != 7))
   {
-    loadBmp("", "", "romdisk/fond3.png", "/rd/fond3.png", 0);
+    loadBmp("romdisk/fond3.png", 0);
     fond_loaded = 7;
   }
   else if ((level == 10) && (fond_loaded != 10))
   {
-    loadBmp("", "", "romdisk/fond4.png", "/rd/fond4.png", 0);
+    loadBmp("romdisk/fond4.png", 0);
     fond_loaded = 10;
   }
   else if ((level == 13) && (fond_loaded != 13))
   {
-    loadBmp("", "", "romdisk/fond5.png", "/rd/fond5.png", 0);
+    loadBmp("romdisk/fond5.png", 0);
     fond_loaded = 13;
   }
   else if ((level == 16) && (fond_loaded != 16))
   {
-    loadBmp("", "", "romdisk/fond6.png", "/rd/fond6.png", 0);
+    loadBmp("romdisk/fond6.png", 0);
     fond_loaded = 16;
   }
   else if ((level == 19) && (fond_loaded != 19))
   {
-    loadBmp("", "", "romdisk/fond7.png", "/rd/fond7.png", 0);
+    loadBmp("romdisk/fond7.png", 0);
     fond_loaded = 19;
   }
   else if ((level == 22) && (fond_loaded != 22))
   {
-    loadBmp("", "", "romdisk/fond8.png", "/rd/fond8.png", 0);
+    loadBmp("romdisk/fond8.png", 0);
     fond_loaded = 22;
   }
   else if ((level == 25) && (fond_loaded != 25))
   {
-    loadBmp("", "", "romdisk/fond9.png", "/rd/fond9.png", 0);
+    loadBmp("romdisk/fond9.png", 0);
     fond_loaded = 25;
   }
   else if ((level == 28) && (fond_loaded != 28))
   {
-    loadBmp("", "", "romdisk/fond10.png", "/rd/fond10.png", 0);
+    loadBmp("romdisk/fond10.png", 0);
     fond_loaded = 28;
   }
   else if ((level == 31) && (fond_loaded != 31))
   {
-    loadBmp("", "", "romdisk/fond11.png", "/rd/fond11.png", 0);
+    loadBmp("romdisk/fond11.png", 0);
     fond_loaded = 31;
   }
   else if ((level == 34) && (fond_loaded != 34))
   {
-    loadBmp("", "", "romdisk/fond12.png", "/rd/fond12.png", 0);
+    loadBmp("romdisk/fond12.png", 0);
     fond_loaded = 34;
   }
   else if ((level == 37) && (fond_loaded != 37))
   {
-    loadBmp("", "", "romdisk/fond13.png", "/rd/fond13.png", 0);
+    loadBmp("romdisk/fond13.png", 0);
     fond_loaded = 37;
   }
 
@@ -152,7 +152,7 @@ game(void)
   sound_load(kSound_Shoot);
   sound_load(kSound_BallPop);
 
-  loadBmp("", "", "romdisk/sprites.png", "/rd/sprites.png", 1);
+  loadBmp("romdisk/sprites.png", 1);
 
   getImage(ANIM_RIGHT1, 70, 117, 31, 32, 1, 320, 240);
   getImage(ANIM_RIGHT2, 118, 117, 31, 32, 1, 320, 240);
@@ -191,7 +191,7 @@ game(void)
     {
       releaseAllSprite();
 
-      loadBmp("", "", "romdisk/title.png", "/rd/title.png", 2);
+      loadBmp("romdisk/title.png", 2);
 
       blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240);
 
@@ -381,12 +381,12 @@ game(void)
       sound_play(kSound_NextLevel, 0);
       if ((currentLevel % 2) == 0)
       {
-        loadBmp("", "", "romdisk/nextlevel1.png", "/rd/nextlevel1.png", 2);
+        loadBmp("romdisk/nextlevel1.png", 2);
         blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240);
       }
       else
       {
-        loadBmp("", "", "romdisk/nextlevel2.png", "/rd/nextlevel2.png", 2);
+        loadBmp("romdisk/nextlevel2.png", 2);
         blitBMPImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240);
       }
       char chaine[10];
