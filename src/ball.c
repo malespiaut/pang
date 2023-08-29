@@ -4,6 +4,7 @@
 #include "gfx.h"
 #include "main.h"
 #include "objects.h"
+#include "platform.h"
 #include "sound.h"
 #include "structures.h"
 

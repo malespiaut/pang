@@ -8,7 +8,6 @@
 #define CHEAT 0
 #define GRAV 0.5
 
-#define MAX_PLATFORMS 50
 #define MAX_ECHELLE 10
 #define MAX_BONUS 5
 #define MAX_OBJECTS 10
@@ -86,22 +85,6 @@ extern int gbl_timer;
 extern int gbl_evt;
 extern int onetwo;
 extern int currentLevel;
-
-typedef struct splatform
-{
-  int posx;
-  int posy;
-  int hauteur;
-  int largeur;
-  bool active;
-  int xbox;
-  int ybox;
-  int hbox; /* Hauteur et largeur de la boite de collision */
-  int lbox;
-  int type;
-  int spriteno;
-  int bonus;
-} platform;
 
 typedef struct sobj
 {
@@ -201,7 +184,6 @@ typedef struct sb
   bool active;
 } b;
 
-extern platform pform[MAX_PLATFORMS];
 extern tir shoot[MAX_SHOOT];
 extern ladder ech[MAX_ECHELLE];
 extern b bonus[MAX_BONUS];

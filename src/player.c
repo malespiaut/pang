@@ -3,6 +3,7 @@
 #include "gfx.h"
 #include "main.h"
 #include "objects.h"
+#include "platform.h"
 #include "shoot.h"
 #include "structures.h"
 
