@@ -1,4 +1,6 @@
-void initPlayer();
-void reInitPlayer();
-void updatePlayer();
-void showPlayer();
+#pragma once
+
+void initPlayer(void);
+void reInitPlayer(void);
+void updatePlayer(void);
+void showPlayer(void);
