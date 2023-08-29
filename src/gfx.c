@@ -50,7 +50,7 @@ typedef struct si {
 } simage;
 
 typedef struct ss{
-        int active;	// Sprite utilisé ?
+        bool active;	// Sprite utilisé ?
         int posx;		// Position x
         int posy;		// Position y
         int image;		// Image courante

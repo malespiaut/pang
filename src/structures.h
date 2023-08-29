@@ -1,3 +1,7 @@
+#pragma once
+
+#include <stdbool.h>
+
 #define INVISIBLE_COLOR 218
 #define MAX_LEVEL 25
 
@@ -90,7 +94,7 @@ typedef struct splatform
   int posy;
   int hauteur;
   int largeur;
-  int active;
+  bool active;
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */
@@ -106,7 +110,7 @@ typedef struct sobj
   int posy;
   int type;
   int cpt;
-  int active;
+  bool active;
   int value;
 } object;
 
@@ -116,7 +120,7 @@ typedef struct sechelle
   int posy;
   int hauteur;
   int largeur;
-  int active;
+  bool active;
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */
@@ -153,7 +157,7 @@ typedef struct sballe
   int lr;             /* Direction horizontale -1 = droite    +1 = gauche */
   int ud;             /* Direction verticale -1 = haut    +1 = bas */
   int coefdivaccell;  /* Coefficient d'accélération (+ la valeur est grande + c lent) */
-  int active;        /* 0 = libre */
+  bool active;        /* 0 = libre */
   int xbox;           /*Position x dans l'image de la boite de collision */
   int ybox;           /* Position y dans l'image de la boite de collision */
   int hbox;           /* Hauteur et largeur de la boite de collision */
@@ -211,7 +215,7 @@ typedef struct stir
   int hbox; /* Hauteur et largeur de la boite de collision */
   int lbox;
   int type;
-  int active;
+  bool active;
   int duree;
   int posy_depart;
 } tir;
@@ -227,7 +231,7 @@ typedef struct sb
   int lbox;
   int etat;
   int type;
-  int active;
+  bool active;
 } b;
 
 extern balle ball[MAX_BALL];

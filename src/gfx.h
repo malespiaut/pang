@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -51,7 +52,7 @@ typedef struct si
 
 typedef struct ss
 {
-  int active;
+  bool active;
   int posx;
   int posy;
   int image;
