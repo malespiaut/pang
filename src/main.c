@@ -116,14 +116,14 @@ showFond(int level)
 void
 showfps(void)
 {
-  static float lasttime = NAN;
+  static float lasttime = 0.0f;
   static uint16_t framespersecond = 0;
   static char strframespersecond[16] = {0};
 
   float currenttime = SDL_GetTicks64() * 0.001f;
   ++framespersecond;
 
-  if (currenttime - lasttime > 1.0)
+  if (currenttime - lasttime > 1.0f)
   {
     lasttime = currenttime;
     sprintf(strframespersecond, "FPS %d", framespersecond);
