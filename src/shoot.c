@@ -1,8 +1,8 @@
-#include "gfx.h"
-#include "sound.h"
 #include "bonus.h"
 #include "collisions.h"
+#include "gfx.h"
 #include "main.h"
+#include "sound.h"
 #include "structures.h"
 
 void

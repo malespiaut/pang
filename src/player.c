@@ -1,6 +1,6 @@
-#include "gfx.h"
 #include "ball.h"
 #include "collisions.h"
+#include "gfx.h"
 #include "main.h"
 #include "objets.h"
 #include "shoot.h"

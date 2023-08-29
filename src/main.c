@@ -3,10 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "gfx.h"
-#include "sound.h"
 #include "ball.h"
 #include "bonus.h"
+#include "gfx.h"
 #include "ladder.h"
 #include "levels.h"
 #include "main.h"
@@ -14,6 +13,7 @@
 #include "plateforme.h"
 #include "player.h"
 #include "shoot.h"
+#include "sound.h"
 #include "structures.h"
 
 bool g_quit = false;

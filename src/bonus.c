@@ -1,5 +1,5 @@
-#include "gfx.h"
 #include "collisions.h"
+#include "gfx.h"
 #include "main.h"
 #include "stdlib.h"
 #include "structures.h"

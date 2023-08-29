@@ -1,11 +1,11 @@
 #include "ball.h"
-#include "gfx.h"
-#include "sound.h"
 #include "actions.h"
 #include "bonus.h"
 #include "collisions.h"
+#include "gfx.h"
 #include "main.h"
 #include "objets.h"
+#include "sound.h"
 #include "structures.h"
 
 /*
