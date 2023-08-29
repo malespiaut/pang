@@ -41,7 +41,7 @@ createShoot(int type)
     shoot[i].active = 1;
     shoot[i].duree = -1;
     shoot[i].posy_depart = player.posy + 32;
-    playSound(3, 0);
+    playSound(kSound_Shoot, 0);
   }
 }
 

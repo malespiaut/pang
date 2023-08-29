@@ -227,7 +227,7 @@ initBalls()
 void
 explodeABall(int a)
 {
-  playSound(4, 1);
+  playSound(kSound_BallPop, 1);
   /* Crée une nouvelle balle plus petite qui ira à gauche */
   int tmp2;
   tmp2 = createBall(ball[a].posx, ball[a].posy, ball[a].type + 1, LEFT, UP);
@@ -700,7 +700,7 @@ sans collision.
             }
           }
           releaseSprite(ball[i].spriteno);
-          playSound(4, 0);
+          playSound(kSound_BallPop, 0);
           //					GpPcmPlay((unsigned short*)ball_explode,sizeof(ball_explode), 0);
         }
       }
