@@ -51,7 +51,7 @@ typedef struct si
 
 typedef struct ss
 {
-  int utilise;
+  int active;
   int posx;
   int posy;
   int image;

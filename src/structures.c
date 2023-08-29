@@ -90,7 +90,7 @@ typedef struct splatform
   int posy;
   int hauteur;
   int largeur;
-  int utilise;
+  int active;
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */
@@ -106,7 +106,7 @@ typedef struct sobj
   int posy;
   int type;
   int cpt;
-  int utilise;
+  int active;
   int value;
 } object;
 
@@ -116,7 +116,7 @@ typedef struct sechelle
   int posy;
   int hauteur;
   int largeur;
-  int utilise;
+  int active;
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */
@@ -153,7 +153,7 @@ typedef struct sballe
   int lr;             /* Direction horizontale -1 = droite    +1 = gauche */
   int ud;             /* Direction verticale -1 = haut    +1 = bas */
   int coefdivaccell;  /* Coefficient d'accélération (+ la valeur est grande + c lent) */
-  int utilise;        /* 0 = libre */
+  int active;        /* 0 = libre */
   int xbox;           /*Position x dans l'image de la boite de collision */
   int ybox;           /* Position y dans l'image de la boite de collision */
   int hbox;           /* Hauteur et largeur de la boite de collision */
@@ -211,7 +211,7 @@ typedef struct stir
   int hbox; /* Hauteur et largeur de la boite de collision */
   int lbox;
   int type;
-  int utilise;
+  int active;
   int duree;
   int posy_depart;
 } tir;
@@ -227,7 +227,7 @@ typedef struct sb
   int lbox;
   int etat;
   int type;
-  int utilise;
+  int active;
 } b;
 
 balle ball[MAX_BALL];

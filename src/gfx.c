@@ -50,7 +50,7 @@ typedef struct si {
 } simage;
 
 typedef struct ss{
-        int utilise;	// Sprite utilisé ?
+        int active;	// Sprite utilisé ?
         int posx;		// Position x
         int posy;		// Position y
         int image;		// Image courante
@@ -388,7 +388,7 @@ initSpriteEngine(void)
   int i;
   for (i = 0; i < MAX_SPRITE; i++)
   {
-    sprite[i].utilise = 0;
+    sprite[i].active = 0;
   }
 }
 
@@ -474,7 +474,7 @@ initSprite(int n, int x, int y, int i)
   sprite[n].posx = x;
   sprite[n].posy = y;
   sprite[n].image = i;
-  sprite[n].utilise = 1;
+  sprite[n].active = 1;
   sprite[n].current_animation = -1;
   sprite[n].intern1 = 0;
   sprite[n].current_animation_frame = -1;
@@ -485,14 +485,14 @@ initFreeSprite(int x, int y, int i)
 {
   int s = 0;
 
-  while ((sprite[s].utilise == 1) && (s < MAX_SPRITE))
+  while ((sprite[s].active) && (s < MAX_SPRITE))
   {
     s++;
   }
   sprite[s].posx = x;
   sprite[s].posy = y;
   sprite[s].image = i;
-  sprite[s].utilise = 1;
+  sprite[s].active = 1;
   sprite[s].current_animation = -1;
   sprite[s].intern1 = 0;
   sprite[s].current_animation_frame = -1;
@@ -503,7 +503,7 @@ initFreeSprite(int x, int y, int i)
 void
 releaseSprite(int n)
 {
-  sprite[n].utilise = 0;
+  sprite[n].active = 0;
 }
 
 void
@@ -513,7 +513,7 @@ releaseAllSprite(void)
 
   for (i = 0; i < MAX_SPRITE; i++)
   {
-    sprite[i].utilise = 0;
+    sprite[i].active = 0;
   }
 }
 
@@ -581,7 +581,7 @@ pasteSpriteImage(int n, int x, int y)
 void
 showSprite(int n)
 {
-  if (sprite[n].utilise == 1)
+  if (sprite[n].active)
   {
     if (sprite[n].current_animation != -1)
     {
@@ -626,7 +626,7 @@ showAllSprite(void)
   int i;
   for (i = 0; i < MAX_SPRITE; i++)
   {
-    if (sprite[i].utilise == 1)
+    if (sprite[i].active)
     {
       showSprite(i);
     }
@@ -693,9 +693,9 @@ isSpriteCollide(int sprite1, int sprite2)
   int sprite2w = imageBank[sprite[sprite2].image].imagel;
   int sprite2h = imageBank[sprite[sprite2].image].imageh;
 
-  if (sprite[sprite1].utilise == 0)
+  if (sprite[sprite1].active == 0)
     return 0;
-  if (sprite[sprite2].utilise == 0)
+  if (sprite[sprite2].active == 0)
     return 0;
 
   /*Détection par bounding box

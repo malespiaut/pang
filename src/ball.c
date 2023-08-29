@@ -13,7 +13,7 @@
 void
 showBall(int i)
 {
-  if (ball[i].utilise == 1)
+  if (ball[i].active)
   {
 
     //      fprintf(stderr,"posx: %d\n",(int)ball[i].posx);
@@ -52,9 +52,9 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   int sprite2w = imageBank[sprite[sprite2].image].imagel;
   int sprite2h = imageBank[sprite[sprite2].image].imageh;
 
-  if (sprite[sprite1].utilise == 0)
+  if (sprite[sprite1].active == 0)
     return 0;
-  if (sprite[sprite2].utilise == 0)
+  if (sprite[sprite2].active == 0)
     return 0;
 
   /*Détection par bounding box
@@ -216,7 +216,7 @@ initBalls()
   int i;
   for (i = 0; i < MAX_BALL; i++)
   {
-    ball[i].utilise = 0;
+    ball[i].active = 0;
   }
 }
 
@@ -241,7 +241,7 @@ explodeABall(int a)
     createBonus(ball[a].bonus, (int)ball[a].posx + 10, (int)ball[a].posy + 10);
   }
   /* On libère la balle (et le sprite associé) qui vient d'exploser */
-  ball[a].utilise = 0;
+  ball[a].active = 0;
   releaseSprite(ball[a].spriteno);
 }
 
@@ -254,7 +254,7 @@ explodeAllBall()
   int b = 0;
   while (sortie == 0)
   {
-    if ((ball[b].type == BIG) && (ball[b].utilise == 1))
+    if ((ball[b].type == BIG) && (ball[b].active))
     {
       trouve = b;
       sortie = 1;
@@ -276,7 +276,7 @@ explodeAllBall()
     sortie = 0;
     while (sortie == 0)
     {
-      if ((ball[b].type == NORMAL) && (ball[b].utilise == 1))
+      if ((ball[b].type == NORMAL) && (ball[b].active))
       {
         trouve = b;
         sortie = 1;
@@ -297,7 +297,7 @@ explodeAllBall()
       sortie = 0;
       while (sortie == 0)
       {
-        if ((ball[b].type == SMALL) && (ball[b].utilise == 1))
+        if ((ball[b].type == SMALL) && (ball[b].active))
         {
           trouve = b;
           sortie = 1;
@@ -325,7 +325,7 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
 {
   int i;
   i = 0;
-  while ((ball[i].utilise == 1) && (i < MAX_BALL))
+  while ((ball[i].active) && (i < MAX_BALL))
   {
     i++;
   }
@@ -340,7 +340,7 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].ud = DOWN;
   ball[i].coefdivaccell = 10;
   ball[i].speed_cpt = 0;
-  ball[i].utilise = 1;
+  ball[i].active = 1;
   ball[i].xbox = 6;
   ball[i].ybox = 4;
   ball[i].hbox = (40 - 6);
@@ -379,7 +379,7 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
 {
   int i;
   i = 0;
-  while ((ball[i].utilise == 1) && (i < MAX_BALL))
+  while ((ball[i].active) && (i < MAX_BALL))
   {
     i++;
   }
@@ -394,7 +394,7 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].ud = DOWN;
   ball[i].coefdivaccell = 20;
   ball[i].speed_cpt = 0;
-  ball[i].utilise = 1;
+  ball[i].active = 1;
   ball[i].xbox = 3;
   ball[i].ybox = 3;
   ball[i].hbox = (26 - 6);
@@ -432,7 +432,7 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
 {
   int i;
   i = 0;
-  while ((ball[i].utilise == 1) && (i < MAX_BALL))
+  while ((ball[i].active) && (i < MAX_BALL))
   {
     i++;
   }
@@ -447,7 +447,7 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].ud = DOWN;
   ball[i].coefdivaccell = 30;
   ball[i].speed_cpt = 0;
-  ball[i].utilise = 1;
+  ball[i].active = 1;
   ball[i].xbox = 1;
   ball[i].ybox = 1;
   ball[i].hbox = (14 - 3);
@@ -486,7 +486,7 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
   int i;
 
   i = 0;
-  while ((ball[i].utilise == 1) && (i < MAX_BALL))
+  while ((ball[i].active) && (i < MAX_BALL))
   {
     i++;
   }
@@ -501,7 +501,7 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].ud = DOWN;
   ball[i].coefdivaccell = 40;
   ball[i].speed_cpt = 0;
-  ball[i].utilise = 1;
+  ball[i].active = 1;
   ball[i].xbox = 1;
   ball[i].ybox = 1;
   ball[i].hbox = (5);
@@ -553,7 +553,7 @@ void
 updateBalls(int i)
 {
   /*
-       Si (ball[i].utilise == 1)
+       Si (ball[i].active)
        {
           Tester si on est en collision de plateforme
           {
@@ -589,7 +589,7 @@ updateBalls(int i)
 
   int y_a_t_il_eu_collision = 0;
 
-  if (ball[i].utilise == 1)
+  if (ball[i].active)
   {
     /* il faut récupérer la derniere position sans aucune collision
 Pour cela on teste si on est en collision, si ce n'est pas le
@@ -600,7 +600,7 @@ sans collision.
 
     for (p = 0; p < MAX_PLATFORMS; p++)
     {
-      if (pform[p].utilise == 1)
+      if (pform[p].active)
       {
         collide += ballCollideWithPlatform(ball[i].spriteno, pform[p].spriteno, i);
       }
@@ -613,12 +613,12 @@ sans collision.
 
     for (p = 0; p < MAX_SHOOT; p++)
     {
-      if (shoot[p].utilise == 1)
+      if (shoot[p].active)
       {
         collide = isCollide(ball[i].xbox + (int)ball[i].posx, ball[i].ybox + (int)ball[i].posy, ball[i].hbox, ball[i].lbox, shoot[p].posx + shoot[p].xbox, shoot[p].posy + shoot[p].ybox, shoot[p].hbox, shoot[p].lbox);
         if (collide != 0)
         {
-          shoot[p].utilise = 0;
+          shoot[p].active = 0;
           player.nbtir--;
           if (ball[i].type < MICRO)
           {
@@ -680,7 +680,7 @@ sans collision.
             createObject(OBJ_MUL, (int)ball[i].posx, (int)ball[i].posy, player.multiplicateur);
           }
           /* il fo détruire la balle EN DERNIER ! Sinon une autre sera reprise à ça position */
-          ball[i].utilise = 0;
+          ball[i].active = 0;
           if (ball[i].bonus != 0)
           {
             if (ball[i].bonus == BONUS_LIFE)
@@ -712,7 +712,7 @@ sans collision.
       p = 0;
       while (sortie2 == 0)
       {
-        if (pform[p].utilise == 1)
+        if (pform[p].active)
         {
           collide = ballCollideWithPlatform(ball[i].spriteno, pform[p].spriteno, i);
           totalcollide = collide;

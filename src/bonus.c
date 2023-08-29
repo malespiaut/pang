@@ -10,7 +10,7 @@ initBonus()
   int i;
   for (i = 0; i < MAX_BONUS; i++)
   {
-    bonus[i].utilise = 0;
+    bonus[i].active = 0;
   }
 }
 
@@ -45,7 +45,7 @@ createBonus(int type, int x, int y)
 {
   int i;
   i = 0;
-  while ((bonus[i].utilise == 1) && (i < MAX_BONUS))
+  while ((bonus[i].active) && (i < MAX_BONUS))
   {
     i++;
   }
@@ -57,7 +57,7 @@ createBonus(int type, int x, int y)
   bonus[i].hbox = 18;
   bonus[i].lbox = 18;
   bonus[i].type = type;
-  bonus[i].utilise = 1;
+  bonus[i].active = 1;
   bonus[i].etat = DOWN;
   bonus[i].duree_de_vie = 200;
 
@@ -70,12 +70,12 @@ updateBonus(int i)
   int p;
   int collide = 0;
 
-  if (bonus[i].utilise == 1)
+  if (bonus[i].active)
   {
     /* On check les collision avec les plateformes */
     for (p = 0; p < MAX_PLATFORMS; p++)
     {
-      if (pform[p].utilise == 1)
+      if (pform[p].active)
       {
         collide += isCollide(bonus[i].xbox + bonus[i].posx, bonus[i].ybox + bonus[i].posy, bonus[i].hbox, bonus[i].lbox, pform[p].posx, pform[p].posy, pform[p].hauteur, pform[p].largeur);
       }
@@ -101,14 +101,14 @@ updateBonus(int i)
     if (bonus[i].etat == STOP)
       bonus[i].duree_de_vie--;
     if (bonus[i].duree_de_vie < 0)
-      bonus[i].utilise = 0;
+      bonus[i].active = 0;
   }
 }
 
 void
 showBonus(int i)
 {
-  if (bonus[i].utilise == 1)
+  if (bonus[i].active)
   {
     if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
       blitImageToScreen(1, 53, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);

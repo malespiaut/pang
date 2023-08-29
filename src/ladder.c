@@ -9,7 +9,7 @@ initLadders(void)
 {
   for (size_t i = 0; i < MAX_ECHELLE; ++i)
   {
-    ech[i].utilise = 0;
+    ech[i].active = 0;
   }
 }
 
@@ -18,12 +18,12 @@ void
 createLadder(int x, int y, int nbBarreau)
 {
   size_t i = 0;
-  while ((ech[i].utilise == 1) && (i < MAX_ECHELLE))
+  while ((ech[i].active) && (i < MAX_ECHELLE))
   {
     ++i;
   }
 
-  ech[i].utilise = 1;
+  ech[i].active = 1;
   ech[i].posx = x;
   ech[i].posy = y;
   ech[i].hauteur = 4 * nbBarreau;
@@ -49,7 +49,7 @@ createLadder(int x, int y, int nbBarreau)
 void
 showLadder(size_t i)
 {
-  if (ech[i].utilise == 1)
+  if (ech[i].active)
   {
     for (size_t e = 0; e < ech[i].nbBarreau; e++)
     {

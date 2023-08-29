@@ -325,7 +325,7 @@ initLevel(int n)
 
     for (i = 0; i < MAX_BALL; i++)
     {
-      if (ball[i].utilise == 1)
+      if (ball[i].active)
       {
         ball[i].vel_cst = 10.0;
       }

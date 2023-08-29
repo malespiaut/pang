@@ -11,7 +11,7 @@ initShoot(void)
   int i;
   for (i = 0; i < MAX_SHOOT; i++)
   {
-    shoot[i].utilise = 0;
+    shoot[i].active = 0;
   }
 }
 
@@ -20,7 +20,7 @@ createShoot(int type)
 {
   int i;
   i = 0;
-  while ((shoot[i].utilise == 1) && (i < MAX_SHOOT))
+  while ((shoot[i].active) && (i < MAX_SHOOT))
   {
     i++;
   }
@@ -34,7 +34,7 @@ createShoot(int type)
     shoot[i].hbox = 0;
     shoot[i].lbox = 9;
     shoot[i].type = type;
-    shoot[i].utilise = 1;
+    shoot[i].active = 1;
     shoot[i].duree = -1;
     shoot[i].posy_depart = player.posy + 32;
     playSound(3, 0);
@@ -45,7 +45,7 @@ void
 updateShoot(int i)
 {
   int p;
-  if (shoot[i].utilise == 1)
+  if (shoot[i].active)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {
@@ -53,7 +53,7 @@ updateShoot(int i)
       shoot[i].hbox = (shoot[i].posy_depart) - shoot[i].posy;
       if (shoot[i].posy < 8)
       {
-        shoot[i].utilise = 0;
+        shoot[i].active = 0;
         player.nbtir--;
       }
     }
@@ -74,21 +74,21 @@ updateShoot(int i)
     if (shoot[i].duree == 0)
     {
       shoot[i].duree = -1;
-      shoot[i].utilise = 0;
+      shoot[i].active = 0;
       player.nbtir--;
     }
     for (p = 0; p < MAX_PLATFORMS; p++)
     {
-      if (pform[p].utilise == 1)
+      if (pform[p].active)
       {
         if (isCollide(shoot[i].posx + shoot[i].xbox, shoot[i].posy + shoot[i].ybox, shoot[i].hbox - 5, shoot[i].lbox, pform[p].posx, pform[p].posy, pform[p].hauteur, pform[p].largeur))
         {
           // Si c un shoot normal ou un double shoot quelque soit la plateforme en collide ca dégage
           if ((shoot[i].type == WEAPON_DOUBLE_SHOOT) || (shoot[i].type == WEAPON_NORMAL_SHOOT))
           {
-            if (shoot[i].utilise == 1)
+            if (shoot[i].active)
             {
-              shoot[i].utilise = 0;
+              shoot[i].active = 0;
               player.nbtir--;
               if (player.nbtir < 0)
                 player.nbtir = 0;
@@ -106,14 +106,14 @@ updateShoot(int i)
           // Si c une plateforme normale, quelquesoit le shoot, on le dégage.
           if ((pform[p].type == PF_CASSABLE) || (pform[p].type == PF_CASSABLEV) || (pform[p].type == PF_MOYEN_CASSABLE) || (pform[p].type == PF_MICRO_CASSABLE))
           {
-            if (shoot[i].utilise == 1)
+            if (shoot[i].active)
             {
-              shoot[i].utilise = 0;
+              shoot[i].active = 0;
               player.nbtir--;
               if (player.nbtir < 0)
                 player.nbtir = 0;
             }
-            pform[p].utilise = 0;
+            pform[p].active = 0;
             releaseSprite(pform[p].spriteno);
             if (pform[p].bonus != 0)
             {
@@ -141,7 +141,7 @@ updateShoot(int i)
 void
 showShoot(int i)
 {
-  if (shoot[i].utilise == 1)
+  if (shoot[i].active)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {

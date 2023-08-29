@@ -104,7 +104,7 @@ updatePlayer(void)
     /* Si les pieds du joueur sont en haut de l'echelle --> HAUT */
     /* SINON Si le joueur est sur un milieu UNIQUEMENT */
 
-    if (ech[i].utilise == 1)
+    if (ech[i].active)
     {
       if ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ech[i].pad_milieu_x, ech[i].pad_milieu_y, ech[i].pad_milieu_hauteur, ech[i].pad_milieu_largeur)) && (player.en_descente < 3))
       {
@@ -128,7 +128,7 @@ updatePlayer(void)
 
   for (i = 0; i < MAX_PLATFORMS; i++)
   {
-    if (pform[i].utilise == 1)
+    if (pform[i].active)
     {
       if (whereIsPlayer > 3)
       {
@@ -194,7 +194,7 @@ updatePlayer(void)
       platformCollideBlock = -1;
       for (i = 0; i < MAX_PLATFORMS; i++)
       {
-        if (pform[i].utilise == 1)
+        if (pform[i].active)
         {
           if ((isCollideLadder(player.posx + 5, player.posy + 6, 19, 2, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
           {
@@ -236,7 +236,7 @@ updatePlayer(void)
       platformCollideBlock = -1;
       for (i = 0; i < MAX_PLATFORMS; i++)
       {
-        if (pform[i].utilise == 1)
+        if (pform[i].active)
         {
           if ((isCollideLadder(player.posx + 25, player.posy + 6, 19, 2, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
           {
@@ -353,7 +353,7 @@ updatePlayer(void)
     {
       for (i = 0; i < MAX_BALL; i++)
       {
-        if (ball[i].utilise == 1)
+        if (ball[i].active)
         {
           if (isSpriteCollide(player.spriteno, ball[i].spriteno) == 1)
           //        	keyAction4 = 1;
@@ -384,7 +384,7 @@ updatePlayer(void)
   /* Test des collisions avec les bonus */
   for (i = 0; i < MAX_BONUS; i++)
   {
-    if (bonus[i].utilise == 1)
+    if (bonus[i].active)
     {
       if (isCollide(player.xbox + player.posx, player.ybox + player.posy, player.hbox, player.lbox, bonus[i].xbox + bonus[i].posx, bonus[i].ybox + bonus[i].posy, bonus[i].hbox, bonus[i].lbox) == 1)
 
@@ -392,38 +392,38 @@ updatePlayer(void)
         if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
         {
           player.weapon = WEAPON_DOUBLE_SHOOT;
-          bonus[i].utilise = 0;
+          bonus[i].active = 0;
         }
         if (bonus[i].type == WEAPON_GLUE_SHOOT)
         {
           player.weapon = WEAPON_GLUE_SHOOT;
-          bonus[i].utilise = 0;
+          bonus[i].active = 0;
         }
         else if (bonus[i].type == BONUS_BOOM)
         {
           player.bonus_boom = 1;
           //                    player.bonus_freeze=0;
-          bonus[i].utilise = 0;
+          bonus[i].active = 0;
         }
         else if (bonus[i].type == BONUS_FREEZE)
         {
           player.bonus_freeze = 300;
           player.bonus_boom = 0;
-          bonus[i].utilise = 0;
+          bonus[i].active = 0;
         }
         else if (bonus[i].type == BONUS_LIFE)
         {
           player.bonus_life = 1;
           player.bonus_life_level = currentLevel;
           player.nblive += 1;
-          bonus[i].utilise = 0;
+          bonus[i].active = 0;
           createObject(OBJ_1UP, player.posx, player.posy, 0);
         }
         else if (bonus[i].type == BONUS_PROTECTION)
         {
           player.bonus_protection = 1;
           player.bonus_protection_timer = -1;
-          bonus[i].utilise = 0;
+          bonus[i].active = 0;
         }
       }
     }

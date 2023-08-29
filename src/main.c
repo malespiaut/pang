@@ -257,7 +257,7 @@ game(void)
       nbBall = 0;
       for (i = 0; i < MAX_BALL; i++)
       {
-        nbBall += ball[i].utilise;
+        nbBall += ball[i].active;
 
         if ((onetwo == 0) || (onetwo == 2) || (onetwo == 4))
           updateBalls(i);

@@ -34,7 +34,7 @@ initObjects()
   int i;
   for (i = 0; i < MAX_OBJECTS; i++)
   {
-    obj[i].utilise = 0;
+    obj[i].active = 0;
   }
 }
 
@@ -44,7 +44,7 @@ createObject(int type, int x, int y, int value)
 
   int i;
   i = 0;
-  while ((obj[i].utilise == 1) && (i < MAX_OBJECTS))
+  while ((obj[i].active) && (i < MAX_OBJECTS))
   {
     i++;
   }
@@ -53,7 +53,7 @@ createObject(int type, int x, int y, int value)
   obj[i].posx = x;
   obj[i].posy = y;
   obj[i].value = value;
-  obj[i].utilise = 1;
+  obj[i].active = 1;
 
   if (type == OBJ_MUL)
   {
@@ -73,7 +73,7 @@ void
 showObject(int i)
 {
 
-  if (obj[i].utilise == 1)
+  if (obj[i].active)
   {
     if (obj[i].type == OBJ_MUL)
     {
@@ -92,7 +92,7 @@ showObject(int i)
       }
       else
       {
-        obj[i].utilise = 0;
+        obj[i].active = 0;
       }
     }
     else if (obj[i].type == OBJ_1UP)
@@ -106,7 +106,7 @@ showObject(int i)
       }
       else
       {
-        obj[i].utilise = 0;
+        obj[i].active = 0;
       }
     }
   }
