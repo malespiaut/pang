@@ -13,7 +13,7 @@
 
 ## About the project
 
-Pang for Linux! is a clone of the [1989 arcade game Pang!](https://en.wikipedia.org/wiki/Buster_Bros.), originally written by .
+Pang for Linux! is a clone of the [1989 arcade game Pang!](https://en.wikipedia.org/wiki/Buster_Bros.). 
 
 ## Prerequisites
 
