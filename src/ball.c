@@ -1,5 +1,4 @@
 #include "ball.h"
-#include "actions.h"
 #include "bonus.h"
 #include "collisions.h"
 #include "gfx.h"
@@ -599,11 +598,11 @@ rien à jour et on à les bonnes dernières coordonnées de la position
 sans collision.
 */
 
-    for (p = 0; p < MAX_PLATEFORME; p++)
+    for (p = 0; p < MAX_PLATFORMS; p++)
     {
-      if (pforme[p].utilise == 1)
+      if (pform[p].utilise == 1)
       {
-        collide += ballCollideWithPlatform(ball[i].spriteno, pforme[p].spriteno, i);
+        collide += ballCollideWithPlatform(ball[i].spriteno, pform[p].spriteno, i);
       }
     }
 
@@ -634,9 +633,9 @@ sans collision.
               moveSprite(ball[tmp].spriteno, (int)ball[i].posx + imageBank[sprite[ball[tmp].spriteno].image].imagel, (int)ball[i].posy);
               int plate;
               int platec = 0;
-              for (plate = 0; plate < MAX_PLATEFORME; plate++)
+              for (plate = 0; plate < MAX_PLATFORMS; plate++)
               {
-                platec -= ballCollideWithPlatform(ball[tmp].spriteno, pforme[plate].spriteno, tmp);
+                platec -= ballCollideWithPlatform(ball[tmp].spriteno, pform[plate].spriteno, tmp);
               }
               if (platec != 0)
                 moveSprite(ball[tmp].spriteno, (int)old_posx, (int)old_posy);
@@ -713,9 +712,9 @@ sans collision.
       p = 0;
       while (sortie2 == 0)
       {
-        if (pforme[p].utilise == 1)
+        if (pform[p].utilise == 1)
         {
-          collide = ballCollideWithPlatform(ball[i].spriteno, pforme[p].spriteno, i);
+          collide = ballCollideWithPlatform(ball[i].spriteno, pform[p].spriteno, i);
           totalcollide = collide;
           if (collide != 0)
           {
@@ -727,7 +726,7 @@ sans collision.
           }
         }
         p++;
-        if (p == MAX_PLATEFORME)
+        if (p == MAX_PLATFORMS)
           sortie2 = 1;
       }
 

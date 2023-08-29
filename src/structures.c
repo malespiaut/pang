@@ -4,7 +4,7 @@
 #define CHEAT 0
 #define GRAV 0.5
 
-#define MAX_PLATEFORME 50
+#define MAX_PLATFORMS 50
 #define MAX_BALL 32
 #define MAX_ECHELLE 10
 #define MAX_BONUS 5
@@ -84,7 +84,7 @@ int gbl_evt = EVT_NULL;
 int onetwo = 0;
 int currentLevel = 1;
 
-typedef struct splateforme
+typedef struct splatform
 {
   int posx;
   int posy;
@@ -98,7 +98,7 @@ typedef struct splateforme
   int type;
   int spriteno;
   int bonus;
-} plateforme;
+} platform;
 
 typedef struct sobj
 {
@@ -231,7 +231,7 @@ typedef struct sb
 } b;
 
 balle ball[MAX_BALL];
-plateforme pforme[MAX_PLATEFORME];
+platform pform[MAX_PLATFORMS];
 tir shoot[MAX_SHOOT];
 ladder ech[MAX_ECHELLE];
 b bonus[MAX_BONUS];

@@ -95,8 +95,8 @@ updatePlayer(void)
   /* 4 - Sur une plateforme */
   /* 5 - Dans le vide */
   int echelleCollide = -1;
-  int plateformeCollide = -1;
-  int plateformeCollideBlock = -1;
+  int platformCollide = -1;
+  int platformCollideBlock = -1;
 
   for (i = 0; i < MAX_ECHELLE; i++)
   {
@@ -126,16 +126,16 @@ updatePlayer(void)
     }
   }
 
-  for (i = 0; i < MAX_PLATEFORME; i++)
+  for (i = 0; i < MAX_PLATFORMS; i++)
   {
-    if (pforme[i].utilise == 1)
+    if (pform[i].utilise == 1)
     {
       if (whereIsPlayer > 3)
       {
-        while ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 6, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
+        while ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 6, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
         {
           whereIsPlayer = 4;
-          plateformeCollide = i;
+          platformCollide = i;
           player.en_descente = 0;
           player.posy--;
         }
@@ -172,7 +172,7 @@ updatePlayer(void)
   }
   if (whereIsPlayer == 4)
   {
-    player.posy = pforme[plateformeCollide].posy - 32;
+    player.posy = pform[platformCollide].posy - 32;
   }
 
   /*player.old_etat = player.etat;*/
@@ -191,18 +191,18 @@ updatePlayer(void)
     int sortie = 0;
     while (sortie == 0)
     {
-      plateformeCollideBlock = -1;
-      for (i = 0; i < MAX_PLATEFORME; i++)
+      platformCollideBlock = -1;
+      for (i = 0; i < MAX_PLATFORMS; i++)
       {
-        if (pforme[i].utilise == 1)
+        if (pform[i].utilise == 1)
         {
-          if ((isCollideLadder(player.posx + 5, player.posy + 6, 19, 2, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
+          if ((isCollideLadder(player.posx + 5, player.posy + 6, 19, 2, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
           {
-            plateformeCollideBlock = i;
+            platformCollideBlock = i;
           }
         }
       }
-      if (plateformeCollideBlock == -1)
+      if (platformCollideBlock == -1)
       {
         sortie = 1;
       }
@@ -233,18 +233,18 @@ updatePlayer(void)
     int sortie = 0;
     while (sortie == 0)
     {
-      plateformeCollideBlock = -1;
-      for (i = 0; i < MAX_PLATEFORME; i++)
+      platformCollideBlock = -1;
+      for (i = 0; i < MAX_PLATFORMS; i++)
       {
-        if (pforme[i].utilise == 1)
+        if (pform[i].utilise == 1)
         {
-          if ((isCollideLadder(player.posx + 25, player.posy + 6, 19, 2, pforme[i].posx, pforme[i].posy, pforme[i].hauteur, pforme[i].largeur)))
+          if ((isCollideLadder(player.posx + 25, player.posy + 6, 19, 2, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
           {
-            plateformeCollideBlock = i;
+            platformCollideBlock = i;
           }
         }
       }
-      if (plateformeCollideBlock == -1)
+      if (platformCollideBlock == -1)
       {
         sortie = 1;
       }

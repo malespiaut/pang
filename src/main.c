@@ -10,7 +10,7 @@
 #include "levels.h"
 #include "main.h"
 #include "objets.h"
-#include "plateforme.h"
+#include "platform.h"
 #include "player.h"
 #include "shoot.h"
 #include "sound.h"
@@ -169,7 +169,7 @@ game(void)
   getImage(ANIM_LADDER2, 230, 191, 26, 32, 1, 320, 240);
 
   initBalls();
-  initPlateformes();
+  initPlatforms();
   initPlayer();
   initLadders();
   initShoot();
@@ -242,9 +242,9 @@ game(void)
         }
       }
 
-      for (i = 0; i < MAX_PLATEFORME; i++)
+      for (i = 0; i < MAX_PLATFORMS; i++)
       {
-        showPlateforme(i);
+        showPlatform(i);
       }
       for (i = 0; i < MAX_ECHELLE; i++)
         showLadder(i);
@@ -336,9 +336,9 @@ game(void)
         {
           showBall(i);
         }
-        for (i = 0; i < MAX_PLATEFORME; i++)
+        for (i = 0; i < MAX_PLATFORMS; i++)
         {
-          showPlateforme(i);
+          showPlatform(i);
         }
 
         showPlayer();
