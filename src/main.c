@@ -22,12 +22,11 @@ int fond_loaded = 0;
 void
 showScore(char* string, unsigned int x, unsigned int y)
 {
-  unsigned char i, temp;
   int positionxduzero = 148;
   int positionyduzero = 226;
 
-  temp = strlen(string);
-  for (i = 0; i < temp; i++)
+  size_t temp = strlen(string);
+  for (size_t i = 0; i < temp; i++)
   {
     if (((*string - 48) * 13) == 0)
     {
@@ -114,15 +113,28 @@ showFond(int level)
   blitImageToScreen(0, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
 }
 
+void
+showfps(void)
+{
+  static float lasttime = NAN;
+  static uint16_t framespersecond = 0;
+  static char strframespersecond[16] = {0};
+
+  float currenttime = SDL_GetTicks64() * 0.001f;
+  ++framespersecond;
+
+  if (currenttime - lasttime > 1.0)
+  {
+    lasttime = currenttime;
+    sprintf(strframespersecond, "FPS %d", framespersecond);
+    framespersecond = 0;
+  }
+  showScore(strframespersecond, 10, 10);
+}
+
 static void
 game(void)
 {
-  int myBall;
-  int tmp;
-
-  int i;
-  int x;
-  int y = 200;
   int nbBall = 0;
   int pause = 0;
 
@@ -141,8 +153,6 @@ game(void)
   sound_load(kSound_BallPop);
 
   loadBmp("", "", "romdisk/sprites.png", "/rd/sprites.png", 1);
-
-  y = y;
 
   getImage(ANIM_RIGHT1, 70, 117, 31, 32, 1, 320, 240);
   getImage(ANIM_RIGHT2, 118, 117, 31, 32, 1, 320, 240);
@@ -179,7 +189,6 @@ game(void)
   {
     if (gbl_evt == EVT_TITLE)
     {
-      int i;
       releaseAllSprite();
 
       loadBmp("", "", "romdisk/title.png", "/rd/title.png", 2);
@@ -190,12 +199,10 @@ game(void)
       while (keyAction1 == 0 && keyQuit == 0)
       {
         checkController();
-        i = rand();
       }
       while (keyAction1 == 1 && keyQuit == 0)
       {
         checkController();
-        i = rand();
       }
 
       gbl_evt = EVT_NULL;
@@ -242,20 +249,22 @@ game(void)
         }
       }
 
-      for (i = 0; i < MAX_PLATFORMS; i++)
+      for (size_t i = 0; i < MAX_PLATFORMS; i++)
       {
         showPlatform(i);
       }
-      for (i = 0; i < MAX_LADDER; i++)
+      for (size_t i = 0; i < MAX_LADDER; i++)
+      {
         showLadder(i);
+      }
       updatePlayer();
-      for (i = 0; i < MAX_SHOOT; i++)
+      for (size_t i = 0; i < MAX_SHOOT; i++)
       {
         updateShoot(i);
         showShoot(i);
       }
       nbBall = 0;
-      for (i = 0; i < MAX_BALL; i++)
+      for (size_t i = 0; i < MAX_BALL; i++)
       {
         nbBall += ball[i].active;
 
@@ -272,7 +281,7 @@ game(void)
           showBall(i);
         }
       }
-      for (i = 0; i < MAX_BONUS; i++)
+      for (size_t i = 0; i < MAX_BONUS; i++)
       {
         updateBonus(i);
         showBonus(i);
@@ -282,11 +291,11 @@ game(void)
         gbl_evt = EVT_NEXT_LEVEL;
       }
       showPlayer();
-      for (i = 0; i < MAX_OBJECTS; i++)
+      for (size_t i = 0; i < MAX_OBJECTS; i++)
       {
         showObject(i);
       }
-      for (i = 0; i < player.nblive; i++)
+      for (size_t i = 0; i < player.nblive; i++)
       {
         if (i < 3)
         {
@@ -330,13 +339,15 @@ game(void)
       while (cpt != 70)
       {
         showFond(currentLevel);
-        for (i = 0; i < MAX_LADDER; i++)
+        for (size_t i = 0; i < MAX_LADDER; i++)
+        {
           showLadder(i);
-        for (i = 0; i < MAX_BALL; i++)
+        }
+        for (size_t i = 0; i < MAX_BALL; i++)
         {
           showBall(i);
         }
-        for (i = 0; i < MAX_PLATFORMS; i++)
+        for (size_t i = 0; i < MAX_PLATFORMS; i++)
         {
           showPlatform(i);
         }
@@ -389,12 +400,10 @@ game(void)
       while (keyAction1 == 0)
       {
         checkController();
-        i = rand();
       }
       while (keyAction1 == 1)
       {
         checkController();
-        i = rand();
       }
 
       currentLevel++;
@@ -432,12 +441,10 @@ game(void)
       while (keyAction1 == 0)
       {
         checkController();
-        i = rand();
       }
       while (keyAction1 == 1)
       {
         checkController();
-        i = rand();
       }
       sound_clear(kSound_GameOver, kSoundClear_Force);
       initPlayer();
@@ -464,30 +471,10 @@ game(void)
 }
 
 int
-main(int argc, char* argv[])
+main(void)
 {
   game();
   sound_deinit();
 
   return 0;
-}
-
-void
-showfps()
-{
-  static float lasttime = 0;
-  float currenttime = 0;
-  static int framespersecond;
-  static char strframespersecond[10];
-
-  currenttime = SDL_GetTicks() * 0.001;
-  framespersecond++;
-
-  if (currenttime - lasttime > 1.0)
-  {
-    lasttime = currenttime;
-    sprintf(strframespersecond, "FPS %d", framespersecond);
-    framespersecond = 0;
-  }
-  showScore(strframespersecond, 10, 10);
 }

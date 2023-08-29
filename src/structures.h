@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdint.h>
 
 #define MAX_LEVEL 25
 
@@ -100,7 +101,7 @@ typedef struct sjoueur
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */
   int lbox;
-  int nblive;
+  uint8_t nblive;
   int weapon;
   int score;
   int nbtir; /* Nombre de tir en cours ... */
