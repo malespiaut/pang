@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -16,6 +17,8 @@ SDL_Texture* texture;
 SDL_Surface* screen;
 SDL_Joystick* stick;
 SDL_Surface* imagesBMP[10];
+
+extern bool g_quit;
 
 int mapTiles[MAX_MAP][MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
 int currentWorldMapX[MAX_MAP];
@@ -194,12 +197,6 @@ initGfxEngine()
   if (SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
   {
     fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
-
-#ifndef GP2X_VERSION
-    chdir("/usr/gp2x");
-    execl("/usr/gp2x/gp2xmenu", "/usr/gp2x/gp2xmenu", NULL);
-#endif
-
     exit(1);
   }
   stick = SDL_JoystickOpen(0);
@@ -221,10 +218,6 @@ initGfxEngine()
   if (screen == NULL)
   {
     fprintf(stderr, "Failed to create the \"screen\" surface, exiting now\n");
-#ifndef GP2X_VERSION
-    chdir("/usr/gp2x");
-    execl("/usr/gp2x/gp2xmenu", "/usr/gp2x/gp2xmenu", NULL);
-#endif
     exit(1);
   }
 }
@@ -260,14 +253,13 @@ loadBmp(char* path, char* filename, char* pathfilename, char* pathdc, int noImag
   return 0;
 }
 
-int
-checkController()
+void
+checkController(void)
 {
   static int volume = 80;
   SDL_Event event;
   while (SDL_PollEvent(&event))
   {
-#ifndef GP2X_VERSION
     switch (event.key.keysym.sym)
     {
       case SDLK_LEFT:
@@ -308,19 +300,15 @@ checkController()
         break;
 
       case SDLK_ESCAPE:
-        // If escape is pressed, return (and thus, quit)
-        keyQuit = 1;
-        return 0;
+        g_quit = true;
+        break;
 
       default:
         break;
     }
-#endif
 
     switch (event.type)
     {
-#ifndef GP2X_VERSION
-
       case SDL_KEYDOWN:
         switch (event.key.keysym.sym)
         {
@@ -374,152 +362,18 @@ checkController()
             keyAction4 = 0;
             break;
 
-#ifndef NO_SOUND
-          case SDLK_KP_PLUS:
-            volume += 10;
-            Mix_Volume(-1, volume);
-            fprintf(stdout, "volume set to: %d\n", volume);
-            break;
-
-          case SDLK_KP_MINUS:
-            volume -= 10;
-            Mix_Volume(-1, volume);
-            fprintf(stdout, "volume set to: %d\n", volume);
-            break;
-#endif
-
           case SDLK_ESCAPE:
-            // If escape is pressed, return (and thus, quit)
-            keyQuit = 1;
-            return 0;
+            g_quit = true;
+            break;
 
           default:
             break;
         }
         break;
-#endif
 
       case SDL_QUIT:
         keyQuit = 1;
         return (0);
-
-      case SDL_JOYBUTTONUP:
-        switch (event.button.button)
-        {
-
-#ifdef GP2X_VERSION
-          case GP2X_BUTTON_LEFT:
-            keyLeft = 0;
-            break;
-
-          case GP2X_BUTTON_RIGHT:
-            keyRight = 0;
-            break;
-
-          case GP2X_BUTTON_UP:
-            keyUp = 0;
-            break;
-
-          case GP2X_BUTTON_DOWN:
-            keyDown = 0;
-            break;
-
-          case GP2X_BUTTON_A:
-            keyAction1 = 0;
-            break;
-
-          case GP2X_BUTTON_B:
-            keyAction2 = 0;
-            break;
-
-          case GP2X_BUTTON_Y:
-            keyAction3 = 0;
-            break;
-
-          case GP2X_BUTTON_X:
-            keyAction4 = 0;
-            break;
-
-          case GP2X_BUTTON_START:
-            keyActionPause = 0;
-            break;
-
-          case GP2X_BUTTON_SELECT:
-            keyQuit = 1;
-            return 0;
-            break;
-#endif
-          default:
-            break;
-        }
-
-        break;
-
-      case SDL_JOYBUTTONDOWN:
-        switch (event.button.button)
-        {
-#ifdef GP2X_VERSION
-          case GP2X_BUTTON_LEFT:
-            keyLeft = 1;
-            break;
-
-          case GP2X_BUTTON_RIGHT:
-            keyRight = 1;
-            break;
-
-          case GP2X_BUTTON_UP:
-            keyUp = 1;
-            break;
-
-          case GP2X_BUTTON_DOWN:
-            keyDown = 1;
-            break;
-
-          case GP2X_BUTTON_A:
-            keyAction1 = 1;
-            break;
-
-          case GP2X_BUTTON_B:
-            keyAction2 = 1;
-            break;
-
-          case GP2X_BUTTON_L:
-            fpsshow = (fpsshow + 1) % 2;
-            break;
-
-          case GP2X_BUTTON_Y:
-            keyAction3 = 1;
-            break;
-
-          case GP2X_BUTTON_X:
-            keyAction4 = 1;
-            break;
-
-          case GP2X_BUTTON_START:
-            keyActionPause = 1;
-            break;
-
-          case GP2X_BUTTON_SELECT:
-            keyQuit = 1;
-            return 0;
-            break;
-
-#ifndef NO_SOUND
-          case GP2X_BUTTON_VOLUP:
-            volume += 10;
-            Mix_Volume(-1, volume);
-            fprintf(stdout, "volume set to: %d\n", volume);
-            break;
-
-          case GP2X_BUTTON_VOLDOWN:
-            volume -= 10;
-            Mix_Volume(-1, volume);
-            fprintf(stdout, "volume set to: %d\n", volume);
-            break;
-#endif
-
-#endif
-        }
 
       default:
         break;

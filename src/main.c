@@ -1,48 +1,27 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "structures.h"
-
 #include "PCGfxEngine.h"
-
-#ifdef PC_VERSION
 #include "PCSoundEngine.h"
-#endif
-
-#ifdef GP2X_VERSION
-#include <unistd.h>
-#endif
-
 #include "ball.h"
 #include "bonus.h"
 #include "ladder.h"
 #include "levels.h"
+#include "main.h"
 #include "objets.h"
 #include "plateforme.h"
 #include "player.h"
 #include "shoot.h"
+#include "structures.h"
 
-#include "main.h"
-
-#ifdef DREAMCAST_VERSION
-
-extern uint8 romdisk[];
-
-/* Initialisation de KOS et du Romdisk */
-
-KOS_INIT_FLAGS(INIT_DEFAULT | INIT_MALLOCSTATS);
-
-KOS_INIT_ROMDISK(romdisk);
-#endif
-
+bool g_quit = false;
 int fond_loaded = 0;
 
 void
 showScore(char* string, unsigned int x, unsigned int y)
-
 {
-
   unsigned char i, temp;
   int positionxduzero = 148;
   int positionyduzero = 226;
@@ -135,10 +114,9 @@ showFond(int level)
   blitImageToScreen(0, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
 }
 
-int
-common()
+static void
+game(void)
 {
-
   int myBall;
   int tmp;
 
@@ -196,20 +174,15 @@ common()
   initLadders();
   initShoot();
 
-  float now = SDL_GetTicks();
-  while (1)
+  // XXX: Game loop
+  while (!g_quit)
   {
-
     if (gbl_evt == EVT_TITLE)
     {
       int i;
       releaseAllSprite();
 
-#ifdef GP2X_VERSION
-      loadBmp("", "", "romdisk/title-gp2x.png", "/rd/title-gp2x.png", 2);
-#else
       loadBmp("", "", "romdisk/title.png", "/rd/title.png", 2);
-#endif
 
       blitImageToScreen(2, 0, 0, 320, 240, 0, 0, 320, 240, 320, 240);
 
@@ -226,9 +199,7 @@ common()
       }
 
       gbl_evt = EVT_NULL;
-      //			printf("init player \n");
       initPlayer();
-      //			printf("init level \n");
       initLevel(currentLevel);
     }
     else if (gbl_evt == EVT_NULL)
@@ -491,21 +462,15 @@ common()
 
     checkController();
     if (keyQuit == 1)
-      return 0;
+      g_quit = true;
   }
 }
 
 int
 main(int argc, char* argv[])
 {
-  common();
-
+  game();
   quitSoundEngine();
-
-#ifdef GP2X_VERSION
-  chdir("/usr/gp2x");
-  execl("/usr/gp2x/gp2xmenu", "/usr/gp2x/gp2xmenu", NULL);
-#endif
 
   return 0;
 }
