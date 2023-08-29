@@ -46,30 +46,30 @@ int fpsshow = 0;
 typedef struct si {
         int imageh;	// Hauteur
         int imagel; // Largeur
-        SDL_Surface *image; // L'image en elle mème
+        SDL_Surface *image; // L'image en elle mÃ¨me
 } simage;
 
 typedef struct ss{
-        bool active;	// Sprite utilisé ?
+        bool active;	// Sprite utilisÃ© ?
         int posx;		// Position x
         int posy;		// Position y
         int image;		// Image courante
         int animation[10][20]; // 10 animations de 20 frames (-1 = on boucle )
         int animation_speed[10];   // vitesse de l'animation
-        int current_animation; // animation courante -1 non animé
+        int current_animation; // animation courante -1 non animÃ©
         int current_animation_frame; // image courante
         int intern1;	// interne
 } ssprite;
 
 typedef struct st {
-        int image;	// Image représentant la tile
+        int image;	// Image reprÃ©sentant la tile
         int attr1;	// Attribut 1
         int attr2;	// Attribut 2
         int attr3;	// Attribut 3
 } stile;
 */
 ssprite sprite[MAX_SPRITE];  // Les sprites
-simage imageBank[MAX_IMAGE]; // Les images découpées des BMP chargés
+simage imageBank[MAX_IMAGE]; // Les images dÃ©coupÃ©es des BMP chargÃ©s
 stile tiles[MAX_TILE];       // Les tiles
 
 void
@@ -83,7 +83,7 @@ initTileEngine(void)
 }
 
 // DEPRECATED !
-// Prends une portion d'une des images BMP et la colle en vidéo
+// Prends une portion d'une des images BMP et la colle en vidÃ©o
 void
 blitImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth)
 {
@@ -148,7 +148,7 @@ createTile(int n, int imageNo, int a1, int a2, int a3)
   tiles[n].attr2 = a2;
   tiles[n].attr3 = a3;
 
-  /*    fprintf(stderr,"je crée la tile : %d avec l'image %d\n",n,imageNo);	   */
+  /*    fprintf(stderr,"je crÃ©e la tile : %d avec l'image %d\n",n,imageNo);	   */
 }
 
 void
@@ -392,7 +392,7 @@ initSpriteEngine(void)
   }
 }
 
-// Recupère une image n° n en x,y de taille h,l dans l'image BMP n° imageNo
+// RecupÃ¨re une image nÂ° n en x,y de taille h,l dans l'image BMP nÂ° imageNo
 // void getImage(int n,int x,int y,int l,int h,int imageNo)
 void
 getImage(int n, int x, int y, int l, int h, int imageNo, int w, int he)
@@ -414,7 +414,7 @@ getImage(int n, int x, int y, int l, int h, int imageNo, int w, int he)
   amask = 0xff000000;
 #endif
 
-  // Si l'image est déja alloué, on la libère.
+  // Si l'image est dÃ©ja allouÃ©, on la libÃ¨re.
   SDL_FreeSurface(imageBank[n].image);
   imageBank[n].image = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
 
@@ -430,7 +430,7 @@ getImage(int n, int x, int y, int l, int h, int imageNo, int w, int he)
   imageBank[n].imagel = l;
 }
 
-// Recupère une image n° n en x,y de taille h,l dans l'image BMP n° imageNo
+// RecupÃ¨re une image nÂ° n en x,y de taille h,l dans l'image BMP nÂ° imageNo
 void
 getImageBankFromBMP(int n, int x, int y, int l, int h, int imageNo)
 {
@@ -451,7 +451,7 @@ getImageBankFromBMP(int n, int x, int y, int l, int h, int imageNo)
   amask = 0xff000000;
 #endif
 
-  // Si l'image est déja alloué, on la libère.
+  // Si l'image est dÃ©ja allouÃ©, on la libÃ¨re.
   SDL_FreeSurface(imageBank[n].image);
   imageBank[n].image = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
 
@@ -617,7 +617,7 @@ stopAnimateSprite(int s)
 void
 showLRSprite(int n)
 {
-  // Non implémentée !
+  // Non implÃ©mentÃ©e !
 }
 
 void
@@ -698,9 +698,9 @@ isSpriteCollide(int sprite1, int sprite2)
   if (!sprite[sprite2].active)
     return 0;
 
-  /*Détection par bounding box
+  /*DÃ©tection par bounding box
   Retourne 0 et sort de la fonction
-  si les sprites ne possédent pas de zones superposées*/
+  si les sprites ne possÃ©dent pas de zones superposÃ©es*/
   if (coorx_1 > coorx_2 + imageBank[sprite[sprite2].image].imagel)
     return 0;
   if (coorx_1 + imageBank[sprite[sprite1].image].imagel < coorx_2)
@@ -710,10 +710,10 @@ isSpriteCollide(int sprite1, int sprite2)
   if (coory_1 + imageBank[sprite[sprite1].image].imageh < coory_2)
     return 0;
 
-  /*Le but des lignes suivantes est de définir un
+  /*Le but des lignes suivantes est de dÃ©finir un
   rectangle qui englobe la zone d'affichage
   commune aux deux sprites
-  On traite les coordonnées x du rectangle*/
+  On traite les coordonnÃ©es x du rectangle*/
 
   if (coorx_1 < coorx_2)
   {
@@ -732,7 +732,7 @@ isSpriteCollide(int sprite1, int sprite2)
       rect2_x = coorx_2 + sprite2w;
   }
 
-  /*On traite les coordonnées y du rectangle*/
+  /*On traite les coordonnÃ©es y du rectangle*/
   if (coory_1 < coory_2)
   {
     rect1_y = coory_2;
@@ -755,9 +755,9 @@ isSpriteCollide(int sprite1, int sprite2)
   if (SDL_MUSTLOCK(imageBank[sprite[sprite2].image].image))
     SDL_LockSurface(imageBank[sprite[sprite2].image].image);
 
-  /*Il ne reste plus qu'à tester pour chaque
+  /*Il ne reste plus qu'Ã  tester pour chaque
 
-  pixel du rectangle précèdemment défini si ses pixels
+  pixel du rectangle prÃ©cÃ¨demment dÃ©fini si ses pixels
 
   sont transparents
 

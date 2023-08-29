@@ -47,7 +47,7 @@ typedef struct si
 {
   int imageh;         // Hauteur
   int imagel;         // Largeur
-  SDL_Surface* image; // L'image en elle mème
+  SDL_Surface* image; // L'image en elle mÃ¨me
 } simage;
 
 typedef struct ss
@@ -59,7 +59,7 @@ typedef struct ss
 
   int animation[10][20];   // 10 animations de 20 frames (-1 = on boucle )
   int animation_speed[10]; // vitesse de l'animation
-  int current_animation;   // animation courante -1 non animé
+  int current_animation;   // animation courante -1 non animÃ©
   int current_animation_frame;
 
   int intern1;

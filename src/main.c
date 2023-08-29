@@ -356,7 +356,7 @@ game(void)
       }
       forceClearSound(0);
       releaseAllSprite();
-      /* Réinitialiser d'abord le joueur avant les niveaux pour histoire de sprite ! */
+      /* RÃ©initialiser d'abord le joueur avant les niveaux pour histoire de sprite ! */
       reInitPlayer();
       initLevel(currentLevel);
       gbl_evt = EVT_NULL;

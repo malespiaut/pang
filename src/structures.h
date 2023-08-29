@@ -175,8 +175,8 @@ typedef struct sjoueur
 
 typedef struct stir
 {
-  int posx; /* Position x dans l'écran (à initialiser) */
-  int posy; /* Position y dans l'écran (à initialiser) */
+  int posx; /* Position x dans l'Ã©cran (Ã  initialiser) */
+  int posy; /* Position y dans l'Ã©cran (Ã  initialiser) */
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */

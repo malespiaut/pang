@@ -80,7 +80,7 @@ updateBonus(int i)
         collide += isCollide(bonus[i].xbox + bonus[i].posx, bonus[i].ybox + bonus[i].posy, bonus[i].hbox, bonus[i].lbox, pform[p].posx, pform[p].posy, pform[p].hauteur, pform[p].largeur);
       }
     }
-    /* Si il y à collision, l'état passe à stop ! */
+    /* Si il y Ã  collision, l'Ã©tat passe Ã  stop ! */
     if (collide > 0)
     {
       bonus[i].etat = STOP;

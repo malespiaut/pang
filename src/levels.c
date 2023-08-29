@@ -19,7 +19,7 @@ initLevel(int n)
   initPlatforms();
   initObjects();
 
-  // Pour l'instant testé jusko 21
+  // Pour l'instant testÃ© jusko 21
   // n=21;
 
   if (n == 1)

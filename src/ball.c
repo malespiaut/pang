@@ -10,7 +10,7 @@
 Ball ball[MAX_BALL];
 
 /*
- Copie à l'écran l'image de la balle numéro i
+ Copie Ã  l'Ã©cran l'image de la balle numÃ©ro i
 */
 void
 showBall(int i)
@@ -33,10 +33,10 @@ showBall(int i)
 
 /*
   Renvoie TOUCH_HORIZONTAL ou TOUCH_VERTICAL pour savoir si
-  la balle à touché une plateforme sur le coté ou sur les surfaces horizontales
-  sprite1 = sprite de la balle numéro b
+  la balle Ã  touchÃ© une plateforme sur le cotÃ© ou sur les surfaces horizontales
+  sprite1 = sprite de la balle numÃ©ro b
   sprite2 = sprite de la plateforme
-  b = n° de la balle
+  b = nÂ° de la balle
 */
 int
 ballCollideWithPlatform(int sprite1, int sprite2, int b)
@@ -59,9 +59,9 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   if (!sprite[sprite2].active)
     return 0;
 
-  /*Détection par bounding box
+  /*DÃ©tection par bounding box
   Retourne 0 et sort de la fonction
-  si les sprites ne possédent pas de zones superposées*/
+  si les sprites ne possÃ©dent pas de zones superposÃ©es*/
   if (coorx_1 > coorx_2 + imageBank[sprite[sprite2].image].imagel)
     return 0;
   if (coorx_1 + imageBank[sprite[sprite1].image].imagel < coorx_2)
@@ -71,10 +71,10 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   if (coory_1 + imageBank[sprite[sprite1].image].imageh < coory_2)
     return 0;
 
-  /*Le but des lignes suivantes est de définir un
+  /*Le but des lignes suivantes est de dÃ©finir un
   rectangle qui englobe la zone d'affichage
   commune aux deux sprites
-  On traite les coordonnées x du rectangle*/
+  On traite les coordonnÃ©es x du rectangle*/
 
   if (coorx_1 < coorx_2)
   {
@@ -93,7 +93,7 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
       rect2_x = coorx_2 + sprite2w;
   }
 
-  /*On traite les coordonnées y du rectangle*/
+  /*On traite les coordonnÃ©es y du rectangle*/
   if (coory_1 < coory_2)
   {
     rect1_y = coory_2;
@@ -116,9 +116,9 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   if (SDL_MUSTLOCK(imageBank[sprite[sprite2].image].image))
     SDL_LockSurface(imageBank[sprite[sprite2].image].image);
 
-  /*Il ne reste plus qu'à tester pour chaque
+  /*Il ne reste plus qu'Ã  tester pour chaque
 
-  pixel du rectangle précèdemment défini si ses pixels
+  pixel du rectangle prÃ©cÃ¨demment dÃ©fini si ses pixels
 
   sont transparents
 
@@ -166,7 +166,7 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
     else
       ligne = 0;
 
-    /* Coté droit ou gauche ? */
+    /* CotÃ© droit ou gauche ? */
     if (ligne == 2)
     {
       if (rect1_x == sprite[sprite2].posx)
@@ -180,11 +180,11 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
     return 0;
   }
 
-  /* si la balle va à droite*/
+  /* si la balle va Ã  droite*/
   if (ball[b].move > 0)
   {
     if (cote == 4)
-      return TOUCH_HORIZONTAL; /* elle touche un coté droit */
+      return TOUCH_HORIZONTAL; /* elle touche un cotÃ© droit */
     if (cote == 3)
       return TOUCH_VERTICAL;
   }
@@ -204,12 +204,12 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   if (ligne == 0)
     return TOUCH_VERTICAL;
 
-  /* D'après les tests fait plus haut ya forcément une collision; mais bon on en renvoie une par défaut */
+  /* D'aprÃ¨s les tests fait plus haut ya forcÃ©ment une collision; mais bon on en renvoie une par dÃ©faut */
   return TOUCH_VERTICAL;
 }
 
 /*
-   Teste les collisions avec les bords de l'écran
+   Teste les collisions avec les bords de l'Ã©cran
 */
 
 void
@@ -226,23 +226,23 @@ void
 explodeABall(int a)
 {
   playSound(4, 1);
-  /* Crée une nouvelle balle plus petite qui ira à gauche */
+  /* CrÃ©e une nouvelle balle plus petite qui ira Ã  gauche */
   int tmp2;
   tmp2 = createBall(ball[a].posx, ball[a].posy, ball[a].type + 1, LEFT, UP);
   ball[tmp2].hauteurmax_cpt = ball[tmp2].hauteurmax - (20);
   ball[tmp2].vel = 2.0;
   if (ball[a].bonus_parent != 0)
     ball[tmp2].bonus = ball[a].bonus_parent;
-  /* Crée une nouvelle balle plus petite qui ira à droite */
+  /* CrÃ©e une nouvelle balle plus petite qui ira Ã  droite */
   tmp2 = createBall(ball[a].posx, ball[a].posy, ball[a].type + 1, RIGHT, UP);
   ball[tmp2].hauteurmax_cpt = ball[tmp2].hauteurmax - (20);
   ball[tmp2].vel = 2.0;
-  /* Si la balle <a> qui explose contient un bonus, on le crée */
+  /* Si la balle <a> qui explose contient un bonus, on le crÃ©e */
   if (ball[a].bonus != 0)
   {
     createBonus(ball[a].bonus, (int)ball[a].posx + 10, (int)ball[a].posy + 10);
   }
-  /* On libère la balle (et le sprite associé) qui vient d'exploser */
+  /* On libÃ¨re la balle (et le sprite associÃ©) qui vient d'exploser */
   ball[a].active = 0;
   releaseSprite(ball[a].spriteno);
 }
@@ -266,7 +266,7 @@ explodeAllBall()
       sortie = 1;
   }
 
-  /* Si on l'a trouvé, on l'explose ! */
+  /* Si on l'a trouvÃ©, on l'explose ! */
   if (trouve != -1)
   {
     /* BOOM */
@@ -315,7 +315,7 @@ explodeAllBall()
       }
       else
       {
-        /* Plus rien à exploser */
+        /* Plus rien Ã  exploser */
         player.bonus_boom = 0;
       }
     }
@@ -567,7 +567,7 @@ updateBalls(int i)
           {
           }
 
-          Si (il n'y à pas eu de collision)
+          Si (il n'y Ã  pas eu de collision)
           {
               ball[i].last_posx = ball[i].posx;
                           ball[i].last_posy = ball[i].posy;
@@ -593,10 +593,10 @@ updateBalls(int i)
 
   if (ball[i].active)
   {
-    /* il faut récupérer la derniere position sans aucune collision
+    /* il faut rÃ©cupÃ©rer la derniere position sans aucune collision
 Pour cela on teste si on est en collision, si ce n'est pas le
-cas, on mets à jour last_posx et last_posy. Sinon, on ne mets
-rien à jour et on à les bonnes dernières coordonnées de la position
+cas, on mets Ã  jour last_posx et last_posy. Sinon, on ne mets
+rien Ã  jour et on Ã  les bonnes derniÃ¨res coordonnÃ©es de la position
 sans collision.
 */
 
@@ -681,7 +681,7 @@ sans collision.
           {
             createObject(OBJ_MUL, (int)ball[i].posx, (int)ball[i].posy, player.multiplicateur);
           }
-          /* il fo détruire la balle EN DERNIER ! Sinon une autre sera reprise à ça position */
+          /* il fo dÃ©truire la balle EN DERNIER ! Sinon une autre sera reprise Ã  Ã§a position */
           ball[i].active = 0;
           if (ball[i].bonus != 0)
           {

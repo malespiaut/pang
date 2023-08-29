@@ -83,7 +83,7 @@ updateShoot(int i)
       {
         if (isCollide(shoot[i].posx + shoot[i].xbox, shoot[i].posy + shoot[i].ybox, shoot[i].hbox - 5, shoot[i].lbox, pform[p].posx, pform[p].posy, pform[p].hauteur, pform[p].largeur))
         {
-          // Si c un shoot normal ou un double shoot quelque soit la plateforme en collide ca dégage
+          // Si c un shoot normal ou un double shoot quelque soit la plateforme en collide ca dÃ©gage
           if ((shoot[i].type == WEAPON_DOUBLE_SHOOT) || (shoot[i].type == WEAPON_NORMAL_SHOOT))
           {
             if (shoot[i].active)
@@ -103,7 +103,7 @@ updateShoot(int i)
                 shoot[i].duree = 120;
             }
           }
-          // Si c une plateforme normale, quelquesoit le shoot, on le dégage.
+          // Si c une plateforme normale, quelquesoit le shoot, on le dÃ©gage.
           if ((pform[p].type == PF_CASSABLE) || (pform[p].type == PF_CASSABLEV) || (pform[p].type == PF_MOYEN_CASSABLE) || (pform[p].type == PF_MICRO_CASSABLE))
           {
             if (shoot[i].active)

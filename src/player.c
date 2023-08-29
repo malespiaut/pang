@@ -88,8 +88,8 @@ updatePlayer(void)
 
   // int isOnLadder=0; // evilo
   int whereIsPlayer = 999;
-  /* 0 - En bas de l'écran */
-  /* 1 - En bas d'une échelle */
+  /* 0 - En bas de l'Ã©cran */
+  /* 1 - En bas d'une Ã©chelle */
   /* 2 - Sur une Echelle */
   /* 3 - En haut d'une echelle */
   /* 4 - Sur une plateforme */
@@ -149,7 +149,7 @@ updatePlayer(void)
   GpRectFill(NULL, &gpDraw[nflip], player.posx+5,player.posy+15,22,10,232);
   GpRectFill(NULL, &gpDraw[nflip], player.posx+5,player.posy,15,25,232);*/
 
-  /* Si on est pas sur une échelle ou est on ? */
+  /* Si on est pas sur une Ã©chelle ou est on ? */
   if (whereIsPlayer == 999)
   {
     if (player.posy == (200 - 32))
@@ -444,7 +444,7 @@ updatePlayer(void)
     player.bonus_protection_timer = -1;
   };
 
-  /* Mise à jour de l'animation */
+  /* Mise Ã  jour de l'animation */
   if (player.anim_courante != ANIM_SHOOT)
   {
     if (player.etat == PLAYER_RIGHT)

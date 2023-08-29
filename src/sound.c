@@ -138,8 +138,8 @@ playSound(int soundNumber, int numberLoop)
 }
 
 /*
-  0 - pas clearé
-  1 - clearé
+  0 - pas clearÃ©
+  1 - clearÃ©
 */
 int
 clearSound(int soundNumber)
