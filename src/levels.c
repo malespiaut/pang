@@ -8,10 +8,8 @@
 #include "structures.h"
 
 void
-initLevel(int n)
+initLevel(size_t n)
 {
-  int i;
-
   initLadders();
   initShoot();
   initBalls();
@@ -24,15 +22,14 @@ initLevel(int n)
 
   if (n == 1)
   {
-    i = createBall((39 - 32), 19, BIG, LEFT, DOWN);
+    size_t i = createBall((39 - 32), 19, BIG, LEFT, DOWN);
     ball[i].bonus = getRandomBonus();
-    //		ball[i].bonus = BONUS_LIFE;
 
     ball[i].bonus_parent = getRandomBonus();
   }
   if (n == 2)
   {
-    i = createBall((120 - 32), 18, BIG, LEFT, DOWN);
+    size_t i = createBall((120 - 32), 18, BIG, LEFT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
     i = createPlatform((161 - 32), 81, PF_CASSABLE);
     pform[i].bonus = getRandomBonus();
@@ -42,7 +39,7 @@ initLevel(int n)
   if (n == 3)
   {
     createBall((76 - 32), 32, BIG, LEFT, DOWN);
-    i = createBall((176 - 32), 101, SMALL, RIGHT, DOWN);
+    size_t i = createBall((176 - 32), 101, SMALL, RIGHT, DOWN);
     ball[i].vel = 0.5;
     i = createPlatform((177 - 32), 81, PF_CASSABLE);
     pform[i].bonus = getRandomBonus();
@@ -50,13 +47,11 @@ initLevel(int n)
     pform[i].bonus = getRandomBonus();
     createPlatform((73 - 32), (81 - 8), PF_INCASSABLE);
     createPlatform((281 - 32), (81 - 8), PF_INCASSABLE);
-    /*createBall(184,23,BIG,LEFT,DOWN);
-    createPlatformCassable(160,100);*/
   }
 
   if (n == 4)
   {
-    i = createBall((39 - 32), 19, BIG, LEFT, DOWN);
+    size_t i = createBall((39 - 32), 19, BIG, LEFT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     createLadder((162 - 32), 153, 12);
@@ -67,7 +62,7 @@ initLevel(int n)
   }
   if (n == 5)
   {
-    i = createBall((49 - 32), 70, BIG, LEFT, DOWN);
+    size_t i = createBall((49 - 32), 70, BIG, LEFT, DOWN);
     ball[i].bonus = WEAPON_DOUBLE_SHOOT;
     i = createBall(241, 120, NORMAL, LEFT, DOWN);
     ball[i].bonus_parent = BONUS_FREEZE;
@@ -83,7 +78,7 @@ initLevel(int n)
     createPlatform((81 - 32), 65, PF_MOYEN_INCASSABLE);
     createPlatform((297 - 32), 65, PF_MOYEN_INCASSABLE);
     createPlatform((185 - 32), 65, PF_MOYEN_CASSABLE);
-    i = createBall((154 - 32), 16, BIG, LEFT, DOWN);
+    size_t i = createBall((154 - 32), 16, BIG, LEFT, DOWN);
     ball[i].bonus = WEAPON_DOUBLE_SHOOT;
     createBall(192 - 32, 16, BIG, RIGHT, DOWN);
   }
@@ -104,7 +99,7 @@ initLevel(int n)
     createPlatform(193 - 32 - 16 - 5, 121, PF_CASSABLE);
     createPlatform(161 - 32 - 16, 121, PF_MOYEN_CASSABLE);
     createPlatform(232 - 32 - 16, 121, PF_MOYEN_CASSABLE);
-    i = createBall(205 - 32, 31, BIG, LEFT, DOWN);
+    size_t i = createBall(205 - 32, 31, BIG, LEFT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(161 - 32, 85, NORMAL, RIGHT, DOWN);
@@ -125,7 +120,7 @@ initLevel(int n)
     createPlatform(193 - 32, 49, PF_INCASSABLEV);
     createPlatform(185 - 32, 129, PF_INCASSABLEV);
     createPlatform(193 - 32, 129, PF_INCASSABLEV);
-    i = createBall(150 - 32, 79, NORMAL, RIGHT, DOWN);
+    size_t i = createBall(150 - 32, 79, NORMAL, RIGHT, DOWN);
     ball[i].bonus = BONUS_FREEZE;
     i = createBall(209 - 32, 79, NORMAL, RIGHT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
@@ -133,7 +128,7 @@ initLevel(int n)
 
   if (n == 9)
   {
-    i = createBall(134 - 32 - 10, 61, BIG, LEFT, DOWN);
+    size_t i = createBall(134 - 32 - 10, 61, BIG, LEFT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(209 - 32 + 10, 61, BIG, RIGHT, DOWN);
@@ -162,7 +157,7 @@ initLevel(int n)
     createPlatform(57 - 32, 89, PF_MICRO_CASSABLE);
     createPlatform(81 - 32, 113, PF_MICRO_CASSABLE);
     createPlatform(153 - 32, 89, PF_MICRO_CASSABLE);
-    i = createPlatform(177 - 32, 113, PF_MICRO_CASSABLE);
+    size_t i = createPlatform(177 - 32, 113, PF_MICRO_CASSABLE);
     pform[i].bonus = getRandomBonus();
     createPlatform(249 - 32, 89, PF_MICRO_CASSABLE);
     createPlatform(273 - 32, 113, PF_MICRO_CASSABLE);
@@ -183,7 +178,7 @@ initLevel(int n)
   {
     createPlatform(41 - 32, 57 + 5, PF_MOYEN_CASSABLE);
     createPlatform(105 - 32, 48 + 5, PF_MOYEN_CASSABLE);
-    i = createPlatform(185 - 32, 33 + 5, PF_MOYEN_CASSABLE);
+    size_t i = createPlatform(185 - 32, 33 + 5, PF_MOYEN_CASSABLE);
     pform[i].bonus = BONUS_LIFE;
     createPlatform(265 - 32, 49 + 5, PF_MOYEN_CASSABLE);
     i = createPlatform(329 - 32, 57 + 5, PF_MOYEN_CASSABLE);
@@ -204,7 +199,7 @@ initLevel(int n)
   }
   if (n == 12)
   {
-    i = createBall(39 - 32, 19, BIG, LEFT, DOWN);
+    size_t i = createBall(39 - 32, 19, BIG, LEFT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(276 - 32, 19, BIG, RIGHT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
@@ -235,7 +230,7 @@ initLevel(int n)
     createLadder(212, 140, 5);
     createLadder(82, 140, 15);
 
-    i = createBall(134, 60, BIG, RIGHT, DOWN);
+    size_t i = createBall(134, 60, BIG, RIGHT, DOWN);
     ball[i].bonus = WEAPON_GLUE_SHOOT;
     ball[i].bonus_parent = getRandomBonus();
     ball[i].vel = ball[i].vel / 2;
@@ -264,7 +259,7 @@ initLevel(int n)
     createPlatform(75, 28, PF_CASSABLEV);
     createPlatform(54, 81, PF_CASSABLEV);
 
-    i = createBall(9, 9, BIG, RIGHT, DOWN);
+    size_t i = createBall(9, 9, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
 
@@ -274,7 +269,7 @@ initLevel(int n)
   }
   if (n == 15)
   {
-    i = createBall(68, 128, NORMAL, LEFT, DOWN);
+    size_t i = createBall(68, 128, NORMAL, LEFT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(68, 22, NORMAL, LEFT, DOWN);
@@ -302,8 +297,7 @@ initLevel(int n)
 
   if (n == 16)
   {
-    int i;
-    i = createBall(21, 14, MICRO, RIGHT, DOWN);
+    size_t i = createBall(21, 14, MICRO, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     createBall(25, 30, MICRO, RIGHT, DOWN);
     createBall(29, 46, MICRO, RIGHT, DOWN);
@@ -323,37 +317,36 @@ initLevel(int n)
     createBall(320 - 45, 110, MICRO, LEFT, DOWN);
     createBall(320 - 50, 127, MICRO, LEFT, DOWN);
 
-    for (i = 0; i < MAX_BALL; i++)
+    for (size_t j = 0; j < MAX_BALL; ++j)
     {
-      if (ball[i].active)
+      if (ball[j].active)
       {
-        ball[i].vel_cst = 10.0;
+        ball[j].vel_cst = 10.0;
       }
     }
   }
 
   if (n == 17)
   {
-    int i;
     int tmp;
-    for (i = 0; i < 9; i++)
+    for (size_t i = 0; i < 9; ++i)
     {
       createPlatform((17 + (i * 32)), 29, PF_CASSABLE);
     }
 
-    i = createPlatform(9, 29, PF_MICRO_CASSABLE);
+    size_t i = createPlatform(9, 29, PF_MICRO_CASSABLE);
     pform[i].bonus = BONUS_LIFE;
     i = createPlatform(297 + 8, 29, PF_MICRO_CASSABLE);
     pform[i].bonus = getRandomBonus();
 
-    for (i = 0; i < 8; i++)
+    for (size_t j = 0; j < 8; ++j)
     {
-      tmp = createBall((18 + (i * 8)), 18, MICRO, RIGHT, DOWN);
+      tmp = createBall((18 + (j * 8)), 18, MICRO, RIGHT, DOWN);
       ball[tmp].vel = 0.5;
     }
-    for (i = 0; i < 8; i++)
+    for (size_t j = 0; j < 8; ++j)
     {
-      tmp = createBall((230 + (i * 8)), 18, MICRO, RIGHT, DOWN);
+      tmp = createBall((230 + (j * 8)), 18, MICRO, RIGHT, DOWN);
       ball[tmp].vel = 0.5;
     }
 
@@ -368,14 +361,14 @@ initLevel(int n)
   if (n == 18)
   {
     int tmp;
-    for (i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; ++i)
     {
       tmp = createBall((18 + (i * 8)), 150, MICRO, LEFT, DOWN);
       ball[tmp].vel_cst = 8.0;
       if (i == 4)
         ball[tmp].bonus = WEAPON_DOUBLE_SHOOT;
     }
-    for (i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; ++i)
     {
       tmp = createBall((230 + (i * 8)), 150, MICRO, RIGHT, DOWN);
       ball[tmp].vel_cst = 8.0;
@@ -391,7 +384,7 @@ initLevel(int n)
 
   if (n == 19)
   {
-    i = createBall(77, 17, BIG, RIGHT, DOWN);
+    size_t i = createBall(77, 17, BIG, RIGHT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(229, 19, NORMAL, LEFT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
@@ -399,9 +392,9 @@ initLevel(int n)
     createLadder(8, 100, 25);
     createLadder(290, 100, 25);
 
-    for (i = 0; i < 7; i++)
+    for (size_t j = 0; j < 7; ++j)
     {
-      createPlatform((47 + (i * 32)), 136, PF_INCASSABLE);
+      createPlatform((47 + (j * 32)), 136, PF_INCASSABLE);
     }
   }
   if (n == 20)
@@ -410,7 +403,7 @@ initLevel(int n)
     createPlatform(304 - 32, 48, PF_MOYEN_CASSABLE);
     createPlatform(160 - 32, 140, PF_INCASSABLE);
     createPlatform(160, 140, PF_INCASSABLE);
-    i = createBall(124 - 32, 27, BIG, RIGHT, DOWN);
+    size_t i = createBall(124 - 32, 27, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     ball[i].vel = ball[i].vel / 2;
@@ -427,7 +420,7 @@ initLevel(int n)
     createPlatform(90 - 32, 80, PF_MOYEN_INCASSABLE);
     createPlatform(286 - 32, 80, PF_MOYEN_INCASSABLE);
 
-    i = createBall(124 - 32, 27, BIG, RIGHT, DOWN);
+    size_t i = createBall(124 - 32, 27, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     ball[i].vel = ball[i].vel / 2;
@@ -436,12 +429,12 @@ initLevel(int n)
   }
   if (n == 22)
   {
-    for (i = 0; i < 7; i++)
+    for (size_t i = 0; i < 7; ++i)
     {
       createPlatform((112 - 64 + (i * 32)), 104, PF_INCASSABLE);
     }
 
-    i = createBall((92 - 32), 27, BIG, RIGHT, DOWN);
+    size_t i = createBall((92 - 32), 27, BIG, RIGHT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
     ball[i].vel = ball[i].vel / 2;
     i = createBall((250 - 32), 27, BIG, RIGHT, DOWN);
@@ -450,7 +443,7 @@ initLevel(int n)
   }
   if (n == 23)
   {
-    for (i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; ++i)
     {
       createPlatform(81 - 32, (33 + (i * 32)), PF_INCASSABLEV);
       createPlatform(153 - 32, (33 + (i * 32)), PF_CASSABLEV);
@@ -458,21 +451,18 @@ initLevel(int n)
       createPlatform(297 - 32, (33 + (i * 32)), PF_INCASSABLEV);
     }
     player.posx = player.posx + 64;
-    i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);
+    size_t i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
   }
   if (n == 24)
   {
-    for (i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; ++i)
     {
       createPlatform(81 - 32, (33 + (i * 32)), PF_INCASSABLEV);
-      /*createPlatform(153-32,33+(i*32),PF_CASSABLEV);
-      createPlatform(225-32,33+(i*32),PF_CASSABLEV);*/
       createPlatform(297 - 32, (33 + (i * 32)), PF_INCASSABLEV);
     }
-    /*player.posx = player.posx + 64 + 32 + 16;*/
-    i = createBall(197 + 8, 20, BIG, RIGHT, DOWN);
+    size_t i = createBall(197 + 8, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(197 - 64 - 64, 20, BIG, LEFT, DOWN);
@@ -481,7 +471,7 @@ initLevel(int n)
   }
   if (n == 25)
   {
-    i = createBall(50, 10, BIG, LEFT, DOWN);
+    size_t i = createBall(50, 10, BIG, LEFT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(50, 10, BIG, RIGHT, DOWN);
@@ -494,12 +484,12 @@ initLevel(int n)
     createBall(220, 25, MICRO, RIGHT, UP);
     createBall(225, 30, MICRO, LEFT, DOWN);
 
-    for (i = 0; i < 6; i++)
+    for (size_t j = 0; j < 6; ++j)
     {
-      if (i > 2)
+      if (j > 2)
       {
-        createPlatform(((337 - 32) - (i * 8)), (41 + (i * 8)), PF_MICRO_INCASSABLE);
-        createPlatform(((41 - 32) + (i * 8)), (41 + (i * 8)), PF_MICRO_INCASSABLE);
+        createPlatform(((337 - 32) - (j * 8)), (41 + (j * 8)), PF_MICRO_INCASSABLE);
+        createPlatform(((41 - 32) + (j * 8)), (41 + (j * 8)), PF_MICRO_INCASSABLE);
       }
     }
 
@@ -514,10 +504,10 @@ initLevel(int n)
     createPlatform((337 - 32) - (6 * 8) - 32 - 8, 41 + (6 * 8), PF_MOYEN_INCASSABLE);
     pform[i].bonus = BONUS_LIFE;
 
-    for (i = 0; i < 3; i++)
+    for (size_t j = 0; j < 3; ++j)
     {
-      createPlatform((248 - 32 - 8) - (i * 8), 97 + (i * 8), PF_MICRO_INCASSABLE);
-      createPlatform((137 - 32) + (i * 8), 97 + (i * 8), PF_MICRO_INCASSABLE);
+      createPlatform((248 - 32 - 8) - (j * 8), 97 + (j * 8), PF_MICRO_INCASSABLE);
+      createPlatform((137 - 32) + (j * 8), 97 + (j * 8), PF_MICRO_INCASSABLE);
     }
 
     createPlatform(161 - 32, 121, PF_MOYEN_INCASSABLE);
@@ -526,7 +516,7 @@ initLevel(int n)
   if (n == 26)
   {
     createBall(39 - 32, 19, BIG, LEFT, DOWN);
-    for (i = 0; i < 3; i++)
+    for (size_t i = 0; i < 3; ++i)
     {
       createPlatform(34 + (i * 32) - 22 + 16, 159, PF_CASSABLE);
       createPlatform(184 + (i * 32), 159, PF_CASSABLE);
@@ -538,7 +528,7 @@ initLevel(int n)
     createLadder(130, 155 + 4, 10);
 
     createPlatform(8, 102, PF_CASSABLE);
-    for (i = 0; i < 6; i++)
+    for (size_t i = 0; i < 6; ++i)
     {
       createPlatform(41 + (i * 32), 102, PF_INCASSABLE);
     }
@@ -550,7 +540,7 @@ initLevel(int n)
   }
   if (n == 30)
   {
-    for (i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; ++i)
     {
       createPlatform(81 - 32, 33 + (i * 32), PF_INCASSABLEV);
       createPlatform(153 - 32, 33 + (i * 32), PF_CASSABLEV);
@@ -558,7 +548,7 @@ initLevel(int n)
       createPlatform(297 - 32, 33 + (i * 32), PF_INCASSABLEV);
     }
     player.posx = player.posx + 64;
-    i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);
+    size_t i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(197 - 64 - 64, 20, BIG, LEFT, DOWN);
@@ -567,7 +557,7 @@ initLevel(int n)
   }
   if (n == 38)
   {
-    for (i = 0; i < 4; i++)
+    for (size_t i = 0; i < 4; ++i)
     {
       createPlatform(81 - 32, 33 + (i * 32), PF_INCASSABLEV);
       createPlatform(153 - 32, 33 + (i * 32), PF_CASSABLEV);
@@ -575,7 +565,7 @@ initLevel(int n)
       createPlatform(297 - 32, 33 + (i * 32), PF_INCASSABLEV);
     }
     player.posx = player.posx + 64 + 32 + 16;
-    i = createBall(197 + 8, 20, BIG, RIGHT, DOWN);
+    size_t i = createBall(197 + 8, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
     i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);

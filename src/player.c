@@ -1,7 +1,7 @@
-#include "ladder.h"
 #include "ball.h"
 #include "collisions.h"
 #include "gfx.h"
+#include "ladder.h"
 #include "main.h"
 #include "objects.h"
 #include "platform.h"
