@@ -73,16 +73,6 @@ simage imageBank[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
 void
-initTileEngine(void)
-{
-  int m, x, y;
-  for (m = 0; m < MAX_MAP; m++)
-    for (x = 0; x < MAX_MAP_WIDTH; x++)
-      for (y = 0; y < MAX_MAP_HEIGHT; y++)
-        mapTiles[m][x][y] = 0;
-}
-
-void
 blitBMPImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
 {
   SDL_Rect dest;
@@ -116,57 +106,6 @@ blitImageBankToScreen(int imageBankNo, int dx, int dy)
   src.w = imageBank[imageBankNo].imagel;
 
   SDL_BlitSurface(imageBank[imageBankNo].image, &src, screen, &dest);
-}
-
-void
-createTile(int n, int imageNo, int a1, int a2, int a3)
-{
-  tiles[n].image = imageNo;
-  tiles[n].attr1 = a1;
-  tiles[n].attr2 = a2;
-  tiles[n].attr3 = a3;
-
-  /*    fprintf(stderr,"je crée la tile : %d avec l'image %d\n",n,imageNo);	   */
-}
-
-void
-setTileInMap(int mapNo, int x, int y, int tileNo)
-{
-  mapTiles[mapNo][x][y] = tileNo;
-}
-
-void
-setWorldView(int mapNo, int x, int y)
-{
-  currentWorldMapX[mapNo] = x;
-  currentWorldMapY[mapNo] = y;
-}
-
-void
-mapDraw(int mapNo)
-{
-  int map_drawx = currentWorldMapX[mapNo];
-  int map_drawy = currentWorldMapY[mapNo];
-  int i, j;
-  int mapx, mapy;
-  int map_xoff, map_yoff;
-
-  mapx = map_drawx / 16;
-  mapy = map_drawy / 16;
-
-  map_xoff = map_drawx & 15;
-  map_yoff = map_drawy & 15;
-
-  for (i = 0; i < 16; i++)
-  {
-    for (j = 0; j < 21; j++)
-    {
-      if ((j + mapx < MAX_MAP_WIDTH) && (i + mapy < MAX_MAP_HEIGHT) && (j + mapx >= 0) && (i + mapy >= 0))
-      {
-        blitImageBankToScreen(tiles[mapTiles[mapNo][j + mapx][i + mapy]].image, j * 16 - map_xoff, i * 16 - map_yoff);
-      }
-    }
-  }
 }
 
 void
@@ -496,40 +435,6 @@ releaseAllSprite(void)
 }
 
 void
-animateSprite(int s, int a)
-{
-  sprite[s].current_animation = a;
-  sprite[s].current_animation_frame = -1;
-  sprite[s].intern1 = 0;
-}
-
-void
-setSpriteAnimation(int s, int a, int speed, int f0, int f1, int f2, int f3, int f4, int f5, int f6, int f7, int f8, int f9, int f10, int f11, int f12, int f13, int f14, int f15, int f16, int f17, int f18, int f19)
-{
-  sprite[s].animation_speed[a] = speed;
-  sprite[s].animation[a][0] = f0;
-  sprite[s].animation[a][1] = f1;
-  sprite[s].animation[a][2] = f2;
-  sprite[s].animation[a][3] = f3;
-  sprite[s].animation[a][4] = f4;
-  sprite[s].animation[a][5] = f5;
-  sprite[s].animation[a][6] = f6;
-  sprite[s].animation[a][7] = f7;
-  sprite[s].animation[a][8] = f8;
-  sprite[s].animation[a][9] = f9;
-  sprite[s].animation[a][10] = f10;
-  sprite[s].animation[a][11] = f11;
-  sprite[s].animation[a][12] = f12;
-  sprite[s].animation[a][13] = f13;
-  sprite[s].animation[a][14] = f14;
-  sprite[s].animation[a][15] = f15;
-  sprite[s].animation[a][15] = f16;
-  sprite[s].animation[a][17] = f17;
-  sprite[s].animation[a][18] = f18;
-  sprite[s].animation[a][19] = f19;
-}
-
-void
 moveSprite(int n, int x, int y)
 {
   sprite[n].posx = x;
@@ -540,20 +445,6 @@ void
 changeSpriteImage(int n, int i)
 {
   sprite[n].image = i;
-}
-
-// DEPRECATED !
-void
-pasteImage(int n, int x, int y)
-{
-  blitImageBankToScreen(sprite[n].image, x, y);
-}
-// DEPRECATED !
-
-void
-pasteSpriteImage(int n, int x, int y)
-{
-  blitImageBankToScreen(sprite[n].image, x, y);
 }
 
 void
@@ -581,27 +472,6 @@ showSprite(int n)
     }
 
     blitImageBankToScreen(sprite[n].image, sprite[n].posx, sprite[n].posy);
-  }
-}
-
-void
-stopAnimateSprite(int s)
-{
-  sprite[s].intern1 = sprite[s].animation_speed[sprite[s].current_animation];
-  sprite[s].current_animation = -1;
-  sprite[s].current_animation_frame = -1;
-}
-
-void
-showAllSprite(void)
-{
-  int i;
-  for (i = 0; i < MAX_SPRITE; i++)
-  {
-    if (sprite[i].active)
-    {
-      showSprite(i);
-    }
   }
 }
 
