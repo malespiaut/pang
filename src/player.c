@@ -86,7 +86,6 @@ reInitPlayer(void)
 void
 updatePlayer(void)
 {
-  int i;
   // unsigned char keydata; // evilo
 
   // int isOnLadder=0; // evilo
@@ -99,9 +98,8 @@ updatePlayer(void)
   /* 5 - Dans le vide */
   int echelleCollide = -1;
   int platformCollide = -1;
-  int platformCollideBlock = -1;
 
-  for (i = 0; i < MAX_LADDER; i++)
+  for (size_t i = 0; i < MAX_LADDER; i++)
   {
     /* Si le joueur est sur une base (en bas) --> BAS */
     /* Si les pieds du joueur sont en haut de l'echelle --> HAUT */
@@ -129,7 +127,7 @@ updatePlayer(void)
     }
   }
 
-  for (i = 0; i < MAX_PLATFORMS; i++)
+  for (size_t i = 0; i < MAX_PLATFORMS; i++)
   {
     if (pform[i].active)
     {
@@ -194,8 +192,8 @@ updatePlayer(void)
     int sortie = 0;
     while (sortie == 0)
     {
-      platformCollideBlock = -1;
-      for (i = 0; i < MAX_PLATFORMS; i++)
+      int8_t platformCollideBlock = -1;
+      for (size_t i = 0; i < MAX_PLATFORMS; i++)
       {
         if (pform[i].active)
         {
@@ -236,8 +234,8 @@ updatePlayer(void)
     int sortie = 0;
     while (sortie == 0)
     {
-      platformCollideBlock = -1;
-      for (i = 0; i < MAX_PLATFORMS; i++)
+      int8_t platformCollideBlock = -1;
+      for (size_t i = 0; i < MAX_PLATFORMS; i++)
       {
         if (pform[i].active)
         {
@@ -354,7 +352,7 @@ updatePlayer(void)
   {
     if (player.bonus_freeze == 0)
     {
-      for (i = 0; i < MAX_BALL; i++)
+      for (size_t i = 0; i < MAX_BALL; i++)
       {
         if (ball[i].active)
         {
@@ -385,7 +383,7 @@ updatePlayer(void)
   }
 
   /* Test des collisions avec les bonus */
-  for (i = 0; i < MAX_BONUS; i++)
+  for (size_t i = 0; i < MAX_BONUS; i++)
   {
     if (bonus[i].active)
     {
