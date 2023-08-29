@@ -7,6 +7,8 @@
 #include "sound.h"
 #include "structures.h"
 
+Ball ball[MAX_BALL];
+
 /*
  Copie à l'écran l'image de la balle numéro i
 */

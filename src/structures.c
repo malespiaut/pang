@@ -10,7 +10,6 @@ int gbl_evt = EVT_NULL;
 int onetwo = 0;
 int currentLevel = 1;
 
-balle ball[MAX_BALL];
 platform pform[MAX_PLATFORMS];
 tir shoot[MAX_SHOOT];
 ladder ech[MAX_ECHELLE];
