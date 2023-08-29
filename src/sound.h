@@ -32,8 +32,8 @@ enum eSoundClearFlag
 };
 typedef enum eSoundClearFlag eSoundClearFlag;
 
-void initSoundEngine(void);
-void loadSound(eSound i);
-void playSound(eSound i, int loops);
-void clearSound(eSound i, eSoundClearFlag force);
-void quitSoundEngine(void);
+void sound_init(void);
+void sound_load(eSound i);
+void sound_play(eSound i, int loops);
+void sound_clear(eSound i, eSoundClearFlag force);
+void sound_deinit(void);

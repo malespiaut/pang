@@ -18,7 +18,7 @@ static const char* const sound_path[kSound_COUNT] = {
 static Sound sounds[kSound_COUNT] = {0};
 
 void
-initSoundEngine(void)
+sound_init(void)
 {
   if (Mix_Init(0) != 0)
   {
@@ -34,7 +34,7 @@ initSoundEngine(void)
 }
 
 void
-loadSound(eSound i)
+sound_load(eSound i)
 {
   sounds[i].chunk = Mix_LoadWAV(sound_path[i]);
 
@@ -46,7 +46,7 @@ loadSound(eSound i)
 }
 
 void
-playSound(eSound i, int loops)
+sound_play(eSound i, int loops)
 {
   assert(sounds[i].chunk);
 
@@ -62,11 +62,11 @@ playSound(eSound i, int loops)
 }
 
 void
-clearSound(eSound i, eSoundClearFlag force)
+sound_clear(eSound i, eSoundClearFlag force)
 {
   if (!Mix_Playing(i) || force)
   {
-    if (Mix_HaltChannel(i);)
+    if (Mix_HaltChannel(i))
     {
       SDL_Log("Unable to halt playing on channel %d: %s", i, Mix_GetError());
     }
@@ -75,7 +75,7 @@ clearSound(eSound i, eSoundClearFlag force)
 }
 
 void
-quitSoundEngine(void)
+sound_deinit(void)
 {
   Mix_CloseAudio();
   Mix_Quit();

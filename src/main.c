@@ -132,13 +132,13 @@ game(void)
 
   initGfxEngine();
   initSpriteEngine();
-  initSoundEngine();
+  sound_init();
 
-  loadSound(kSound_InGame);
-  loadSound(kSound_NextLevel);
-  loadSound(kSound_GameOver);
-  loadSound(kSound_Shoot);
-  loadSound(kSound_BallPop);
+  sound_load(kSound_InGame);
+  sound_load(kSound_NextLevel);
+  sound_load(kSound_GameOver);
+  sound_load(kSound_Shoot);
+  sound_load(kSound_BallPop);
 
   loadBmp("", "", "romdisk/sprites.png", "/rd/sprites.png", 1);
 
@@ -223,7 +223,7 @@ game(void)
         }
       }
 
-      playSound(kSound_InGame, -1);
+      sound_play(kSound_InGame, -1);
 
       int old_score = player.score;
       showFond(currentLevel);
@@ -354,7 +354,7 @@ game(void)
         cpt++;
         present_frame();
       }
-      clearSound(kSound_InGame, kSoundClear_Force);
+      sound_clear(kSound_InGame, kSoundClear_Force);
       releaseAllSprite();
       /* Réinitialiser d'abord le joueur avant les niveaux pour histoire de sprite ! */
       reInitPlayer();
@@ -365,9 +365,9 @@ game(void)
     }
     else if (gbl_evt == EVT_NEXT_LEVEL)
     {
-      clearSound(kSound_InGame, kSoundClear_Force);
+      sound_clear(kSound_InGame, kSoundClear_Force);
       releaseAllSprite();
-      playSound(kSound_NextLevel, 0);
+      sound_play(kSound_NextLevel, 0);
       if ((currentLevel % 2) == 0)
       {
         loadBmp("", "", "romdisk/nextlevel1.png", "/rd/nextlevel1.png", 2);
@@ -403,12 +403,12 @@ game(void)
       reInitPlayer();
       initLevel(currentLevel);
       gbl_evt = EVT_NULL;
-      clearSound(kSound_NextLevel, kSoundClear_Force);
+      sound_clear(kSound_NextLevel, kSoundClear_Force);
     }
     else if (gbl_evt == EVT_GAME_OVER)
     {
-      clearSound(kSound_InGame, kSoundClear_Force);
-      playSound(kSound_GameOver, 0);
+      sound_clear(kSound_InGame, kSoundClear_Force);
+      sound_play(kSound_GameOver, 0);
       releaseAllSprite();
       /* Animation de perte de gameOver ! */
       int cpt = 0;
@@ -439,7 +439,7 @@ game(void)
         checkController();
         i = rand();
       }
-      clearSound(kSound_GameOver, kSoundClear_Force);
+      sound_clear(kSound_GameOver, kSoundClear_Force);
       initPlayer();
       initLevel(1);
       gbl_evt = EVT_TITLE;
@@ -448,8 +448,8 @@ game(void)
     if (fpsshow == 1)
       showfps();
     present_frame();
-    clearSound(kSound_Shoot, kSoundClear_DontForce);
-    clearSound(kSound_BallPop, kSoundClear_DontForce);
+    sound_clear(kSound_Shoot, kSoundClear_DontForce);
+    sound_clear(kSound_BallPop, kSoundClear_DontForce);
     onetwo++;
     if (onetwo > 5)
       onetwo = 0;
@@ -467,7 +467,7 @@ int
 main(int argc, char* argv[])
 {
   game();
-  quitSoundEngine();
+  sound_deinit();
 
   return 0;
 }
