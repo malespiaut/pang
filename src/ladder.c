@@ -57,7 +57,7 @@ showLadder(size_t i)
   {
     for (size_t e = 0; e < ladder[i].nb_rungs; e++)
     {
-      blitImageToScreen(1, 71, 53, 22, 4, ladder[i].posx, ladder[i].posy + (e * 4), 22, 4, 320, 240);
+      blitBMPImageToScreen(1, 71, 53, 22, 4, ladder[i].posx, ladder[i].posy + (e * 4), 22, 4, 320, 240);
     }
   }
 }

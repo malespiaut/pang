@@ -149,7 +149,7 @@ showShoot(int i)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {
-      blitImageToScreen(1, 305, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
+      blitBMPImageToScreen(1, 305, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
     }
     if (shoot[i].type == WEAPON_GLUE_SHOOT)
     {
@@ -157,7 +157,7 @@ showShoot(int i)
       {
       }
       else
-        blitImageToScreen(1, 293, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
+        blitBMPImageToScreen(1, 293, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox, 320, 240);
     }
   }
 }

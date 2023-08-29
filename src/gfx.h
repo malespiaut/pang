@@ -79,7 +79,7 @@ extern stile tiles[MAX_TILE];
 
 void initTileEngine(void);
 void present_frame(void);
-void blitImageToScreen(int imageNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth);
+void blitBMPImageToScreen(int imageNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth);
 void createTile(int n, int imageNo, int a1, int a2, int a3);
 void setTileInMap(int mapNo, int x, int y, int tileNo);
 void setWorldView(int mapNo, int x, int y);

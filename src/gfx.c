@@ -82,28 +82,6 @@ initTileEngine(void)
         mapTiles[m][x][y] = 0;
 }
 
-// DEPRECATED !
-// Prends une portion d'une des images BMP et la colle en vidéo
-void
-blitImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth)
-{
-
-  SDL_Rect dest;
-  dest.x = dx;
-  dest.y = dy;
-  dest.h = dh;
-  dest.w = dw;
-
-  SDL_Rect src;
-  src.x = sx;
-  src.y = sy;
-  src.h = sh;
-  src.w = sw;
-
-  SDL_BlitSurface(imagesBMP[imageBMPNo], &src, screen, &dest);
-}
-// DEPRECATED !
-
 void
 blitBMPImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int ttw, int tth)
 {

@@ -115,16 +115,16 @@ showBonus(int i)
   if (bonus[i].active)
   {
     if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
-      blitImageToScreen(1, 53, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
+      blitBMPImageToScreen(1, 53, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == WEAPON_GLUE_SHOOT)
-      blitImageToScreen(1, 11, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
+      blitBMPImageToScreen(1, 11, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_BOOM)
-      blitImageToScreen(1, 116, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
+      blitBMPImageToScreen(1, 116, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_FREEZE)
-      blitImageToScreen(1, 32, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
+      blitBMPImageToScreen(1, 32, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_LIFE)
-      blitImageToScreen(1, 74, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
+      blitBMPImageToScreen(1, 74, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
     else if (bonus[i].type == BONUS_PROTECTION)
-      blitImageToScreen(1, 158, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
+      blitBMPImageToScreen(1, 158, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18, 320, 240);
   }
 }
