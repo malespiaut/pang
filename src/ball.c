@@ -3,7 +3,7 @@
 #include "collisions.h"
 #include "gfx.h"
 #include "main.h"
-#include "objets.h"
+#include "objects.h"
 #include "sound.h"
 #include "structures.h"
 
@@ -677,7 +677,7 @@ sans collision.
           player.derniere_balle = ball[i].type;
           if (player.multiplicateur > 1)
           {
-            createObjet(OBJ_MUL, (int)ball[i].posx, (int)ball[i].posy, player.multiplicateur);
+            createObject(OBJ_MUL, (int)ball[i].posx, (int)ball[i].posy, player.multiplicateur);
           }
           /* il fo détruire la balle EN DERNIER ! Sinon une autre sera reprise à ça position */
           ball[i].utilise = 0;

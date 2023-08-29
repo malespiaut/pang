@@ -29,22 +29,22 @@ showNumber(char* string, unsigned int x, unsigned int y)
 }
 
 void
-initObjets()
+initObjects()
 {
   int i;
-  for (i = 0; i < MAX_OBJETS; i++)
+  for (i = 0; i < MAX_OBJECTS; i++)
   {
     obj[i].utilise = 0;
   }
 }
 
 void
-createObjet(int type, int x, int y, int value)
+createObject(int type, int x, int y, int value)
 {
 
   int i;
   i = 0;
-  while ((obj[i].utilise == 1) && (i < MAX_OBJETS))
+  while ((obj[i].utilise == 1) && (i < MAX_OBJECTS))
   {
     i++;
   }
@@ -70,7 +70,7 @@ createObjet(int type, int x, int y, int value)
 }
 
 void
-showObjet(int i)
+showObject(int i)
 {
 
   if (obj[i].utilise == 1)

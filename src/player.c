@@ -2,7 +2,7 @@
 #include "collisions.h"
 #include "gfx.h"
 #include "main.h"
-#include "objets.h"
+#include "objects.h"
 #include "shoot.h"
 #include "structures.h"
 
@@ -417,7 +417,7 @@ updatePlayer(void)
           player.bonus_life_level = currentLevel;
           player.nblive += 1;
           bonus[i].utilise = 0;
-          createObjet(OBJ_1UP, player.posx, player.posy, 0);
+          createObject(OBJ_1UP, player.posx, player.posy, 0);
         }
         else if (bonus[i].type == BONUS_PROTECTION)
         {

@@ -9,7 +9,7 @@
 #include "ladder.h"
 #include "levels.h"
 #include "main.h"
-#include "objets.h"
+#include "objects.h"
 #include "platform.h"
 #include "player.h"
 #include "shoot.h"
@@ -282,9 +282,9 @@ game(void)
         gbl_evt = EVT_NEXT_LEVEL;
       }
       showPlayer();
-      for (i = 0; i < MAX_OBJETS; i++)
+      for (i = 0; i < MAX_OBJECTS; i++)
       {
-        showObjet(i);
+        showObject(i);
       }
       for (i = 0; i < player.nblive; i++)
       {
@@ -305,17 +305,17 @@ game(void)
       sprintf(debug, "%s", "");
       if ((old_score < 600) && (player.score >= 600))
       {
-        createObjet(OBJ_1UP, player.posx, player.posy, 0);
+        createObject(OBJ_1UP, player.posx, player.posy, 0);
         player.nblive++;
       }
       if ((old_score < 1500) && (player.score >= 1500))
       {
-        createObjet(OBJ_1UP, player.posx, player.posy, 0);
+        createObject(OBJ_1UP, player.posx, player.posy, 0);
         player.nblive++;
       }
       if ((old_score < 5000) && (player.score >= 5000))
       {
-        createObjet(OBJ_1UP, player.posx, player.posy, 0);
+        createObject(OBJ_1UP, player.posx, player.posy, 0);
         player.nblive++;
       }
       if (gbl_timer == 1)

@@ -2,7 +2,7 @@
 #include "bonus.h"
 #include "ladder.h"
 #include "main.h"
-#include "objets.h"
+#include "objects.h"
 #include "platform.h"
 #include "shoot.h"
 #include "structures.h"
@@ -17,7 +17,7 @@ initLevel(int n)
   initBalls();
   initBonus();
   initPlatforms();
-  initObjets();
+  initObjects();
 
   // Pour l'instant testé jusko 21
   // n=21;

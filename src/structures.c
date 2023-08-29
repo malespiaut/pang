@@ -8,7 +8,7 @@
 #define MAX_BALL 32
 #define MAX_ECHELLE 10
 #define MAX_BONUS 5
-#define MAX_OBJETS 10
+#define MAX_OBJECTS 10
 
 #define MAX_SHOOT 15
 #define BIG 1
@@ -108,7 +108,7 @@ typedef struct sobj
   int cpt;
   int utilise;
   int value;
-} objet;
+} object;
 
 typedef struct sechelle
 {
@@ -236,4 +236,4 @@ tir shoot[MAX_SHOOT];
 ladder ech[MAX_ECHELLE];
 b bonus[MAX_BONUS];
 joueur player;
-objet obj[MAX_OBJETS];
+object obj[MAX_OBJECTS];
