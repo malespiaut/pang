@@ -347,44 +347,6 @@ getImage(int n, int x, int y, int l, int h, int imageNo)
   imageBank[n].imagel = l;
 }
 
-// Recupère une image n° n en x,y de taille h,l dans l'image BMP n° imageNo
-void
-getImageBankFromBMP(int n, int x, int y, int l, int h, int imageNo)
-{
-
-  Uint32 rmask, gmask, bmask, amask;
-
-  /* SDL interprets each pixel as a 32-bit number, so our masks must depend
-     on the endianness (byte order) of the machine */
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-  rmask = 0xff000000;
-  gmask = 0x00ff0000;
-  bmask = 0x0000ff00;
-  amask = 0x000000ff;
-#else
-  rmask = 0x000000ff;
-  gmask = 0x0000ff00;
-  bmask = 0x00ff0000;
-  amask = 0xff000000;
-#endif
-
-  // Si l'image est déja alloué, on la libère.
-  SDL_FreeSurface(imageBank[n].image);
-  imageBank[n].image = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
-
-  // On copie une portion de la BMP dans la nouvelle surface
-  SDL_Rect src;
-  src.x = x;
-  src.y = y;
-  src.h = h;
-  src.w = l;
-  SDL_BlitSurface(imagesBMP[imageNo], &src, imageBank[n].image, NULL);
-
-  // SDL_BlitSurface(imagesBMP[imageNo],&src,imageBank[n].image,NULL);
-  imageBank[n].imageh = h;
-  imageBank[n].imagel = l;
-}
-
 void
 initSprite(int n, int x, int y, int i)
 {
