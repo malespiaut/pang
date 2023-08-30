@@ -62,7 +62,6 @@ typedef struct st {
 */
 Sprite sprites[kSprite_COUNT];  // Les sprites
 Image images[kImage_COUNT]; // Les images découpées des BMP chargés
-Tile tiles[kTile_COUNT];       // Les tiles
 
 void
 bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)

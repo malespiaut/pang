@@ -8,7 +8,6 @@
 
 #define kSprite_COUNT 500
 #define kImage_COUNT 30
-#define kTile_COUNT 500
 
 extern SDL_Window* window;
 extern SDL_Renderer* renderer;
@@ -54,18 +53,8 @@ struct sprite
   int intern1;
 };
 
-typedef struct tile Tile;
-struct tile
-{
-  int image;
-  int attr1;
-  int attr2;
-  int attr3;
-};
-
 extern Sprite sprites[kSprite_COUNT];
 extern Image images[kImage_COUNT];
-extern Tile tiles[kTile_COUNT];
 
 void present_frame(void);
 void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);
