@@ -43,12 +43,13 @@ extern int fpsshow;
 extern int keyActionPause;
 extern int myEvent;
 
-typedef struct si
+typedef struct image Image;
+struct image
 {
   int imageh;         // Hauteur
   int imagel;         // Largeur
   SDL_Surface* image; // L'image en elle mème
-} simage;
+};
 
 typedef struct sprite Sprite;
 struct sprite
@@ -75,7 +76,7 @@ typedef struct st
 } stile;
 
 extern Sprite sprites[MAX_SPRITE];
-extern simage images[MAX_IMAGE];
+extern Image images[MAX_IMAGE];
 extern stile tiles[MAX_TILE];
 
 void present_frame(void);

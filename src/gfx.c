@@ -69,7 +69,7 @@ typedef struct st {
 } stile;
 */
 Sprite sprites[MAX_SPRITE];  // Les sprites
-simage images[MAX_IMAGE]; // Les images découpées des BMP chargés
+Image images[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
 void
