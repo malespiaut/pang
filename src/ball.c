@@ -22,13 +22,13 @@ showBall(int i)
     //      fprintf(stderr,"posx: %d\n",(int)ball[i].posx);
     //      fprintf(stderr,"posy: %d\n",(int)ball[i].posy);
 
-    moveSprite(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
+    sprite_move(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
 
     //      fprintf(stderr,"sposx: %d\n",sprite[0].posx);
     //      fprintf(stderr,"sposy: %d\n",sprite[0].posy);
 
-    changeSpriteImage(ball[i].spriteno, ball[i].type);
-    showSprite(ball[i].spriteno);
+    sprite_id_set(ball[i].spriteno, ball[i].type);
+    sprite_blit(ball[i].spriteno);
   }
 }
 
@@ -245,7 +245,7 @@ explodeABall(int a)
   }
   /* On libère la balle (et le sprite associé) qui vient d'exploser */
   ball[a].active = 0;
-  releaseSprite(ball[a].spriteno);
+  sprite_free_set(ball[a].spriteno);
 }
 
 void
@@ -352,7 +352,7 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = initFreeSprite((int)ball[i].posx, (int)ball[i].posy, BIG);
+  ball[i].spriteno = sprite_init_free((int)ball[i].posx, (int)ball[i].posy, BIG);
   ball[i].last_posx = posx;
   ball[i].last_posy = posy;
 
@@ -406,7 +406,7 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = initFreeSprite((int)posx, (int)posy, NORMAL);
+  ball[i].spriteno = sprite_init_free((int)posx, (int)posy, NORMAL);
 
   ball[i].vel = -10.0;
   ball[i].vel_cst = 10.0;
@@ -459,7 +459,7 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = initFreeSprite((int)ball[i].posx, (int)ball[i].posy, SMALL);
+  ball[i].spriteno = sprite_init_free((int)ball[i].posx, (int)ball[i].posy, SMALL);
 
   ball[i].vel = -8.0;
   ball[i].vel_cst = 8.0;
@@ -513,7 +513,7 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = initFreeSprite((int)ball[i].posx, (int)ball[i].posy, MICRO);
+  ball[i].spriteno = sprite_init_free((int)ball[i].posx, (int)ball[i].posy, MICRO);
 
   ball[i].vel = -6.5;
   ball[i].vel_cst = 6.5;
@@ -631,7 +631,7 @@ sans collision.
               int old_posx = ball[i].posx;
               int old_posy = ball[i].posy;
               ball[tmp].posx = ball[i].posx + imageBank[sprite[ball[tmp].spriteno].image].imagel;
-              moveSprite(ball[tmp].spriteno, (int)ball[i].posx + imageBank[sprite[ball[tmp].spriteno].image].imagel, (int)ball[i].posy);
+              sprite_move(ball[tmp].spriteno, (int)ball[i].posx + imageBank[sprite[ball[tmp].spriteno].image].imagel, (int)ball[i].posy);
               int plate;
               int platec = 0;
               for (plate = 0; plate < MAX_PLATFORMS; plate++)
@@ -639,7 +639,7 @@ sans collision.
                 platec -= ballCollideWithPlatform(ball[tmp].spriteno, pform[plate].spriteno, tmp);
               }
               if (platec != 0)
-                moveSprite(ball[tmp].spriteno, (int)old_posx, (int)old_posy);
+                sprite_move(ball[tmp].spriteno, (int)old_posx, (int)old_posy);
             }
 
             ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20;
@@ -696,7 +696,7 @@ sans collision.
               createBonus(ball[i].bonus, (int)ball[i].posx + 5, (int)ball[i].posy + 5);
             }
           }
-          releaseSprite(ball[i].spriteno);
+          sprite_free_set(ball[i].spriteno);
           sound_play(kSound_BallPop, 0);
         }
       }
@@ -718,7 +718,7 @@ sans collision.
             y_a_t_il_eu_collision = 1;
             ball[i].posx = ball[i].last_posx;
             ball[i].posy = ball[i].last_posy;
-            moveSprite(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
+            sprite_move(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
             sortie2 = 1;
           }
         }

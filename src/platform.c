@@ -105,7 +105,7 @@ createPlatform(int posx, int posy, int typepf)
     pform[i].bonus = 0;
   }
 
-  pform[i].spriteno = initFreeSprite(pform[i].posx, pform[i].posy, pform[i].type);
+  pform[i].spriteno = sprite_init_free(pform[i].posx, pform[i].posy, pform[i].type);
 
   return i;
 }
@@ -115,6 +115,6 @@ showPlatform(int i)
 {
   if (pform[i].active)
   {
-    showSprite(pform[i].spriteno);
+    sprite_blit(pform[i].spriteno);
   }
 }

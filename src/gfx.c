@@ -73,7 +73,7 @@ simage imageBank[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
 void
-blitBMPImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
+bmp_blit(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
 {
   SDL_Rect dest;
   dest.x = dx;
@@ -91,7 +91,7 @@ blitBMPImageToScreen(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int
 }
 
 void
-blitImageBankToScreen(int imageBankNo, int dx, int dy)
+image_blit(int imageBankNo, int dx, int dy)
 {
   SDL_Rect dest;
   dest.x = dx;
@@ -109,7 +109,7 @@ blitImageBankToScreen(int imageBankNo, int dx, int dy)
 }
 
 void
-initGfxEngine(void)
+graphics_init(void)
 {
   if (SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
   {
@@ -150,7 +150,7 @@ present_frame(void)
 
 // image 1 et 3 transparente
 int
-loadBmp(char* pathfilename, int noImage)
+bmp_load(char* pathfilename, int noImage)
 {
   SDL_FreeSurface(imagesBMP[noImage]);
   SDL_Surface* temp;
@@ -173,7 +173,7 @@ loadBmp(char* pathfilename, int noImage)
 }
 
 void
-checkController(void)
+events_process(void)
 {
   SDL_Event event = {0};
   while (SDL_PollEvent(&event))
@@ -301,7 +301,7 @@ checkController(void)
 }
 
 void
-initSpriteEngine(void)
+sprite_initEngine(void)
 {
   int i;
   for (i = 0; i < MAX_SPRITE; i++)
@@ -311,9 +311,9 @@ initSpriteEngine(void)
 }
 
 // Recupère une image n° n en x,y de taille h,l dans l'image BMP n° imageNo
-// void getImage(int n,int x,int y,int l,int h,int imageNo)
+// void image_get(int n,int x,int y,int l,int h,int imageNo)
 void
-getImage(int n, int x, int y, int l, int h, int imageNo)
+image_get(int n, int x, int y, int l, int h, int imageNo)
 {
   Uint32 rmask, gmask, bmask, amask;
 
@@ -348,7 +348,7 @@ getImage(int n, int x, int y, int l, int h, int imageNo)
 }
 
 void
-initSprite(int n, int x, int y, int i)
+sprite_init(int n, int x, int y, int i)
 {
   sprite[n].posx = x;
   sprite[n].posy = y;
@@ -360,7 +360,7 @@ initSprite(int n, int x, int y, int i)
 }
 
 int
-initFreeSprite(int x, int y, int i)
+sprite_init_free(int x, int y, int i)
 {
   int s = 0;
 
@@ -380,13 +380,13 @@ initFreeSprite(int x, int y, int i)
 }
 
 void
-releaseSprite(int n)
+sprite_free_set(int n)
 {
   sprite[n].active = 0;
 }
 
 void
-releaseAllSprite(void)
+sprite_free_all(void)
 {
   int i;
 
@@ -397,20 +397,20 @@ releaseAllSprite(void)
 }
 
 void
-moveSprite(int n, int x, int y)
+sprite_move(int n, int x, int y)
 {
   sprite[n].posx = x;
   sprite[n].posy = y;
 }
 
 void
-changeSpriteImage(int n, int i)
+sprite_id_set(int n, int i)
 {
   sprite[n].image = i;
 }
 
 void
-showSprite(int n)
+sprite_blit(int n)
 {
   if (sprite[n].active)
   {
@@ -433,7 +433,7 @@ showSprite(int n)
       sprite[n].intern1 = 0;
     }
 
-    blitImageBankToScreen(sprite[n].image, sprite[n].posx, sprite[n].posy);
+    image_blit(sprite[n].image, sprite[n].posx, sprite[n].posy);
   }
 }
 
@@ -482,7 +482,7 @@ CollideTransparentPixelTest(SDL_Surface* surface, int u, int v)
 }
 
 int
-isSpriteCollide(int sprite1, int sprite2)
+sprite_collides(int sprite1, int sprite2)
 {
 
   int rect1_x, rect1_y;

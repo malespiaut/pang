@@ -45,7 +45,7 @@ initPlayer(void)
   player.spriteno = 0;
   player.bonus_boom = 0;
   player.bonus_freeze = 0;
-  initSprite(player.spriteno, player.posx, player.posy, player.anim_courante);
+  sprite_init(player.spriteno, player.posx, player.posy, player.anim_courante);
   player.bonus_life = 0;
   player.bonus_life_level = -1;
   player.bonus_protection = 0;
@@ -74,7 +74,7 @@ reInitPlayer(void)
   player.spriteno = 0;
   player.bonus_boom = 0;
   player.bonus_freeze = 0;
-  initSprite(player.spriteno, player.posx, player.posy, player.anim_courante);
+  sprite_init(player.spriteno, player.posx, player.posy, player.anim_courante);
   player.bonus_life = 0;
   /* NE PAS REINITIALISER BONUS_LIFE_LEVEL ! */
   player.bonus_protection = 0;
@@ -336,7 +336,7 @@ updatePlayer(void)
       {
         if (ball[i].active)
         {
-          if (isSpriteCollide(player.spriteno, ball[i].spriteno) == 1)
+          if (sprite_collides(player.spriteno, ball[i].spriteno) == 1)
           //        	keyAction4 = 1;
           {
             if (player.bonus_protection == 1)
@@ -496,10 +496,10 @@ updatePlayer(void)
 void
 showPlayer(void)
 {
-  moveSprite(0, player.posx, player.posy);
-  changeSpriteImage(0, player.anim_courante);
+  sprite_move(0, player.posx, player.posy);
+  sprite_id_set(0, player.anim_courante);
   if ((player.anim_courante == ANIM_RIGHT1) || (player.anim_courante == ANIM_RIGHT2) || (player.anim_courante == ANIM_RIGHT3))
-    showSprite(player.spriteno);
+    sprite_blit(player.spriteno);
   else
-    showSprite(player.spriteno);
+    sprite_blit(player.spriteno);
 }

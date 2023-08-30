@@ -115,7 +115,7 @@ updateShoot(int i)
                 player.nbtir = 0;
             }
             pform[p].active = 0;
-            releaseSprite(pform[p].spriteno);
+            sprite_free_set(pform[p].spriteno);
             if (pform[p].bonus != 0)
             {
               if (pform[p].bonus == BONUS_LIFE)
@@ -146,7 +146,7 @@ showShoot(int i)
   {
     if ((shoot[i].type == WEAPON_NORMAL_SHOOT) || (shoot[i].type == WEAPON_DOUBLE_SHOOT))
     {
-      blitBMPImageToScreen(1, 305, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox);
+      bmp_blit(1, 305, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox);
     }
     if (shoot[i].type == WEAPON_GLUE_SHOOT)
     {
@@ -154,7 +154,7 @@ showShoot(int i)
       {
       }
       else
-        blitBMPImageToScreen(1, 293, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox);
+        bmp_blit(1, 293, 11, shoot[i].lbox, shoot[i].hbox, shoot[i].posx, shoot[i].posy, shoot[i].lbox, shoot[i].hbox);
     }
   }
 }
