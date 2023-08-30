@@ -50,7 +50,8 @@ typedef struct si
   SDL_Surface* image; // L'image en elle mème
 } simage;
 
-typedef struct ss
+typedef struct sprite Sprite;
+struct sprite
 {
   bool active;
   int posx;
@@ -63,7 +64,7 @@ typedef struct ss
   int current_animation_frame;
 
   int intern1;
-} ssprite;
+};
 
 typedef struct st
 {
@@ -73,17 +74,17 @@ typedef struct st
   int attr3;
 } stile;
 
-extern ssprite sprite[MAX_SPRITE];
+extern Sprite sprites[MAX_SPRITE];
 extern simage images[MAX_IMAGE];
 extern stile tiles[MAX_TILE];
 
 void present_frame(void);
-void bmp_blit(int imageNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);
+void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);
 void graphics_init(void);
-int bmp_load(char* pathfilename, int noImage);
+int bmp_load(char* pathfilename, int i);
 void events_process(void);
 void sprite_initEngine(void);
-void image_get(int n, int x, int y, int l, int h, int imageNo);
+void image_get(int n, int x, int y, int l, int h, int i);
 void sprite_init(int n, int x, int y, int i);
 int sprite_init_free(int x, int y, int i);
 void sprite_free_set(int n);

@@ -68,7 +68,7 @@ typedef struct st {
         int attr3;	// Attribut 3
 } stile;
 */
-ssprite sprite[MAX_SPRITE];  // Les sprites
+Sprite sprites[MAX_SPRITE];  // Les sprites
 simage images[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
@@ -306,7 +306,7 @@ sprite_initEngine(void)
   int i;
   for (i = 0; i < MAX_SPRITE; i++)
   {
-    sprite[i].active = 0;
+    sprites[i].active = 0;
   }
 }
 
@@ -350,13 +350,13 @@ image_get(int n, int x, int y, int l, int h, int i)
 void
 sprite_init(int n, int x, int y, int i)
 {
-  sprite[n].posx = x;
-  sprite[n].posy = y;
-  sprite[n].image = i;
-  sprite[n].active = 1;
-  sprite[n].current_animation = -1;
-  sprite[n].intern1 = 0;
-  sprite[n].current_animation_frame = -1;
+  sprites[n].posx = x;
+  sprites[n].posy = y;
+  sprites[n].image = i;
+  sprites[n].active = 1;
+  sprites[n].current_animation = -1;
+  sprites[n].intern1 = 0;
+  sprites[n].current_animation_frame = -1;
 }
 
 int
@@ -364,17 +364,17 @@ sprite_init_free(int x, int y, int i)
 {
   int s = 0;
 
-  while ((sprite[s].active) && (s < MAX_SPRITE))
+  while ((sprites[s].active) && (s < MAX_SPRITE))
   {
     s++;
   }
-  sprite[s].posx = x;
-  sprite[s].posy = y;
-  sprite[s].image = i;
-  sprite[s].active = 1;
-  sprite[s].current_animation = -1;
-  sprite[s].intern1 = 0;
-  sprite[s].current_animation_frame = -1;
+  sprites[s].posx = x;
+  sprites[s].posy = y;
+  sprites[s].image = i;
+  sprites[s].active = 1;
+  sprites[s].current_animation = -1;
+  sprites[s].intern1 = 0;
+  sprites[s].current_animation_frame = -1;
 
   return s;
 }
@@ -382,7 +382,7 @@ sprite_init_free(int x, int y, int i)
 void
 sprite_free_set(int n)
 {
-  sprite[n].active = 0;
+  sprites[n].active = 0;
 }
 
 void
@@ -392,48 +392,48 @@ sprite_free_all(void)
 
   for (i = 0; i < MAX_SPRITE; i++)
   {
-    sprite[i].active = 0;
+    sprites[i].active = 0;
   }
 }
 
 void
 sprite_move(int n, int x, int y)
 {
-  sprite[n].posx = x;
-  sprite[n].posy = y;
+  sprites[n].posx = x;
+  sprites[n].posy = y;
 }
 
 void
 sprite_id_set(int n, int i)
 {
-  sprite[n].image = i;
+  sprites[n].image = i;
 }
 
 void
 sprite_blit(int n)
 {
-  if (sprite[n].active)
+  if (sprites[n].active)
   {
-    if (sprite[n].current_animation != -1)
+    if (sprites[n].current_animation != -1)
     {
-      if (sprite[n].intern1 <= 0)
+      if (sprites[n].intern1 <= 0)
       {
-        sprite[n].current_animation_frame++;
-        if (sprite[n].current_animation_frame > 19)
-          sprite[n].current_animation_frame = 0;
-        if (sprite[n].animation[sprite[n].current_animation][sprite[n].current_animation_frame] == -1)
-          sprite[n].current_animation_frame = 0;
-        sprite[n].image = sprite[n].animation[sprite[n].current_animation][sprite[n].current_animation_frame];
-        sprite[n].intern1 = sprite[n].animation_speed[sprite[n].current_animation];
+        sprites[n].current_animation_frame++;
+        if (sprites[n].current_animation_frame > 19)
+          sprites[n].current_animation_frame = 0;
+        if (sprites[n].animation[sprites[n].current_animation][sprites[n].current_animation_frame] == -1)
+          sprites[n].current_animation_frame = 0;
+        sprites[n].image = sprites[n].animation[sprites[n].current_animation][sprites[n].current_animation_frame];
+        sprites[n].intern1 = sprites[n].animation_speed[sprites[n].current_animation];
       }
-      sprite[n].intern1--;
+      sprites[n].intern1--;
     }
     else
     {
-      sprite[n].intern1 = 0;
+      sprites[n].intern1 = 0;
     }
 
-    image_blit(sprite[n].image, sprite[n].posx, sprite[n].posy);
+    image_blit(sprites[n].image, sprites[n].posx, sprites[n].posy);
   }
 }
 
@@ -488,30 +488,30 @@ sprite_collides(int sprite1, int sprite2)
   int rect1_x, rect1_y;
   int rect2_x, rect2_y;
   int i, j, k, l;
-  int coorx_1 = sprite[sprite1].posx;
-  int coory_1 = sprite[sprite1].posy;
-  int coorx_2 = sprite[sprite2].posx;
-  int coory_2 = sprite[sprite2].posy;
-  int sprite1w = images[sprite[sprite1].image].imagel;
-  int sprite1h = images[sprite[sprite1].image].imageh;
-  int sprite2w = images[sprite[sprite2].image].imagel;
-  int sprite2h = images[sprite[sprite2].image].imageh;
+  int coorx_1 = sprites[sprite1].posx;
+  int coory_1 = sprites[sprite1].posy;
+  int coorx_2 = sprites[sprite2].posx;
+  int coory_2 = sprites[sprite2].posy;
+  int sprite1w = images[sprites[sprite1].image].imagel;
+  int sprite1h = images[sprites[sprite1].image].imageh;
+  int sprite2w = images[sprites[sprite2].image].imagel;
+  int sprite2h = images[sprites[sprite2].image].imageh;
 
-  if (!sprite[sprite1].active)
+  if (!sprites[sprite1].active)
     return 0;
-  if (!sprite[sprite2].active)
+  if (!sprites[sprite2].active)
     return 0;
 
   /*Détection par bounding box
   Retourne 0 et sort de la fonction
   si les sprites ne possédent pas de zones superposées*/
-  if (coorx_1 > coorx_2 + images[sprite[sprite2].image].imagel)
+  if (coorx_1 > coorx_2 + images[sprites[sprite2].image].imagel)
     return 0;
-  if (coorx_1 + images[sprite[sprite1].image].imagel < coorx_2)
+  if (coorx_1 + images[sprites[sprite1].image].imagel < coorx_2)
     return 0;
-  if (coory_1 > coory_2 + images[sprite[sprite2].image].imageh)
+  if (coory_1 > coory_2 + images[sprites[sprite2].image].imageh)
     return 0;
-  if (coory_1 + images[sprite[sprite1].image].imageh < coory_2)
+  if (coory_1 + images[sprites[sprite1].image].imageh < coory_2)
     return 0;
 
   /*Le but des lignes suivantes est de définir un
@@ -554,10 +554,10 @@ sprite_collides(int sprite1, int sprite2)
       rect2_y = coory_2 + sprite2h;
   }
 
-  if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
-    SDL_LockSurface(images[sprite[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
-    SDL_LockSurface(images[sprite[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
+    SDL_LockSurface(images[sprites[sprite1].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
+    SDL_LockSurface(images[sprites[sprite2].image].image);
 
   /*Il ne reste plus qu'à tester pour chaque
 
@@ -576,22 +576,22 @@ sprite_collides(int sprite1, int sprite2)
     for (k = rect1_y - coory_1, l = rect1_y - coory_2; k < rect2_y - coory_1; k++, l++)
     {
 
-      if ((CollideTransparentPixelTest(images[sprite[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprite[sprite2].image].image, j, l)) != 0)
+      if ((CollideTransparentPixelTest(images[sprites[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].image].image, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
-          SDL_UnlockSurface(images[sprite[sprite1].image].image);
-        if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
-          SDL_UnlockSurface(images[sprite[sprite2].image].image);
+        if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
+          SDL_UnlockSurface(images[sprites[sprite1].image].image);
+        if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
+          SDL_UnlockSurface(images[sprites[sprite2].image].image);
 
         return 1;
       }
     }
   }
 
-  if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
-    SDL_UnlockSurface(images[sprite[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
-    SDL_UnlockSurface(images[sprite[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
+    SDL_UnlockSurface(images[sprites[sprite1].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
+    SDL_UnlockSurface(images[sprites[sprite2].image].image);
 
   return 0;
 }

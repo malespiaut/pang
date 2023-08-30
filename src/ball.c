@@ -24,8 +24,8 @@ showBall(int i)
 
     sprite_move(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
 
-    //      fprintf(stderr,"sposx: %d\n",sprite[0].posx);
-    //      fprintf(stderr,"sposy: %d\n",sprite[0].posy);
+    //      fprintf(stderr,"sposx: %d\n",sprites[0].posx);
+    //      fprintf(stderr,"sposy: %d\n",sprites[0].posy);
 
     sprite_id_set(ball[i].spriteno, ball[i].type);
     sprite_blit(ball[i].spriteno);
@@ -46,30 +46,30 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   int rect1_x, rect1_y;
   int rect2_x, rect2_y;
   int i, j, k, l;
-  int coorx_1 = sprite[sprite1].posx;
-  int coory_1 = sprite[sprite1].posy;
-  int coorx_2 = sprite[sprite2].posx;
-  int coory_2 = sprite[sprite2].posy;
-  int sprite1w = images[sprite[sprite1].image].imagel;
-  int sprite1h = images[sprite[sprite1].image].imageh;
-  int sprite2w = images[sprite[sprite2].image].imagel;
-  int sprite2h = images[sprite[sprite2].image].imageh;
+  int coorx_1 = sprites[sprite1].posx;
+  int coory_1 = sprites[sprite1].posy;
+  int coorx_2 = sprites[sprite2].posx;
+  int coory_2 = sprites[sprite2].posy;
+  int sprite1w = images[sprites[sprite1].image].imagel;
+  int sprite1h = images[sprites[sprite1].image].imageh;
+  int sprite2w = images[sprites[sprite2].image].imagel;
+  int sprite2h = images[sprites[sprite2].image].imageh;
 
-  if (!sprite[sprite1].active)
+  if (!sprites[sprite1].active)
     return 0;
-  if (!sprite[sprite2].active)
+  if (!sprites[sprite2].active)
     return 0;
 
   /*Détection par bounding box
   Retourne 0 et sort de la fonction
   si les sprites ne possédent pas de zones superposées*/
-  if (coorx_1 > coorx_2 + images[sprite[sprite2].image].imagel)
+  if (coorx_1 > coorx_2 + images[sprites[sprite2].image].imagel)
     return 0;
-  if (coorx_1 + images[sprite[sprite1].image].imagel < coorx_2)
+  if (coorx_1 + images[sprites[sprite1].image].imagel < coorx_2)
     return 0;
-  if (coory_1 > coory_2 + images[sprite[sprite2].image].imageh)
+  if (coory_1 > coory_2 + images[sprites[sprite2].image].imageh)
     return 0;
-  if (coory_1 + images[sprite[sprite1].image].imageh < coory_2)
+  if (coory_1 + images[sprites[sprite1].image].imageh < coory_2)
     return 0;
 
   /*Le but des lignes suivantes est de définir un
@@ -112,10 +112,10 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
       rect2_y = coory_2 + sprite2h;
   }
 
-  if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
-    SDL_LockSurface(images[sprite[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
-    SDL_LockSurface(images[sprite[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
+    SDL_LockSurface(images[sprites[sprite1].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
+    SDL_LockSurface(images[sprites[sprite2].image].image);
 
   /*Il ne reste plus qu'à tester pour chaque
 
@@ -134,22 +134,22 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
     for (k = rect1_y - coory_1, l = rect1_y - coory_2; k < rect2_y - coory_1; k++, l++)
     {
 
-      if ((CollideTransparentPixelTest(images[sprite[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprite[sprite2].image].image, j, l)) != 0)
+      if ((CollideTransparentPixelTest(images[sprites[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].image].image, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
-          SDL_UnlockSurface(images[sprite[sprite1].image].image);
-        if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
-          SDL_UnlockSurface(images[sprite[sprite2].image].image);
+        if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
+          SDL_UnlockSurface(images[sprites[sprite1].image].image);
+        if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
+          SDL_UnlockSurface(images[sprites[sprite2].image].image);
 
         collided = 1;
       }
     }
   }
 
-  if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
-    SDL_UnlockSurface(images[sprite[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
-    SDL_UnlockSurface(images[sprite[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
+    SDL_UnlockSurface(images[sprites[sprite1].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
+    SDL_UnlockSurface(images[sprites[sprite2].image].image);
 
   int lfinal = rect2_x - rect1_x;
   int hfinal = rect2_y - rect1_y;
@@ -170,7 +170,7 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
     /* Coté droit ou gauche ? */
     if (ligne == 2)
     {
-      if (rect1_x == sprite[sprite2].posx)
+      if (rect1_x == sprites[sprite2].posx)
         cote = 3;
       else
         cote = 4;
@@ -630,8 +630,8 @@ sans collision.
             {
               int old_posx = ball[i].posx;
               int old_posy = ball[i].posy;
-              ball[tmp].posx = ball[i].posx + images[sprite[ball[tmp].spriteno].image].imagel;
-              sprite_move(ball[tmp].spriteno, (int)ball[i].posx + images[sprite[ball[tmp].spriteno].image].imagel, (int)ball[i].posy);
+              ball[tmp].posx = ball[i].posx + images[sprites[ball[tmp].spriteno].image].imagel;
+              sprite_move(ball[tmp].spriteno, (int)ball[i].posx + images[sprites[ball[tmp].spriteno].image].imagel, (int)ball[i].posy);
               int plate;
               int platec = 0;
               for (plate = 0; plate < MAX_PLATFORMS; plate++)
