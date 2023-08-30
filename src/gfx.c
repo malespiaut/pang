@@ -531,22 +531,6 @@ sprite_collides(int spriteindex1, int spriteindex2)
     }
   }
 
-  if (SDL_MUSTLOCK(img1->surface))
-  {
-    SDL_LockSurface(img1->surface);
-  }
-  if (SDL_MUSTLOCK(img2->surface))
-  {
-    SDL_LockSurface(img2->surface);
-  }
-
-  /*Il ne reste plus qu'à tester pour chaque
-  pixel du rectangle précèdemment défini si ses pixels
-  sont transparents
-  Un pixel non transparent signifie qu'un bout de sprite
-  est present dans le rectangle
-  et donc que les sprites sont en collision*/
-
   for (i = rect1_x - spr1->x, j = rect1_x - spr2->x; i < rect2_x - spr1->x; i++, j++)
   {
     for (k = rect1_y - spr1->y, l = rect1_y - spr2->y; k < rect2_y - spr1->y; k++, l++)
@@ -554,27 +538,9 @@ sprite_collides(int spriteindex1, int spriteindex2)
 
       if ((CollideTransparentPixelTest(img1->surface, i, k) != 0) && (CollideTransparentPixelTest(img2->surface, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(img1->surface))
-        {
-          SDL_UnlockSurface(img1->surface);
-        }
-        if (SDL_MUSTLOCK(img2->surface))
-        {
-          SDL_UnlockSurface(img2->surface);
-        }
-
         return true;
       }
     }
-  }
-
-  if (SDL_MUSTLOCK(img1->surface))
-  {
-    SDL_UnlockSurface(img1->surface);
-  }
-  if (SDL_MUSTLOCK(img2->surface))
-  {
-    SDL_UnlockSurface(img2->surface);
   }
 
   return false;
