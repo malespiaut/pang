@@ -61,7 +61,6 @@ void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int
 void graphics_init(void);
 int bmp_load(char* filename, int i);
 void events_process(void);
-void sprite_initEngine(void);
 void image_get(int n, int x, int y, int l, int h, int i);
 void sprite_init(int n, int x, int y, int i);
 int sprite_init_free(int x, int y, int i);

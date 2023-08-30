@@ -30,7 +30,6 @@ game(void)
   srand(36547); /* seed random numbers */
 
   graphics_init();
-  sprite_initEngine();
   sound_init();
 
   sound_load(kSound_InGame);

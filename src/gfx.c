@@ -60,8 +60,9 @@ typedef struct st {
         int attr3;	// Attribut 3
 } stile;
 */
-Sprite sprites[kSprite_COUNT];  // Les sprites
-Image images[kImage_COUNT]; // Les images découpées des BMP chargés
+
+Sprite sprites[kSprite_COUNT] = {0};  // Les sprites
+Image images[kImage_COUNT] = {0}; // Les images découpées des BMP chargés
 
 void
 bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
@@ -286,16 +287,6 @@ events_process(void)
       default:
         break;
     }
-  }
-}
-
-void
-sprite_initEngine(void)
-{
-  int i;
-  for (i = 0; i < kSprite_COUNT; i++)
-  {
-    sprites[i].active = 0;
   }
 }
 
