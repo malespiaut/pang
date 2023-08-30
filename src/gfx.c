@@ -20,10 +20,6 @@ SDL_Surface* bitmaps[10];
 
 extern bool g_quit;
 
-int mapTiles[MAX_MAP][MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
-int currentWorldMapX[MAX_MAP];
-int currentWorldMapY[MAX_MAP];
-
 Uint32 sstart;
 Uint32 ssend;
 

@@ -9,18 +9,12 @@
 #define MAX_SPRITE 500
 #define MAX_IMAGE 30
 #define MAX_TILE 500
-#define MAX_MAP 2
-#define MAX_MAP_WIDTH 100
-#define MAX_MAP_HEIGHT 100
 
 extern SDL_Window* window;
 extern SDL_Renderer* renderer;
 extern SDL_Texture* texture;
 extern SDL_Surface* screen;
 extern SDL_Surface* bitmaps[10];
-extern int mapTiles[MAX_MAP][MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
-extern int currentWorldMapX[MAX_MAP];
-extern int currentWorldMapY[MAX_MAP];
 extern SDL_Joystick* joy;
 
 extern int posxjoy;
