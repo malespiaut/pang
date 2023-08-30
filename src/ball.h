@@ -5,10 +5,10 @@
 typedef struct ball Ball;
 struct ball
 {
-  float x;        /* Position x dans l'écran (à initialiser) */
-  float y;        /* Position y dans l'écran (à initialiser) */
-  float last_x;   /* Dernière position x sans collision à l'écran */
-  float last_y;   /* Dernière position y sans collision à l'écran */
+  float x;            /* Position x dans l'écran (à initialiser) */
+  float y;            /* Position y dans l'écran (à initialiser) */
+  float last_x;       /* Dernière position x sans collision à l'écran */
+  float last_y;       /* Dernière position y sans collision à l'écran */
   int hauteurmax;     /* Hauteur maximum en pixel que peut prendre une boule (à initialiser)*/
   int hauteurmax_cpt; /* Compteur interne (à initialiser à 0) */
   int speedx;         /* Vitesse de déplacement horizontal */

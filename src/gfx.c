@@ -11,11 +11,11 @@
 #include "gfx.h"
 #include "structures.h"
 
-SDL_Window* window;
-SDL_Renderer* renderer;
-SDL_Texture* texture;
-SDL_Surface* screen;
-SDL_Surface* bitmaps[10];
+SDL_Window* window = NULL;
+SDL_Renderer* renderer = NULL;
+SDL_Texture* texture = NULL;
+SDL_Surface* screen = NULL;
+SDL_Surface* bitmaps[10] = {0};
 
 extern bool g_quit;
 
@@ -34,35 +34,8 @@ int keyActionPause = 0;
 
 int fpsshow = 0;
 
-/*
-typedef struct si {
-        int imageh;	// Hauteur
-        int imagel; // Largeur
-        SDL_Surface *image; // L'image en elle mème
-} simage;
-
-typedef struct ss{
-        bool active;	// Sprite utilisé ?
-        int x;		// Position x
-        int y;		// Position y
-        int image;		// Image courante
-        int animation[10][20]; // 10 animations de 20 frames (-1 = on boucle )
-        int animation_speed[10];   // vitesse de l'animation
-        int current_animation; // animation courante -1 non animé
-        int current_animation_frame; // image courante
-        int intern1;	// interne
-} ssprite;
-
-typedef struct st {
-        int image;	// Image représentant la tile
-        int attr1;	// Attribut 1
-        int attr2;	// Attribut 2
-        int attr3;	// Attribut 3
-} stile;
-*/
-
-Sprite sprites[kSprite_COUNT] = {0};  // Les sprites
-Image images[kImage_COUNT] = {0}; // Les images découpées des BMP chargés
+Sprite sprites[kSprite_COUNT] = {0}; // Les sprites
+Image images[kImage_COUNT] = {0};    // Les images découpées des BMP chargés
 
 void
 bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)

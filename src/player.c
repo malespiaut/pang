@@ -161,7 +161,7 @@ updatePlayer(void)
   {
     player.y++;
     player.en_descente++;
-    player.y++;        // doppelt ?
+    player.y++;           // doppelt ?
     player.en_descente++; // doppelt ?
   }
   if (whereIsPlayer == 4)

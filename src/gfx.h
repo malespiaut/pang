@@ -29,6 +29,26 @@ extern int fpsshow;
 extern int keyActionPause;
 extern int myEvent;
 
+/*
+typedef struct si {
+        int imageh;	// Hauteur
+        int imagel; // Largeur
+        SDL_Surface *image; // L'image en elle mème
+} simage;
+
+typedef struct ss{
+        bool active;	// Sprite utilisé ?
+        int x;		// Position x
+        int y;		// Position y
+        int image;		// Image courante
+        int animation[10][20]; // 10 animations de 20 frames (-1 = on boucle )
+        int animation_speed[10];   // vitesse de l'animation
+        int current_animation; // animation courante -1 non animé
+        int current_animation_frame; // image courante
+        int intern1;	// interne
+} ssprite;
+*/
+
 typedef struct image Image;
 struct image
 {
