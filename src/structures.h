@@ -6,7 +6,7 @@
 #define MAX_LEVEL 25
 
 #define CHEAT 0
-#define GRAV 0.5
+#define GRAV 0.5f
 
 #define MAX_OBJECTS 10
 

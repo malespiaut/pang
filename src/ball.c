@@ -324,7 +324,7 @@ explodeAllBall()
 }
 
 int
-createBigBall(double x, double y, int hdirection, int vdirection)
+createBigBall(float x, float y, int hdirection, int vdirection)
 {
   int i;
   i = 0;
@@ -378,7 +378,7 @@ createBigBall(double x, double y, int hdirection, int vdirection)
 }
 
 int
-createNormalBall(double x, double y, int hdirection, int vdirection)
+createNormalBall(float x, float y, int hdirection, int vdirection)
 {
   int i;
   i = 0;
@@ -431,7 +431,7 @@ createNormalBall(double x, double y, int hdirection, int vdirection)
 }
 
 int
-createSmallBall(double x, double y, int hdirection, int vdirection)
+createSmallBall(float x, float y, int hdirection, int vdirection)
 {
   int i;
   i = 0;
@@ -484,7 +484,7 @@ createSmallBall(double x, double y, int hdirection, int vdirection)
 }
 
 int
-createMicroBall(double x, double y, int hdirection, int vdirection)
+createMicroBall(float x, float y, int hdirection, int vdirection)
 {
   int i;
 
@@ -539,7 +539,7 @@ createMicroBall(double x, double y, int hdirection, int vdirection)
 }
 
 int
-createBall(double x, double y, int typeBall, int hdirection, int vdirection)
+createBall(float x, float y, int typeBall, int hdirection, int vdirection)
 {
   if (typeBall == BIG)
     return (createBigBall(x, y, hdirection, vdirection));

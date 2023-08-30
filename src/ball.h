@@ -5,10 +5,10 @@
 typedef struct ball Ball;
 struct ball
 {
-  double x;        /* Position x dans l'écran (à initialiser) */
-  double y;        /* Position y dans l'écran (à initialiser) */
-  double last_x;   /* Dernière position x sans collision à l'écran */
-  double last_y;   /* Dernière position y sans collision à l'écran */
+  float x;        /* Position x dans l'écran (à initialiser) */
+  float y;        /* Position y dans l'écran (à initialiser) */
+  float last_x;   /* Dernière position x sans collision à l'écran */
+  float last_y;   /* Dernière position y sans collision à l'écran */
   int hauteurmax;     /* Hauteur maximum en pixel que peut prendre une boule (à initialiser)*/
   int hauteurmax_cpt; /* Compteur interne (à initialiser à 0) */
   int speedx;         /* Vitesse de déplacement horizontal */
@@ -27,8 +27,8 @@ struct ball
   int bonus;        /* Bonus que contient la balle */
   int bonus_parent; /* bonus que contiendra la balle suivante ! */
   int spriteno;     /* Cette balle est représentée par le sprite numéero <spriteno> */
-  double vel;
-  double vel_cst;
+  float vel;
+  float vel_cst;
   int move;
 
   int nbtouch; /* variable qui évite les balles d'êtres bloquées */
@@ -44,9 +44,9 @@ int ballCollideWithPlatform(int sprite1, int sprite2, int b);
 void initBalls(void);
 void explodeABall(int a);
 void explodeAllBall(void);
-int createBigBall(double x, double y, int hdirection, int vdirection);
-int createNormalBall(double x, double y, int hdirection, int vdirection);
-int createSmallBall(double x, double y, int hdirection, int vdirection);
-int createMicroBall(double x, double y, int hdirection, int vdirection);
-int createBall(double x, double y, int typeBall, int hdirection, int vdirection);
+int createBigBall(float x, float y, int hdirection, int vdirection);
+int createNormalBall(float x, float y, int hdirection, int vdirection);
+int createSmallBall(float x, float y, int hdirection, int vdirection);
+int createMicroBall(float x, float y, int hdirection, int vdirection);
+int createBall(float x, float y, int typeBall, int hdirection, int vdirection);
 void updateBalls(int i);
