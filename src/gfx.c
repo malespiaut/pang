@@ -19,9 +19,6 @@ SDL_Surface* bitmaps[10];
 
 extern bool g_quit;
 
-Uint32 sstart;
-Uint32 ssend;
-
 int keyRight = 0;
 int keyLeft = 0;
 int keyUp = 0;
