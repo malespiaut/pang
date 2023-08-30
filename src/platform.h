@@ -19,9 +19,9 @@ struct platform
   int bonus;
 };
 
-#define MAX_PLATFORMS 50
+#define kPlatform_COUNT 50
 
-extern Platform pform[MAX_PLATFORMS];
+extern Platform platforms[kPlatform_COUNT];
 
 void initPlatforms(void);
 int createPlatform(int x, int y, int typepf);

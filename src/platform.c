@@ -2,15 +2,15 @@
 #include "gfx.h"
 #include "structures.h"
 
-Platform pform[MAX_PLATFORMS];
+Platform platforms[kPlatform_COUNT];
 
 void
 initPlatforms(void)
 {
   int i;
-  for (i = 0; i < MAX_PLATFORMS; i++)
+  for (i = 0; i < kPlatform_COUNT; i++)
   {
-    pform[i].active = 0;
+    platforms[i].active = 0;
   }
 }
 
@@ -19,93 +19,93 @@ createPlatform(int x, int y, int typepf)
 {
   int i;
   i = 0;
-  while ((pform[i].active) && (i < MAX_PLATFORMS))
+  while ((platforms[i].active) && (i < kPlatform_COUNT))
   {
     i++;
   }
 
   if (typepf == PF_INCASSABLE)
   {
-    pform[i].type = PF_INCASSABLE;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 8;
-    pform[i].largeur = 32;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_INCASSABLE;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 8;
+    platforms[i].largeur = 32;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_CASSABLE)
   {
-    pform[i].type = PF_CASSABLE;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 8;
-    pform[i].largeur = 32;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_CASSABLE;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 8;
+    platforms[i].largeur = 32;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_CASSABLEV)
   {
-    pform[i].type = PF_CASSABLEV;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 32;
-    pform[i].largeur = 8;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_CASSABLEV;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 32;
+    platforms[i].largeur = 8;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_INCASSABLEV)
   {
-    pform[i].type = PF_INCASSABLEV;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 32;
-    pform[i].largeur = 8;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_INCASSABLEV;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 32;
+    platforms[i].largeur = 8;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_MOYEN_INCASSABLE)
   {
-    pform[i].type = PF_MOYEN_INCASSABLE;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 8;
-    pform[i].largeur = 16;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_MOYEN_INCASSABLE;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 8;
+    platforms[i].largeur = 16;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_MOYEN_CASSABLE)
   {
-    pform[i].type = PF_MOYEN_CASSABLE;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 8;
-    pform[i].largeur = 16;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_MOYEN_CASSABLE;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 8;
+    platforms[i].largeur = 16;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_MICRO_INCASSABLE)
   {
-    pform[i].type = PF_MICRO_INCASSABLE;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 8;
-    pform[i].largeur = 8;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_MICRO_INCASSABLE;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 8;
+    platforms[i].largeur = 8;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
   else if (typepf == PF_MICRO_CASSABLE)
   {
-    pform[i].type = PF_MICRO_CASSABLE;
-    pform[i].x = x;
-    pform[i].y = y;
-    pform[i].hauteur = 8;
-    pform[i].largeur = 8;
-    pform[i].active = 1;
-    pform[i].bonus = 0;
+    platforms[i].type = PF_MICRO_CASSABLE;
+    platforms[i].x = x;
+    platforms[i].y = y;
+    platforms[i].hauteur = 8;
+    platforms[i].largeur = 8;
+    platforms[i].active = 1;
+    platforms[i].bonus = 0;
   }
 
-  pform[i].spriteno = sprite_init_free(pform[i].x, pform[i].y, pform[i].type);
+  platforms[i].spriteno = sprite_init_free(platforms[i].x, platforms[i].y, platforms[i].type);
 
   return i;
 }
@@ -113,8 +113,8 @@ createPlatform(int x, int y, int typepf)
 void
 showPlatform(int i)
 {
-  if (pform[i].active)
+  if (platforms[i].active)
   {
-    sprite_blit(pform[i].spriteno);
+    sprite_blit(platforms[i].spriteno);
   }
 }

@@ -135,7 +135,7 @@ game(void)
         }
       }
 
-      for (size_t i = 0; i < MAX_PLATFORMS; i++)
+      for (size_t i = 0; i < kPlatform_COUNT; i++)
       {
         showPlatform(i);
       }
@@ -233,7 +233,7 @@ game(void)
         {
           showBall(i);
         }
-        for (size_t i = 0; i < MAX_PLATFORMS; i++)
+        for (size_t i = 0; i < kPlatform_COUNT; i++)
         {
           showPlatform(i);
         }

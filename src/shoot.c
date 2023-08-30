@@ -78,11 +78,11 @@ updateShoot(int i)
       shoot[i].active = 0;
       player.nbtir--;
     }
-    for (size_t p = 0; p < MAX_PLATFORMS; p++)
+    for (size_t p = 0; p < kPlatform_COUNT; p++)
     {
-      if (pform[p].active)
+      if (platforms[p].active)
       {
-        if (isCollide(shoot[i].x + shoot[i].xbox, shoot[i].y + shoot[i].ybox, shoot[i].hbox - 5, shoot[i].lbox, pform[p].x, pform[p].y, pform[p].hauteur, pform[p].largeur))
+        if (isCollide(shoot[i].x + shoot[i].xbox, shoot[i].y + shoot[i].ybox, shoot[i].hbox - 5, shoot[i].lbox, platforms[p].x, platforms[p].y, platforms[p].hauteur, platforms[p].largeur))
         {
           // Si c un shoot normal ou un double shoot quelque soit la plateforme en collide ca dégage
           if ((shoot[i].type == WEAPON_DOUBLE_SHOOT) || (shoot[i].type == WEAPON_NORMAL_SHOOT))
@@ -98,14 +98,14 @@ updateShoot(int i)
           // Si c un grappin et un PF_INCASSABLE on laisse le grapin.
           if (shoot[i].type == WEAPON_GLUE_SHOOT)
           {
-            if ((pform[p].type == PF_INCASSABLE) || (pform[p].type == PF_INCASSABLEV) || (pform[p].type == PF_MOYEN_INCASSABLE) || (pform[p].type == PF_MICRO_INCASSABLE))
+            if ((platforms[p].type == PF_INCASSABLE) || (platforms[p].type == PF_INCASSABLEV) || (platforms[p].type == PF_MOYEN_INCASSABLE) || (platforms[p].type == PF_MICRO_INCASSABLE))
             {
               if (shoot[i].duree == -1)
                 shoot[i].duree = 120;
             }
           }
           // Si c une plateforme normale, quelquesoit le shoot, on le dégage.
-          if ((pform[p].type == PF_CASSABLE) || (pform[p].type == PF_CASSABLEV) || (pform[p].type == PF_MOYEN_CASSABLE) || (pform[p].type == PF_MICRO_CASSABLE))
+          if ((platforms[p].type == PF_CASSABLE) || (platforms[p].type == PF_CASSABLEV) || (platforms[p].type == PF_MOYEN_CASSABLE) || (platforms[p].type == PF_MICRO_CASSABLE))
           {
             if (shoot[i].active)
             {
@@ -114,20 +114,20 @@ updateShoot(int i)
               if (player.nbtir < 0)
                 player.nbtir = 0;
             }
-            pform[p].active = 0;
-            sprite_free_set(pform[p].spriteno);
-            if (pform[p].bonus != 0)
+            platforms[p].active = 0;
+            sprite_free_set(platforms[p].spriteno);
+            if (platforms[p].bonus != 0)
             {
-              if (pform[p].bonus == BONUS_LIFE)
+              if (platforms[p].bonus == BONUS_LIFE)
               {
                 if ((player.bonus_life == 0) && (player.bonus_life_level != currentLevel))
                 {
-                  createBonus(pform[p].bonus, pform[p].x + 4, pform[p].y);
+                  createBonus(platforms[p].bonus, platforms[p].x + 4, platforms[p].y);
                 }
               }
               else
               {
-                createBonus(pform[p].bonus, pform[p].x + 4, pform[p].y);
+                createBonus(platforms[p].bonus, platforms[p].x + 4, platforms[p].y);
               }
             }
           }

@@ -76,11 +76,11 @@ updateBonus(int i)
   if (bonus[i].active)
   {
     /* On check les collision avec les plateformes */
-    for (p = 0; p < MAX_PLATFORMS; p++)
+    for (p = 0; p < kPlatform_COUNT; p++)
     {
-      if (pform[p].active)
+      if (platforms[p].active)
       {
-        collide += isCollide(bonus[i].xbox + bonus[i].x, bonus[i].ybox + bonus[i].y, bonus[i].hbox, bonus[i].lbox, pform[p].x, pform[p].y, pform[p].hauteur, pform[p].largeur);
+        collide += isCollide(bonus[i].xbox + bonus[i].x, bonus[i].ybox + bonus[i].y, bonus[i].hbox, bonus[i].lbox, platforms[p].x, platforms[p].y, platforms[p].hauteur, platforms[p].largeur);
       }
     }
     /* Si il y à collision, l'état passe à stop ! */

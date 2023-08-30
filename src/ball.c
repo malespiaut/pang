@@ -599,11 +599,11 @@ rien à jour et on à les bonnes dernières coordonnées de la position
 sans collision.
 */
 
-    for (p = 0; p < MAX_PLATFORMS; p++)
+    for (p = 0; p < kPlatform_COUNT; p++)
     {
-      if (pform[p].active)
+      if (platforms[p].active)
       {
-        collide += ballCollideWithPlatform(ball[i].spriteno, pform[p].spriteno, i);
+        collide += ballCollideWithPlatform(ball[i].spriteno, platforms[p].spriteno, i);
       }
     }
 
@@ -634,9 +634,9 @@ sans collision.
               sprite_move(ball[tmp].spriteno, (int)ball[i].x + images[sprites[ball[tmp].spriteno].image].imagel, (int)ball[i].y);
               int plate;
               int platec = 0;
-              for (plate = 0; plate < MAX_PLATFORMS; plate++)
+              for (plate = 0; plate < kPlatform_COUNT; plate++)
               {
-                platec -= ballCollideWithPlatform(ball[tmp].spriteno, pform[plate].spriteno, tmp);
+                platec -= ballCollideWithPlatform(ball[tmp].spriteno, platforms[plate].spriteno, tmp);
               }
               if (platec != 0)
                 sprite_move(ball[tmp].spriteno, (int)old_x, (int)old_y);
@@ -709,9 +709,9 @@ sans collision.
       p = 0;
       while (sortie2 == 0)
       {
-        if (pform[p].active)
+        if (platforms[p].active)
         {
-          collide = ballCollideWithPlatform(ball[i].spriteno, pform[p].spriteno, i);
+          collide = ballCollideWithPlatform(ball[i].spriteno, platforms[p].spriteno, i);
           totalcollide = collide;
           if (collide != 0)
           {
@@ -723,7 +723,7 @@ sans collision.
           }
         }
         p++;
-        if (p == MAX_PLATFORMS)
+        if (p == kPlatform_COUNT)
           sortie2 = 1;
       }
 

@@ -126,13 +126,13 @@ updatePlayer(void)
     }
   }
 
-  for (size_t i = 0; i < MAX_PLATFORMS; i++)
+  for (size_t i = 0; i < kPlatform_COUNT; i++)
   {
-    if (pform[i].active)
+    if (platforms[i].active)
     {
       if (whereIsPlayer > 3)
       {
-        while ((isCollideLadder(player.x + 12, player.y + 30, 2, 6, pform[i].x, pform[i].y, pform[i].hauteur, pform[i].largeur)))
+        while ((isCollideLadder(player.x + 12, player.y + 30, 2, 6, platforms[i].x, platforms[i].y, platforms[i].hauteur, platforms[i].largeur)))
         {
           whereIsPlayer = 4;
           platformCollide = i;
@@ -166,7 +166,7 @@ updatePlayer(void)
   }
   if (whereIsPlayer == 4)
   {
-    player.y = pform[platformCollide].y - 32;
+    player.y = platforms[platformCollide].y - 32;
   }
 
   /*player.old_etat = player.etat;*/
@@ -186,11 +186,11 @@ updatePlayer(void)
     while (sortie == 0)
     {
       int8_t platformCollideBlock = -1;
-      for (size_t i = 0; i < MAX_PLATFORMS; i++)
+      for (size_t i = 0; i < kPlatform_COUNT; i++)
       {
-        if (pform[i].active)
+        if (platforms[i].active)
         {
-          if ((isCollideLadder(player.x + 5, player.y + 6, 19, 2, pform[i].x, pform[i].y, pform[i].hauteur, pform[i].largeur)))
+          if ((isCollideLadder(player.x + 5, player.y + 6, 19, 2, platforms[i].x, platforms[i].y, platforms[i].hauteur, platforms[i].largeur)))
           {
             platformCollideBlock = i;
           }
@@ -228,11 +228,11 @@ updatePlayer(void)
     while (sortie == 0)
     {
       int8_t platformCollideBlock = -1;
-      for (size_t i = 0; i < MAX_PLATFORMS; i++)
+      for (size_t i = 0; i < kPlatform_COUNT; i++)
       {
-        if (pform[i].active)
+        if (platforms[i].active)
         {
-          if ((isCollideLadder(player.x + 25, player.y + 6, 19, 2, pform[i].x, pform[i].y, pform[i].hauteur, pform[i].largeur)))
+          if ((isCollideLadder(player.x + 25, player.y + 6, 19, 2, platforms[i].x, platforms[i].y, platforms[i].hauteur, platforms[i].largeur)))
           {
             platformCollideBlock = i;
           }

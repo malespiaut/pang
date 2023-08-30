@@ -31,9 +31,9 @@ initLevel(size_t n)
     size_t i = createBall((120 - 32), 18, BIG, LEFT, DOWN);
     ball[i].bonus_parent = getRandomBonus();
     i = createPlatform((161 - 32), 81, PF_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     i = createPlatform((193 - 32), 81, PF_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
   }
   if (n == 3)
   {
@@ -41,9 +41,9 @@ initLevel(size_t n)
     size_t i = createBall((176 - 32), 101, SMALL, RIGHT, DOWN);
     ball[i].vel = 0.5;
     i = createPlatform((177 - 32), 81, PF_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     i = createPlatform((177 - 32), 138, PF_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     createPlatform((73 - 32), (81 - 8), PF_INCASSABLE);
     createPlatform((281 - 32), (81 - 8), PF_INCASSABLE);
   }
@@ -68,7 +68,7 @@ initLevel(size_t n)
     createPlatform((97 - 32), 56, PF_CASSABLEV);
     createPlatform((97 - 32), 81, PF_CASSABLEV);
     i = createPlatform((289 - 32), 56, PF_CASSABLEV);
-    pform[i].bonus = BONUS_BOOM;
+    platforms[i].bonus = BONUS_BOOM;
     createPlatform((289 - 32), 81, PF_CASSABLEV);
     createPlatform((193 - 32), 57, PF_CASSABLEV);
   }
@@ -157,7 +157,7 @@ initLevel(size_t n)
     createPlatform(81 - 32, 113, PF_MICRO_CASSABLE);
     createPlatform(153 - 32, 89, PF_MICRO_CASSABLE);
     size_t i = createPlatform(177 - 32, 113, PF_MICRO_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     createPlatform(249 - 32, 89, PF_MICRO_CASSABLE);
     createPlatform(273 - 32, 113, PF_MICRO_CASSABLE);
 
@@ -178,18 +178,18 @@ initLevel(size_t n)
     createPlatform(41 - 32, 57 + 5, PF_MOYEN_CASSABLE);
     createPlatform(105 - 32, 48 + 5, PF_MOYEN_CASSABLE);
     size_t i = createPlatform(185 - 32, 33 + 5, PF_MOYEN_CASSABLE);
-    pform[i].bonus = BONUS_LIFE;
+    platforms[i].bonus = BONUS_LIFE;
     createPlatform(265 - 32, 49 + 5, PF_MOYEN_CASSABLE);
     i = createPlatform(329 - 32, 57 + 5, PF_MOYEN_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     createPlatform(81 - 32, 89 + 5, PF_MOYEN_CASSABLE);
     createPlatform(160 - 32, 81 + 5, PF_MOYEN_CASSABLE);
     createPlatform(209 - 32, 81 + 5, PF_MOYEN_CASSABLE);
     i = createPlatform(289 - 32, 89 + 5, PF_MOYEN_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     createPlatform(121 - 32, 121 + 5, PF_MOYEN_CASSABLE);
     i = createPlatform(250 - 32, 121 + 5, PF_MOYEN_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     createPlatform(161 - 32, 145 + 5, PF_MOYEN_CASSABLE);
     createPlatform(209 - 32, 145 + 5, PF_MOYEN_CASSABLE);
     createBall(119 - 32, 20, NORMAL, RIGHT, DOWN);
@@ -334,9 +334,9 @@ initLevel(size_t n)
     }
 
     size_t i = createPlatform(9, 29, PF_MICRO_CASSABLE);
-    pform[i].bonus = BONUS_LIFE;
+    platforms[i].bonus = BONUS_LIFE;
     i = createPlatform(297 + 8, 29, PF_MICRO_CASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
 
     for (size_t j = 0; j < 8; ++j)
     {
@@ -376,9 +376,9 @@ initLevel(size_t n)
     }
 
     tmp = createPlatform(65, 85, PF_CASSABLE);
-    pform[tmp].bonus = WEAPON_DOUBLE_SHOOT;
+    platforms[tmp].bonus = WEAPON_DOUBLE_SHOOT;
     tmp = createPlatform(220, 85, PF_CASSABLE);
-    pform[tmp].bonus = getRandomBonus();
+    platforms[tmp].bonus = getRandomBonus();
   }
 
   if (n == 19)
@@ -499,9 +499,9 @@ initLevel(size_t n)
     i = createPlatform((41 - 32) + (6 * 8), 41 + (5 * 8), PF_CASSABLE);
 
     createPlatform((41 - 32) + (6 * 8) + 32, 41 + (6 * 8), PF_MOYEN_INCASSABLE);
-    pform[i].bonus = getRandomBonus();
+    platforms[i].bonus = getRandomBonus();
     createPlatform((337 - 32) - (6 * 8) - 32 - 8, 41 + (6 * 8), PF_MOYEN_INCASSABLE);
-    pform[i].bonus = BONUS_LIFE;
+    platforms[i].bonus = BONUS_LIFE;
 
     for (size_t j = 0; j < 3; ++j)
     {
