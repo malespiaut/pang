@@ -15,10 +15,6 @@ extern SDL_Renderer* renderer;
 extern SDL_Texture* texture;
 extern SDL_Surface* screen;
 extern SDL_Surface* bitmaps[10];
-extern SDL_Joystick* joy;
-
-extern int posxjoy;
-extern int posyjoy;
 
 extern Uint32 sstart;
 extern Uint32 ssend;

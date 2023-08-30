@@ -15,7 +15,6 @@ SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Texture* texture;
 SDL_Surface* screen;
-SDL_Joystick* stick;
 SDL_Surface* bitmaps[10];
 
 extern bool g_quit;
@@ -107,13 +106,11 @@ image_blit(int imagesNo, int dx, int dy)
 void
 graphics_init(void)
 {
-  if (SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
   {
     fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
     exit(1);
   }
-  stick = SDL_JoystickOpen(0);
-  fprintf(stdout, "Found %d joysticks\n", SDL_NumJoysticks());
 
   atexit(SDL_Quit);
 
