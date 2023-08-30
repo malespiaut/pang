@@ -54,7 +54,7 @@ struct image
 {
   int height;         // Hauteur
   int width;         // Largeur
-  SDL_Surface* image; // L'image en elle mème
+  SDL_Surface* surface; // L'image en elle mème
 };
 
 typedef struct sprite Sprite;

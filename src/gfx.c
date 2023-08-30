@@ -70,7 +70,7 @@ image_blit(int i, int dx, int dy)
   src.h = images[i].height;
   src.w = images[i].width;
 
-  SDL_BlitSurface(images[i].image, &src, screen, &dest);
+  SDL_BlitSurface(images[i].surface, &src, screen, &dest);
 }
 
 void
@@ -285,8 +285,8 @@ image_get(int n, int x, int y, int l, int h, int i)
 #endif
 
   // Si l'image est déja alloué, on la libère.
-  SDL_FreeSurface(images[n].image);
-  images[n].image = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
+  SDL_FreeSurface(images[n].surface);
+  images[n].surface = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
 
   // On copie une portion de la BMP dans la nouvelle surface
   SDL_Rect src;
@@ -294,7 +294,7 @@ image_get(int n, int x, int y, int l, int h, int i)
   src.y = y;
   src.h = h;
   src.w = l;
-  SDL_BlitSurface(bitmaps[i], &src, images[n].image, NULL);
+  SDL_BlitSurface(bitmaps[i], &src, images[n].surface, NULL);
 
   images[n].height = h;
   images[n].width = l;
@@ -507,10 +507,10 @@ sprite_collides(int sprite1, int sprite2)
       rect2_y = coory_2 + sprite2h;
   }
 
-  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
-    SDL_LockSurface(images[sprites[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
-    SDL_LockSurface(images[sprites[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].surface))
+    SDL_LockSurface(images[sprites[sprite1].image].surface);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].surface))
+    SDL_LockSurface(images[sprites[sprite2].image].surface);
 
   /*Il ne reste plus qu'à tester pour chaque
 
@@ -529,22 +529,22 @@ sprite_collides(int sprite1, int sprite2)
     for (k = rect1_y - coory_1, l = rect1_y - coory_2; k < rect2_y - coory_1; k++, l++)
     {
 
-      if ((CollideTransparentPixelTest(images[sprites[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].image].image, j, l)) != 0)
+      if ((CollideTransparentPixelTest(images[sprites[sprite1].image].surface, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].image].surface, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
-          SDL_UnlockSurface(images[sprites[sprite1].image].image);
-        if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
-          SDL_UnlockSurface(images[sprites[sprite2].image].image);
+        if (SDL_MUSTLOCK(images[sprites[sprite1].image].surface))
+          SDL_UnlockSurface(images[sprites[sprite1].image].surface);
+        if (SDL_MUSTLOCK(images[sprites[sprite2].image].surface))
+          SDL_UnlockSurface(images[sprites[sprite2].image].surface);
 
         return 1;
       }
     }
   }
 
-  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
-    SDL_UnlockSurface(images[sprites[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
-    SDL_UnlockSurface(images[sprites[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].surface))
+    SDL_UnlockSurface(images[sprites[sprite1].image].surface);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].surface))
+    SDL_UnlockSurface(images[sprites[sprite2].image].surface);
 
   return 0;
 }

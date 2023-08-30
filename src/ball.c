@@ -112,10 +112,10 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
       rect2_y = coory_2 + sprite2h;
   }
 
-  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
-    SDL_LockSurface(images[sprites[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
-    SDL_LockSurface(images[sprites[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].surface))
+    SDL_LockSurface(images[sprites[sprite1].image].surface);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].surface))
+    SDL_LockSurface(images[sprites[sprite2].image].surface);
 
   /*Il ne reste plus qu'à tester pour chaque
 
@@ -134,22 +134,22 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
     for (k = rect1_y - coory_1, l = rect1_y - coory_2; k < rect2_y - coory_1; k++, l++)
     {
 
-      if ((CollideTransparentPixelTest(images[sprites[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].image].image, j, l)) != 0)
+      if ((CollideTransparentPixelTest(images[sprites[sprite1].image].surface, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].image].surface, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
-          SDL_UnlockSurface(images[sprites[sprite1].image].image);
-        if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
-          SDL_UnlockSurface(images[sprites[sprite2].image].image);
+        if (SDL_MUSTLOCK(images[sprites[sprite1].image].surface))
+          SDL_UnlockSurface(images[sprites[sprite1].image].surface);
+        if (SDL_MUSTLOCK(images[sprites[sprite2].image].surface))
+          SDL_UnlockSurface(images[sprites[sprite2].image].surface);
 
         collided = 1;
       }
     }
   }
 
-  if (SDL_MUSTLOCK(images[sprites[sprite1].image].image))
-    SDL_UnlockSurface(images[sprites[sprite1].image].image);
-  if (SDL_MUSTLOCK(images[sprites[sprite2].image].image))
-    SDL_UnlockSurface(images[sprites[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprites[sprite1].image].surface))
+    SDL_UnlockSurface(images[sprites[sprite1].image].surface);
+  if (SDL_MUSTLOCK(images[sprites[sprite2].image].surface))
+    SDL_UnlockSurface(images[sprites[sprite2].image].surface);
 
   int lfinal = rect2_x - rect1_x;
   int hfinal = rect2_y - rect1_y;
