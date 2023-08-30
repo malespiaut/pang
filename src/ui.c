@@ -11,13 +11,13 @@
 void
 showScore(char* string, int x, int y)
 {
-  int score_x = 148;
-  int score_y = 226;
+  int origin_x = 148;
+  int origin_y = 226;
 
   for (size_t i = 0; i < strlen(string); ++i)
   {
     int number = string[i] - 48;
-    bmp_blit(1, (number * 14) + score_x + 1, score_y, 13, 13, x + (i * 6), y, 13, 13);
+    bmp_blit(1, (number * 14) + origin_x + 1, origin_y, 13, 13, x + (i * 6), y, 13, 13);
   }
 }
 
