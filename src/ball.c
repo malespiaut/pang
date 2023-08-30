@@ -699,7 +699,6 @@ sans collision.
           }
           releaseSprite(ball[i].spriteno);
           sound_play(kSound_BallPop, 0);
-          //					GpPcmPlay((unsigned short*)ball_explode,sizeof(ball_explode), 0);
         }
       }
     }

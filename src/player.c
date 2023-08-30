@@ -144,12 +144,6 @@ updatePlayer(void)
     }
   }
 
-  /*sprintf(debug,"%d",whereIsPlayer);*/
-
-  /*GpRectFill(NULL, &gpDraw[nflip], player.posx+2,player.posy+30,28,2,232);
-  GpRectFill(NULL, &gpDraw[nflip], player.posx+5,player.posy+15,22,10,232);
-  GpRectFill(NULL, &gpDraw[nflip], player.posx+5,player.posy,15,25,232);*/
-
   /* Si on est pas sur une échelle ou est on ? */
   if (whereIsPlayer == 999)
   {
@@ -289,11 +283,6 @@ updatePlayer(void)
     }
   }
 
-  if (keyAction4 == 1)
-  {
-    //        keydata = GpKeyGet();
-  }
-
   if (((keyAction1 == 1) || (keyAction2 == 1)) && (player.shoot_timer == 0))
 
   {
@@ -326,14 +315,6 @@ updatePlayer(void)
       player.shoot_timer = 1;
     }
   }
-
-  /* Pause TODO !! */
-  //    if (GpKeyGet() & GPC_VK_START)
-  //    {
-  //        while (GpKeyGet() & GPC_VK_START) {}
-  //        while (!(GpKeyGet() & GPC_VK_START)) {}
-  //        while (GpKeyGet() & GPC_VK_START) {}
-  //    }
 
   /* Pour empecher le tir automatique ! */
   if ((keyAction1 == 0) && (keyAction2 == 0))
@@ -372,7 +353,6 @@ updatePlayer(void)
             else if (gbl_evt != EVT_LOOSE_LIFE)
             {
               gbl_evt = EVT_LOOSE_LIFE;
-              //                            GpPcmStop();
               sound_etat = 0;
               player.nblive -= 1;
             }
