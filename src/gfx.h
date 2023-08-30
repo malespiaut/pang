@@ -17,7 +17,7 @@ extern SDL_Window* window;
 extern SDL_Renderer* renderer;
 extern SDL_Texture* texture;
 extern SDL_Surface* screen;
-extern SDL_Surface* imagesBMP[10];
+extern SDL_Surface* bitmaps[10];
 extern int mapTiles[MAX_MAP][MAX_MAP_WIDTH][MAX_MAP_HEIGHT];
 extern int currentWorldMapX[MAX_MAP];
 extern int currentWorldMapY[MAX_MAP];
@@ -74,7 +74,7 @@ typedef struct st
 } stile;
 
 extern ssprite sprite[MAX_SPRITE];
-extern simage imageBank[MAX_IMAGE];
+extern simage images[MAX_IMAGE];
 extern stile tiles[MAX_TILE];
 
 void present_frame(void);

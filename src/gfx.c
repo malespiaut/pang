@@ -16,7 +16,7 @@ SDL_Renderer* renderer;
 SDL_Texture* texture;
 SDL_Surface* screen;
 SDL_Joystick* stick;
-SDL_Surface* imagesBMP[10];
+SDL_Surface* bitmaps[10];
 
 extern bool g_quit;
 
@@ -69,7 +69,7 @@ typedef struct st {
 } stile;
 */
 ssprite sprite[MAX_SPRITE];  // Les sprites
-simage imageBank[MAX_IMAGE]; // Les images découpées des BMP chargés
+simage images[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
 void
@@ -87,25 +87,25 @@ bmp_blit(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw,
   src.h = sh;
   src.w = sw;
 
-  SDL_BlitSurface(imagesBMP[imageBMPNo], &src, screen, &dest);
+  SDL_BlitSurface(bitmaps[imageBMPNo], &src, screen, &dest);
 }
 
 void
-image_blit(int imageBankNo, int dx, int dy)
+image_blit(int imagesNo, int dx, int dy)
 {
   SDL_Rect dest;
   dest.x = dx;
   dest.y = dy;
-  dest.h = imageBank[imageBankNo].imageh;
-  dest.w = imageBank[imageBankNo].imagel;
+  dest.h = images[imagesNo].imageh;
+  dest.w = images[imagesNo].imagel;
 
   SDL_Rect src;
   src.x = 0;
   src.y = 0;
-  src.h = imageBank[imageBankNo].imageh;
-  src.w = imageBank[imageBankNo].imagel;
+  src.h = images[imagesNo].imageh;
+  src.w = images[imagesNo].imagel;
 
-  SDL_BlitSurface(imageBank[imageBankNo].image, &src, screen, &dest);
+  SDL_BlitSurface(images[imagesNo].image, &src, screen, &dest);
 }
 
 void
@@ -152,7 +152,7 @@ present_frame(void)
 int
 bmp_load(char* pathfilename, int noImage)
 {
-  SDL_FreeSurface(imagesBMP[noImage]);
+  SDL_FreeSurface(bitmaps[noImage]);
   SDL_Surface* temp;
 
   if ((temp = IMG_Load(pathfilename)) == NULL)
@@ -161,12 +161,12 @@ bmp_load(char* pathfilename, int noImage)
     exit(1);
   }
 
-  imagesBMP[noImage] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
+  bitmaps[noImage] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
   SDL_FreeSurface(temp);
 
   if ((noImage == 1) || (noImage == 3))
   {
-    SDL_SetColorKey(imagesBMP[noImage], SDL_TRUE, 0xff00ff);
+    SDL_SetColorKey(bitmaps[noImage], SDL_TRUE, 0xff00ff);
   }
 
   return 0;
@@ -332,8 +332,8 @@ image_get(int n, int x, int y, int l, int h, int imageNo)
 #endif
 
   // Si l'image est déja alloué, on la libère.
-  SDL_FreeSurface(imageBank[n].image);
-  imageBank[n].image = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
+  SDL_FreeSurface(images[n].image);
+  images[n].image = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
 
   // On copie une portion de la BMP dans la nouvelle surface
   SDL_Rect src;
@@ -341,10 +341,10 @@ image_get(int n, int x, int y, int l, int h, int imageNo)
   src.y = y;
   src.h = h;
   src.w = l;
-  SDL_BlitSurface(imagesBMP[imageNo], &src, imageBank[n].image, NULL);
+  SDL_BlitSurface(bitmaps[imageNo], &src, images[n].image, NULL);
 
-  imageBank[n].imageh = h;
-  imageBank[n].imagel = l;
+  images[n].imageh = h;
+  images[n].imagel = l;
 }
 
 void
@@ -492,10 +492,10 @@ sprite_collides(int sprite1, int sprite2)
   int coory_1 = sprite[sprite1].posy;
   int coorx_2 = sprite[sprite2].posx;
   int coory_2 = sprite[sprite2].posy;
-  int sprite1w = imageBank[sprite[sprite1].image].imagel;
-  int sprite1h = imageBank[sprite[sprite1].image].imageh;
-  int sprite2w = imageBank[sprite[sprite2].image].imagel;
-  int sprite2h = imageBank[sprite[sprite2].image].imageh;
+  int sprite1w = images[sprite[sprite1].image].imagel;
+  int sprite1h = images[sprite[sprite1].image].imageh;
+  int sprite2w = images[sprite[sprite2].image].imagel;
+  int sprite2h = images[sprite[sprite2].image].imageh;
 
   if (!sprite[sprite1].active)
     return 0;
@@ -505,13 +505,13 @@ sprite_collides(int sprite1, int sprite2)
   /*Détection par bounding box
   Retourne 0 et sort de la fonction
   si les sprites ne possédent pas de zones superposées*/
-  if (coorx_1 > coorx_2 + imageBank[sprite[sprite2].image].imagel)
+  if (coorx_1 > coorx_2 + images[sprite[sprite2].image].imagel)
     return 0;
-  if (coorx_1 + imageBank[sprite[sprite1].image].imagel < coorx_2)
+  if (coorx_1 + images[sprite[sprite1].image].imagel < coorx_2)
     return 0;
-  if (coory_1 > coory_2 + imageBank[sprite[sprite2].image].imageh)
+  if (coory_1 > coory_2 + images[sprite[sprite2].image].imageh)
     return 0;
-  if (coory_1 + imageBank[sprite[sprite1].image].imageh < coory_2)
+  if (coory_1 + images[sprite[sprite1].image].imageh < coory_2)
     return 0;
 
   /*Le but des lignes suivantes est de définir un
@@ -554,10 +554,10 @@ sprite_collides(int sprite1, int sprite2)
       rect2_y = coory_2 + sprite2h;
   }
 
-  if (SDL_MUSTLOCK(imageBank[sprite[sprite1].image].image))
-    SDL_LockSurface(imageBank[sprite[sprite1].image].image);
-  if (SDL_MUSTLOCK(imageBank[sprite[sprite2].image].image))
-    SDL_LockSurface(imageBank[sprite[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
+    SDL_LockSurface(images[sprite[sprite1].image].image);
+  if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
+    SDL_LockSurface(images[sprite[sprite2].image].image);
 
   /*Il ne reste plus qu'à tester pour chaque
 
@@ -576,22 +576,22 @@ sprite_collides(int sprite1, int sprite2)
     for (k = rect1_y - coory_1, l = rect1_y - coory_2; k < rect2_y - coory_1; k++, l++)
     {
 
-      if ((CollideTransparentPixelTest(imageBank[sprite[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(imageBank[sprite[sprite2].image].image, j, l)) != 0)
+      if ((CollideTransparentPixelTest(images[sprite[sprite1].image].image, i, k) != 0) && (CollideTransparentPixelTest(images[sprite[sprite2].image].image, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(imageBank[sprite[sprite1].image].image))
-          SDL_UnlockSurface(imageBank[sprite[sprite1].image].image);
-        if (SDL_MUSTLOCK(imageBank[sprite[sprite2].image].image))
-          SDL_UnlockSurface(imageBank[sprite[sprite2].image].image);
+        if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
+          SDL_UnlockSurface(images[sprite[sprite1].image].image);
+        if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
+          SDL_UnlockSurface(images[sprite[sprite2].image].image);
 
         return 1;
       }
     }
   }
 
-  if (SDL_MUSTLOCK(imageBank[sprite[sprite1].image].image))
-    SDL_UnlockSurface(imageBank[sprite[sprite1].image].image);
-  if (SDL_MUSTLOCK(imageBank[sprite[sprite2].image].image))
-    SDL_UnlockSurface(imageBank[sprite[sprite2].image].image);
+  if (SDL_MUSTLOCK(images[sprite[sprite1].image].image))
+    SDL_UnlockSurface(images[sprite[sprite1].image].image);
+  if (SDL_MUSTLOCK(images[sprite[sprite2].image].image))
+    SDL_UnlockSurface(images[sprite[sprite2].image].image);
 
   return 0;
 }
