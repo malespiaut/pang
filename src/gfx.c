@@ -70,7 +70,7 @@ typedef struct st {
 */
 Sprite sprites[MAX_SPRITE];  // Les sprites
 Image images[MAX_IMAGE]; // Les images découpées des BMP chargés
-stile tiles[MAX_TILE];       // Les tiles
+Tile tiles[MAX_TILE];       // Les tiles
 
 void
 bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)

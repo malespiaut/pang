@@ -67,17 +67,18 @@ struct sprite
   int intern1;
 };
 
-typedef struct st
+typedef struct tile Tile;
+struct tile
 {
   int image;
   int attr1;
   int attr2;
   int attr3;
-} stile;
+};
 
 extern Sprite sprites[MAX_SPRITE];
 extern Image images[MAX_IMAGE];
-extern stile tiles[MAX_TILE];
+extern Tile tiles[MAX_TILE];
 
 void present_frame(void);
 void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);
