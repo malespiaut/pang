@@ -60,9 +60,9 @@ typedef struct st {
         int attr3;	// Attribut 3
 } stile;
 */
-Sprite sprites[MAX_SPRITE];  // Les sprites
-Image images[MAX_IMAGE]; // Les images découpées des BMP chargés
-Tile tiles[MAX_TILE];       // Les tiles
+Sprite sprites[kSprite_COUNT];  // Les sprites
+Image images[kImage_COUNT]; // Les images découpées des BMP chargés
+Tile tiles[kTile_COUNT];       // Les tiles
 
 void
 bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
@@ -294,7 +294,7 @@ void
 sprite_initEngine(void)
 {
   int i;
-  for (i = 0; i < MAX_SPRITE; i++)
+  for (i = 0; i < kSprite_COUNT; i++)
   {
     sprites[i].active = 0;
   }
@@ -354,7 +354,7 @@ sprite_init_free(int x, int y, int i)
 {
   int s = 0;
 
-  while ((sprites[s].active) && (s < MAX_SPRITE))
+  while ((sprites[s].active) && (s < kSprite_COUNT))
   {
     s++;
   }
@@ -380,7 +380,7 @@ sprite_free_all(void)
 {
   int i;
 
-  for (i = 0; i < MAX_SPRITE; i++)
+  for (i = 0; i < kSprite_COUNT; i++)
   {
     sprites[i].active = 0;
   }

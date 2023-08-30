@@ -6,9 +6,9 @@
 
 #include <SDL.h>
 
-#define MAX_SPRITE 500
-#define MAX_IMAGE 30
-#define MAX_TILE 500
+#define kSprite_COUNT 500
+#define kImage_COUNT 30
+#define kTile_COUNT 500
 
 extern SDL_Window* window;
 extern SDL_Renderer* renderer;
@@ -63,9 +63,9 @@ struct tile
   int attr3;
 };
 
-extern Sprite sprites[MAX_SPRITE];
-extern Image images[MAX_IMAGE];
-extern Tile tiles[MAX_TILE];
+extern Sprite sprites[kSprite_COUNT];
+extern Image images[kImage_COUNT];
+extern Tile tiles[kTile_COUNT];
 
 void present_frame(void);
 void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);
