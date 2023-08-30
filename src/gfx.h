@@ -63,7 +63,7 @@ struct sprite
   bool active;
   int x;
   int y;
-  int image;
+  size_t index;
 
   int animation[10][20];   // 10 animations de 20 frames (-1 = on boucle )
   int animation_speed[10]; // vitesse de l'animation
