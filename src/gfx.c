@@ -434,117 +434,148 @@ CollideTransparentPixelTest(SDL_Surface* surface, int u, int v)
     return 1;
 }
 
-int
-sprite_collides(int sprite1, int sprite2)
+bool
+sprite_collides(int spriteindex1, int spriteindex2)
 {
+  Sprite* spr1 = &sprites[spriteindex1];
+  Sprite* spr2 = &sprites[spriteindex2];
+  Image* img1 = &images[spr1->index];
+  Image* img2 = &images[spr2->index];
 
   int rect1_x, rect1_y;
   int rect2_x, rect2_y;
   int i, j, k, l;
-  int coorx_1 = sprites[sprite1].x;
-  int coory_1 = sprites[sprite1].y;
-  int coorx_2 = sprites[sprite2].x;
-  int coory_2 = sprites[sprite2].y;
-  int sprite1w = images[sprites[sprite1].index].width;
-  int sprite1h = images[sprites[sprite1].index].height;
-  int sprite2w = images[sprites[sprite2].index].width;
-  int sprite2h = images[sprites[sprite2].index].height;
 
-  if (!sprites[sprite1].active)
-    return 0;
-  if (!sprites[sprite2].active)
-    return 0;
+  if (!spr1->active)
+  {
+    return false;
+  }
+  if (!spr2->active)
+  {
+    return false;
+  }
 
   /*Détection par bounding box
   Retourne 0 et sort de la fonction
   si les sprites ne possédent pas de zones superposées*/
-  if (coorx_1 > coorx_2 + images[sprites[sprite2].index].width)
-    return 0;
-  if (coorx_1 + images[sprites[sprite1].index].width < coorx_2)
-    return 0;
-  if (coory_1 > coory_2 + images[sprites[sprite2].index].height)
-    return 0;
-  if (coory_1 + images[sprites[sprite1].index].height < coory_2)
-    return 0;
+  if (spr1->x > spr2->x + img2->width)
+  {
+    return false;
+  }
+  if (spr1->x + img1->width < spr2->x)
+  {
+    return false;
+  }
+  if (spr1->y > spr2->y + img2->height)
+  {
+    return false;
+  }
+  if (spr1->y + img1->height < spr2->y)
+  {
+    return false;
+  }
 
   /*Le but des lignes suivantes est de définir un
   rectangle qui englobe la zone d'affichage
   commune aux deux sprites
   On traite les coordonnées x du rectangle*/
 
-  if (coorx_1 < coorx_2)
+  if (spr1->x < spr2->x)
   {
-    rect1_x = coorx_2;
-    if (coorx_1 + sprite1w >= coorx_2 + sprite2w)
-      rect2_x = coorx_2 + sprite2w;
+    rect1_x = spr2->x;
+    if (spr1->x + img1->width >= spr2->x + img2->width)
+    {
+      rect2_x = spr2->x + img2->width;
+    }
     else
-      rect2_x = coorx_1 + sprite1w;
+    {
+      rect2_x = spr1->x + img1->width;
+    }
   }
   else
   {
-    rect1_x = coorx_1;
-    if (coorx_2 + sprite2w >= coorx_1 + sprite1w)
-      rect2_x = coorx_1 + sprite1w;
+    rect1_x = spr1->x;
+    if (spr2->x + img2->width >= spr1->x + img1->width)
+    {
+      rect2_x = spr1->x + img1->width;
+    }
     else
-      rect2_x = coorx_2 + sprite2w;
+    {
+      rect2_x = spr2->x + img2->width;
+    }
   }
 
   /*On traite les coordonnées y du rectangle*/
-  if (coory_1 < coory_2)
+  if (spr1->y < spr2->y)
   {
-    rect1_y = coory_2;
-    if (coory_1 + sprite1h >= coory_2 + sprite2h)
-      rect2_y = coory_2 + sprite2h;
+    rect1_y = spr2->y;
+    if (spr1->y + img1->height >= spr2->y + img2->height)
+    {
+      rect2_y = spr2->y + img2->height;
+    }
     else
-      rect2_y = coory_1 + sprite1h;
+    {
+      rect2_y = spr1->y + img1->height;
+    }
   }
   else
   {
-    rect1_y = coory_1;
-    if (coory_2 + sprite2h > coory_1 + sprite1h)
-      rect2_y = coory_1 + sprite1h;
+    rect1_y = spr1->y;
+    if (spr2->y + img2->height > spr1->y + img1->height)
+    {
+      rect2_y = spr1->y + img1->height;
+    }
     else
-      rect2_y = coory_2 + sprite2h;
+    {
+      rect2_y = spr2->y + img2->height;
+    }
   }
 
-  if (SDL_MUSTLOCK(images[sprites[sprite1].index].surface))
-    SDL_LockSurface(images[sprites[sprite1].index].surface);
-  if (SDL_MUSTLOCK(images[sprites[sprite2].index].surface))
-    SDL_LockSurface(images[sprites[sprite2].index].surface);
+  if (SDL_MUSTLOCK(img1->surface))
+  {
+    SDL_LockSurface(img1->surface);
+  }
+  if (SDL_MUSTLOCK(img2->surface))
+  {
+    SDL_LockSurface(img2->surface);
+  }
 
   /*Il ne reste plus qu'à tester pour chaque
-
   pixel du rectangle précèdemment défini si ses pixels
-
   sont transparents
-
   Un pixel non transparent signifie qu'un bout de sprite
-
   est present dans le rectangle
-
   et donc que les sprites sont en collision*/
 
-  for (i = rect1_x - coorx_1, j = rect1_x - coorx_2; i < rect2_x - coorx_1; i++, j++)
+  for (i = rect1_x - spr1->x, j = rect1_x - spr2->x; i < rect2_x - spr1->x; i++, j++)
   {
-    for (k = rect1_y - coory_1, l = rect1_y - coory_2; k < rect2_y - coory_1; k++, l++)
+    for (k = rect1_y - spr1->y, l = rect1_y - spr2->y; k < rect2_y - spr1->y; k++, l++)
     {
 
-      if ((CollideTransparentPixelTest(images[sprites[sprite1].index].surface, i, k) != 0) && (CollideTransparentPixelTest(images[sprites[sprite2].index].surface, j, l)) != 0)
+      if ((CollideTransparentPixelTest(img1->surface, i, k) != 0) && (CollideTransparentPixelTest(img2->surface, j, l)) != 0)
       {
-        if (SDL_MUSTLOCK(images[sprites[sprite1].index].surface))
-          SDL_UnlockSurface(images[sprites[sprite1].index].surface);
-        if (SDL_MUSTLOCK(images[sprites[sprite2].index].surface))
-          SDL_UnlockSurface(images[sprites[sprite2].index].surface);
+        if (SDL_MUSTLOCK(img1->surface))
+        {
+          SDL_UnlockSurface(img1->surface);
+        }
+        if (SDL_MUSTLOCK(img2->surface))
+        {
+          SDL_UnlockSurface(img2->surface);
+        }
 
-        return 1;
+        return true;
       }
     }
   }
 
-  if (SDL_MUSTLOCK(images[sprites[sprite1].index].surface))
-    SDL_UnlockSurface(images[sprites[sprite1].index].surface);
-  if (SDL_MUSTLOCK(images[sprites[sprite2].index].surface))
-    SDL_UnlockSurface(images[sprites[sprite2].index].surface);
+  if (SDL_MUSTLOCK(img1->surface))
+  {
+    SDL_UnlockSurface(img1->surface);
+  }
+  if (SDL_MUSTLOCK(img2->surface))
+  {
+    SDL_UnlockSurface(img2->surface);
+  }
 
-  return 0;
+  return false;
 }

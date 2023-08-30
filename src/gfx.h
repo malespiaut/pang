@@ -89,5 +89,5 @@ void sprite_free_all(void);
 void sprite_move(int n, int x, int y);
 void sprite_id_set(int n, int i);
 void sprite_blit(int n);
-int sprite_collides(int sprite1, int sprite2);
+bool sprite_collides(int sprite1, int sprite2);
 int CollideTransparentPixelTest(SDL_Surface* surface, int u, int v);
