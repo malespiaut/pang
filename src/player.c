@@ -26,8 +26,8 @@ isCollideLadder(int r1x, int r1y, int r1h, int r1l, int r2x, int r2y, int r2h, i
 void
 initPlayer(void)
 {
-  player.posx = 150;
-  player.posy = (200 - 32);
+  player.x = 150;
+  player.y = (200 - 32);
   player.xbox = 4;
   player.ybox = 2;
   player.hbox = 28; /* Hauteur et largeur de la boite de collision */
@@ -45,7 +45,7 @@ initPlayer(void)
   player.spriteno = 0;
   player.bonus_boom = 0;
   player.bonus_freeze = 0;
-  sprite_init(player.spriteno, player.posx, player.posy, player.anim_courante);
+  sprite_init(player.spriteno, player.x, player.y, player.anim_courante);
   player.bonus_life = 0;
   player.bonus_life_level = -1;
   player.bonus_protection = 0;
@@ -56,8 +56,8 @@ initPlayer(void)
 void
 reInitPlayer(void)
 {
-  player.posx = 150;
-  player.posy = (200 - 32);
+  player.x = 150;
+  player.y = (200 - 32);
   player.xbox = 4;
   player.ybox = 2;
   player.hbox = 28; /* Hauteur et largeur de la boite de collision */
@@ -74,7 +74,7 @@ reInitPlayer(void)
   player.spriteno = 0;
   player.bonus_boom = 0;
   player.bonus_freeze = 0;
-  sprite_init(player.spriteno, player.posx, player.posy, player.anim_courante);
+  sprite_init(player.spriteno, player.x, player.y, player.anim_courante);
   player.bonus_life = 0;
   /* NE PAS REINITIALISER BONUS_LIFE_LEVEL ! */
   player.bonus_protection = 0;
@@ -106,18 +106,18 @@ updatePlayer(void)
 
     if (ladder[i].active)
     {
-      if ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ladder[i].pad_milieu_x, ladder[i].pad_milieu_y, ladder[i].pad_milieu_hauteur, ladder[i].pad_milieu_largeur)) && (player.en_descente < 3))
+      if ((isCollideLadder(player.x + 12, player.y + 30, 2, 10, ladder[i].pad_milieu_x, ladder[i].pad_milieu_y, ladder[i].pad_milieu_hauteur, ladder[i].pad_milieu_largeur)) && (player.en_descente < 3))
       {
         whereIsPlayer = 2;
         echelleCollide = i;
       }
       /* bas */
-      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ladder[i].pad_bas_x, ladder[i].pad_bas_y, ladder[i].pad_bas_hauteur, ladder[i].pad_bas_largeur) && (player.en_descente < 3))
+      if (isCollideLadder(player.x + 12, player.y + 30, 2, 10, ladder[i].pad_bas_x, ladder[i].pad_bas_y, ladder[i].pad_bas_hauteur, ladder[i].pad_bas_largeur) && (player.en_descente < 3))
       {
         whereIsPlayer = 1;
         echelleCollide = i;
       } /* haut */
-      if (isCollideLadder(player.posx + 12, player.posy + 30, 2, 10, ladder[i].pad_haut_x, ladder[i].pad_haut_y, ladder[i].pad_haut_hauteur, ladder[i].pad_haut_largeur) && (player.en_descente < 3))
+      if (isCollideLadder(player.x + 12, player.y + 30, 2, 10, ladder[i].pad_haut_x, ladder[i].pad_haut_y, ladder[i].pad_haut_hauteur, ladder[i].pad_haut_largeur) && (player.en_descente < 3))
       {
         whereIsPlayer = 3;
         echelleCollide = i;
@@ -132,12 +132,12 @@ updatePlayer(void)
     {
       if (whereIsPlayer > 3)
       {
-        while ((isCollideLadder(player.posx + 12, player.posy + 30, 2, 6, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
+        while ((isCollideLadder(player.x + 12, player.y + 30, 2, 6, pform[i].x, pform[i].y, pform[i].hauteur, pform[i].largeur)))
         {
           whereIsPlayer = 4;
           platformCollide = i;
           player.en_descente = 0;
-          player.posy--;
+          player.y--;
         }
       }
     }
@@ -146,7 +146,7 @@ updatePlayer(void)
   /* Si on est pas sur une échelle ou est on ? */
   if (whereIsPlayer == 999)
   {
-    if (player.posy == (200 - 32))
+    if (player.y == (200 - 32))
     {
       whereIsPlayer = 0;
       player.en_descente = 0;
@@ -159,14 +159,14 @@ updatePlayer(void)
 
   if (whereIsPlayer == 5)
   {
-    player.posy++;
+    player.y++;
     player.en_descente++;
-    player.posy++;        // doppelt ?
+    player.y++;        // doppelt ?
     player.en_descente++; // doppelt ?
   }
   if (whereIsPlayer == 4)
   {
-    player.posy = pform[platformCollide].posy - 32;
+    player.y = pform[platformCollide].y - 32;
   }
 
   /*player.old_etat = player.etat;*/
@@ -178,9 +178,9 @@ updatePlayer(void)
     player.lbox = 22;
 
     if (gbl_timer % 3 == 0)
-      player.posx -= 2;
+      player.x -= 2;
     else
-      player.posx -= 1; // doppelt ?
+      player.x -= 1; // doppelt ?
 
     int sortie = 0;
     while (sortie == 0)
@@ -190,7 +190,7 @@ updatePlayer(void)
       {
         if (pform[i].active)
         {
-          if ((isCollideLadder(player.posx + 5, player.posy + 6, 19, 2, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
+          if ((isCollideLadder(player.x + 5, player.y + 6, 19, 2, pform[i].x, pform[i].y, pform[i].hauteur, pform[i].largeur)))
           {
             platformCollideBlock = i;
           }
@@ -203,9 +203,9 @@ updatePlayer(void)
       else
       {
         if (gbl_timer % 3 == 0)
-          player.posx += 2;
+          player.x += 2;
         else
-          player.posx += 1;
+          player.x += 1;
       }
     }
 
@@ -220,9 +220,9 @@ updatePlayer(void)
     player.lbox = 18;
 
     if (gbl_timer % 3 == 0)
-      player.posx += 2;
+      player.x += 2;
     else
-      player.posx += 1;
+      player.x += 1;
 
     int sortie = 0;
     while (sortie == 0)
@@ -232,7 +232,7 @@ updatePlayer(void)
       {
         if (pform[i].active)
         {
-          if ((isCollideLadder(player.posx + 25, player.posy + 6, 19, 2, pform[i].posx, pform[i].posy, pform[i].hauteur, pform[i].largeur)))
+          if ((isCollideLadder(player.x + 25, player.y + 6, 19, 2, pform[i].x, pform[i].y, pform[i].hauteur, pform[i].largeur)))
           {
             platformCollideBlock = i;
           }
@@ -245,9 +245,9 @@ updatePlayer(void)
       else
       {
         if (gbl_timer % 3 == 0)
-          player.posx -= 2;
+          player.x -= 2;
         else
-          player.posx -= 1;
+          player.x -= 1;
       }
     }
 
@@ -256,15 +256,15 @@ updatePlayer(void)
   }
   else if ((keyUp) && (whereIsPlayer > 0) && (whereIsPlayer < 3))
   {
-    player.posy--;
-    player.posx = ladder[echelleCollide].posx;
+    player.y--;
+    player.x = ladder[echelleCollide].x;
     player.old_etat = player.etat;
     player.etat = PLAYER_LADDER;
   }
   else if ((keyDown) && (whereIsPlayer > 0) && (whereIsPlayer < 4))
   {
-    player.posy += 1;
-    player.posx = ladder[echelleCollide].posx;
+    player.y += 1;
+    player.x = ladder[echelleCollide].x;
     player.old_etat = player.etat;
     player.etat = PLAYER_LADDER;
   }
@@ -320,13 +320,13 @@ updatePlayer(void)
     player.shoot_timer = 0;
 
   /* Test des collisions droite gauche*/
-  if (player.posx < 8)
-    player.posx = 8;
-  if (player.posx > 283)
-    player.posx = 283;
+  if (player.x < 8)
+    player.x = 8;
+  if (player.x > 283)
+    player.x = 283;
 
-  if (player.posy > (200 - 32))
-    player.posy = (200 - 32);
+  if (player.y > (200 - 32))
+    player.y = (200 - 32);
 
   if (!(CHEAT))
   {
@@ -366,7 +366,7 @@ updatePlayer(void)
   {
     if (bonus[i].active)
     {
-      if (isCollide(player.xbox + player.posx, player.ybox + player.posy, player.hbox, player.lbox, bonus[i].xbox + bonus[i].posx, bonus[i].ybox + bonus[i].posy, bonus[i].hbox, bonus[i].lbox) == 1)
+      if (isCollide(player.xbox + player.x, player.ybox + player.y, player.hbox, player.lbox, bonus[i].xbox + bonus[i].x, bonus[i].ybox + bonus[i].y, bonus[i].hbox, bonus[i].lbox) == 1)
 
       {
         if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
@@ -397,7 +397,7 @@ updatePlayer(void)
           player.bonus_life_level = currentLevel;
           player.nblive += 1;
           bonus[i].active = 0;
-          createObject(OBJ_1UP, player.posx, player.posy, 0);
+          createObject(OBJ_1UP, player.x, player.y, 0);
         }
         else if (bonus[i].type == BONUS_PROTECTION)
         {
@@ -496,7 +496,7 @@ updatePlayer(void)
 void
 showPlayer(void)
 {
-  sprite_move(0, player.posx, player.posy);
+  sprite_move(0, player.x, player.y);
   sprite_id_set(0, player.anim_courante);
   if ((player.anim_courante == ANIM_RIGHT1) || (player.anim_courante == ANIM_RIGHT2) || (player.anim_courante == ANIM_RIGHT3))
     sprite_blit(player.spriteno);

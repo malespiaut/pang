@@ -5,10 +5,10 @@
 typedef struct ball Ball;
 struct ball
 {
-  double posx;        /* Position x dans l'écran (à initialiser) */
-  double posy;        /* Position y dans l'écran (à initialiser) */
-  double last_posx;   /* Dernière position x sans collision à l'écran */
-  double last_posy;   /* Dernière position y sans collision à l'écran */
+  double x;        /* Position x dans l'écran (à initialiser) */
+  double y;        /* Position y dans l'écran (à initialiser) */
+  double last_x;   /* Dernière position x sans collision à l'écran */
+  double last_y;   /* Dernière position y sans collision à l'écran */
   int hauteurmax;     /* Hauteur maximum en pixel que peut prendre une boule (à initialiser)*/
   int hauteurmax_cpt; /* Compteur interne (à initialiser à 0) */
   int speedx;         /* Vitesse de déplacement horizontal */
@@ -44,9 +44,9 @@ int ballCollideWithPlatform(int sprite1, int sprite2, int b);
 void initBalls(void);
 void explodeABall(int a);
 void explodeAllBall(void);
-int createBigBall(double posx, double posy, int hdirection, int vdirection);
-int createNormalBall(double posx, double posy, int hdirection, int vdirection);
-int createSmallBall(double posx, double posy, int hdirection, int vdirection);
-int createMicroBall(double posx, double posy, int hdirection, int vdirection);
-int createBall(double posx, double posy, int typeBall, int hdirection, int vdirection);
+int createBigBall(double x, double y, int hdirection, int vdirection);
+int createNormalBall(double x, double y, int hdirection, int vdirection);
+int createSmallBall(double x, double y, int hdirection, int vdirection);
+int createMicroBall(double x, double y, int hdirection, int vdirection);
+int createBall(double x, double y, int typeBall, int hdirection, int vdirection);
 void updateBalls(int i);

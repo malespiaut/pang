@@ -7,33 +7,33 @@ checkBallCollisionWithBorder(int i)
 {
   int isCollide = 0;
   /* Collision avec le bas ? */
-  if (ball[i].posy >= 200 - images[sprites[ball[i].spriteno].image].imageh)
+  if (ball[i].y >= 200 - images[sprites[ball[i].spriteno].image].imageh)
   {
     ball[i].vel = ball[i].vel_cst;
-    ball[i].posy = 200 - images[sprites[ball[i].spriteno].image].imageh;
+    ball[i].y = 200 - images[sprites[ball[i].spriteno].image].imageh;
     isCollide = 1;
   }
 
   /* Collision avec le haut ? */
-  if (ball[i].posy < 8)
+  if (ball[i].y < 8)
   {
-    ball[i].posy = 8;
+    ball[i].y = 8;
     isCollide = 1;
   }
 
   /* Gauche */
-  if (ball[i].posx <= 8)
+  if (ball[i].x <= 8)
   {
     ball[i].move = -ball[i].move;
-    ball[i].posx = 8;
+    ball[i].x = 8;
     isCollide = 1;
   }
 
   /* Droite */
-  if (ball[i].posx >= (320 - 8) - images[sprites[ball[i].spriteno].image].imagel)
+  if (ball[i].x >= (320 - 8) - images[sprites[ball[i].spriteno].image].imagel)
   {
     ball[i].move = -ball[i].move;
-    ball[i].posx = (320 - 8) - images[sprites[ball[i].spriteno].image].imagel;
+    ball[i].x = (320 - 8) - images[sprites[ball[i].spriteno].image].imagel;
     isCollide = 1;
   }
 

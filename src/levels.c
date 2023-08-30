@@ -57,7 +57,7 @@ initLevel(size_t n)
     createLadder((202 - 32), 153, 12);
     createPlatform((185 - 32), (153 - 1), PF_INCASSABLEV);
     createPlatform((193 - 32), (153 - 1), PF_INCASSABLEV);
-    player.posx = player.posx + 16;
+    player.x = player.x + 16;
   }
   if (n == 5)
   {
@@ -148,7 +148,7 @@ initLevel(size_t n)
     createPlatform(235, 183, PF_MOYEN_INCASSABLE);
     createPlatform(235, 183 + 8, PF_MOYEN_INCASSABLE);
     createLadder(253, 184, 4);
-    player.posx = player.posx + 15;
+    player.x = player.x + 15;
   }
   if (n == 10) /* BUG DE COLLISION A ANALYSER */
   {
@@ -449,7 +449,7 @@ initLevel(size_t n)
       createPlatform(225 - 32, (33 + (i * 32)), PF_CASSABLEV);
       createPlatform(297 - 32, (33 + (i * 32)), PF_INCASSABLEV);
     }
-    player.posx = player.posx + 64;
+    player.x = player.x + 64;
     size_t i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
@@ -546,7 +546,7 @@ initLevel(size_t n)
       createPlatform(225 - 32, 33 + (i * 32), PF_CASSABLEV);
       createPlatform(297 - 32, 33 + (i * 32), PF_INCASSABLEV);
     }
-    player.posx = player.posx + 64;
+    player.x = player.x + 64;
     size_t i = createBall(197 - 64, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();
@@ -563,7 +563,7 @@ initLevel(size_t n)
       createPlatform(225 - 32, 33 + (i * 32), PF_CASSABLEV);
       createPlatform(297 - 32, 33 + (i * 32), PF_INCASSABLEV);
     }
-    player.posx = player.posx + 64 + 32 + 16;
+    player.x = player.x + 64 + 32 + 16;
     size_t i = createBall(197 + 8, 20, BIG, RIGHT, DOWN);
     ball[i].bonus = getRandomBonus();
     ball[i].bonus_parent = getRandomBonus();

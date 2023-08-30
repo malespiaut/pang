@@ -41,8 +41,8 @@ typedef struct sprite Sprite;
 struct sprite
 {
   bool active;
-  int posx;
-  int posy;
+  int x;
+  int y;
   int image;
 
   int animation[10][20];   // 10 animations de 20 frames (-1 = on boucle )

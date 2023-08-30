@@ -27,8 +27,8 @@ createLadder(int32_t x, int32_t y, int32_t nb_rungs)
   }
 
   ladder[i].active = 1;
-  ladder[i].posx = x;
-  ladder[i].posy = y;
+  ladder[i].x = x;
+  ladder[i].y = y;
   ladder[i].hauteur = 4 * nb_rungs;
   ladder[i].largeur = 22;
   ladder[i].nb_rungs = nb_rungs;
@@ -56,7 +56,7 @@ showLadder(size_t i)
   {
     for (size_t e = 0; e < ladder[i].nb_rungs; e++)
     {
-      bmp_blit(1, 71, 53, 22, 4, ladder[i].posx, ladder[i].posy + (e * 4), 22, 4);
+      bmp_blit(1, 71, 53, 22, 4, ladder[i].x, ladder[i].y + (e * 4), 22, 4);
     }
   }
 }

@@ -85,8 +85,8 @@ extern int currentLevel;
 
 typedef struct sobj
 {
-  int posx;
-  int posy;
+  int x;
+  int y;
   int type;
   int cpt;
   bool active;
@@ -95,8 +95,8 @@ typedef struct sobj
 
 typedef struct sjoueur
 {
-  int posx;
-  int posy;
+  int x;
+  int y;
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */

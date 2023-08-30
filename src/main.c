@@ -125,13 +125,13 @@ game(void)
       {
         if (player.bonus_protection_timer == -1)
         {
-          bmp_blit(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43);
+          bmp_blit(1, 231, 123, 43, 43, player.x - (5), player.y - (5), 43, 43);
         }
         else
         {
           if (gbl_timer % 2 == 0)
           {
-            bmp_blit(1, 231, 123, 43, 43, player.posx - (5), player.posy - (5), 43, 43);
+            bmp_blit(1, 231, 123, 43, 43, player.x - (5), player.y - (5), 43, 43);
           }
         }
       }
@@ -201,17 +201,17 @@ game(void)
       sprintf(debug, "%s", "");
       if ((old_score < 600) && (player.score >= 600))
       {
-        createObject(OBJ_1UP, player.posx, player.posy, 0);
+        createObject(OBJ_1UP, player.x, player.y, 0);
         player.nblive++;
       }
       if ((old_score < 1500) && (player.score >= 1500))
       {
-        createObject(OBJ_1UP, player.posx, player.posy, 0);
+        createObject(OBJ_1UP, player.x, player.y, 0);
         player.nblive++;
       }
       if ((old_score < 5000) && (player.score >= 5000))
       {
-        createObject(OBJ_1UP, player.posx, player.posy, 0);
+        createObject(OBJ_1UP, player.x, player.y, 0);
         player.nblive++;
       }
       if (gbl_timer == 1)
@@ -243,11 +243,11 @@ game(void)
         if (cpt > 20)
           player.anim_courante = ANIM_DEAD;
         if ((cpt > 20) && (cpt < 40))
-          player.posy--;
+          player.y--;
         if (cpt > 40)
         {
-          player.posy++;
-          player.posx++;
+          player.y++;
+          player.x++;
         }
         cpt++;
         present_frame();

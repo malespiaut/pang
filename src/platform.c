@@ -15,7 +15,7 @@ initPlatforms(void)
 }
 
 int
-createPlatform(int posx, int posy, int typepf)
+createPlatform(int x, int y, int typepf)
 {
   int i;
   i = 0;
@@ -27,8 +27,8 @@ createPlatform(int posx, int posy, int typepf)
   if (typepf == PF_INCASSABLE)
   {
     pform[i].type = PF_INCASSABLE;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 8;
     pform[i].largeur = 32;
     pform[i].active = 1;
@@ -37,8 +37,8 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_CASSABLE)
   {
     pform[i].type = PF_CASSABLE;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 8;
     pform[i].largeur = 32;
     pform[i].active = 1;
@@ -47,8 +47,8 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_CASSABLEV)
   {
     pform[i].type = PF_CASSABLEV;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 32;
     pform[i].largeur = 8;
     pform[i].active = 1;
@@ -57,8 +57,8 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_INCASSABLEV)
   {
     pform[i].type = PF_INCASSABLEV;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 32;
     pform[i].largeur = 8;
     pform[i].active = 1;
@@ -67,8 +67,8 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_MOYEN_INCASSABLE)
   {
     pform[i].type = PF_MOYEN_INCASSABLE;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 8;
     pform[i].largeur = 16;
     pform[i].active = 1;
@@ -77,8 +77,8 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_MOYEN_CASSABLE)
   {
     pform[i].type = PF_MOYEN_CASSABLE;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 8;
     pform[i].largeur = 16;
     pform[i].active = 1;
@@ -87,8 +87,8 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_MICRO_INCASSABLE)
   {
     pform[i].type = PF_MICRO_INCASSABLE;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 8;
     pform[i].largeur = 8;
     pform[i].active = 1;
@@ -97,15 +97,15 @@ createPlatform(int posx, int posy, int typepf)
   else if (typepf == PF_MICRO_CASSABLE)
   {
     pform[i].type = PF_MICRO_CASSABLE;
-    pform[i].posx = posx;
-    pform[i].posy = posy;
+    pform[i].x = x;
+    pform[i].y = y;
     pform[i].hauteur = 8;
     pform[i].largeur = 8;
     pform[i].active = 1;
     pform[i].bonus = 0;
   }
 
-  pform[i].spriteno = sprite_init_free(pform[i].posx, pform[i].posy, pform[i].type);
+  pform[i].spriteno = sprite_init_free(pform[i].x, pform[i].y, pform[i].type);
 
   return i;
 }

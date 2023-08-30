@@ -5,8 +5,8 @@
 typedef struct platform Platform;
 struct platform
 {
-  int posx;
-  int posy;
+  int x;
+  int y;
   int hauteur;
   int largeur;
   bool active;
@@ -24,5 +24,5 @@ struct platform
 extern Platform pform[MAX_PLATFORMS];
 
 void initPlatforms(void);
-int createPlatform(int posx, int posy, int typepf);
+int createPlatform(int x, int y, int typepf);
 void showPlatform(int i);

@@ -53,8 +53,8 @@ createBonus(int type, int x, int y)
     i++;
   }
 
-  bonus[i].posx = x;
-  bonus[i].posy = y;
+  bonus[i].x = x;
+  bonus[i].y = y;
   bonus[i].xbox = 0;
   bonus[i].ybox = 0;
   bonus[i].hbox = 18;
@@ -80,7 +80,7 @@ updateBonus(int i)
     {
       if (pform[p].active)
       {
-        collide += isCollide(bonus[i].xbox + bonus[i].posx, bonus[i].ybox + bonus[i].posy, bonus[i].hbox, bonus[i].lbox, pform[p].posx, pform[p].posy, pform[p].hauteur, pform[p].largeur);
+        collide += isCollide(bonus[i].xbox + bonus[i].x, bonus[i].ybox + bonus[i].y, bonus[i].hbox, bonus[i].lbox, pform[p].x, pform[p].y, pform[p].hauteur, pform[p].largeur);
       }
     }
     /* Si il y à collision, l'état passe à stop ! */
@@ -94,13 +94,13 @@ updateBonus(int i)
     }
 
     /* On check les collision avec le bas */
-    if (bonus[i].posy + bonus[i].hbox > 200)
+    if (bonus[i].y + bonus[i].hbox > 200)
     {
       bonus[i].etat = STOP;
     }
 
     if (bonus[i].etat == DOWN)
-      bonus[i].posy += 2;
+      bonus[i].y += 2;
     if (bonus[i].etat == STOP)
       bonus[i].duree_de_vie--;
     if (bonus[i].duree_de_vie < 0)
@@ -114,16 +114,16 @@ showBonus(int i)
   if (bonus[i].active)
   {
     if (bonus[i].type == WEAPON_DOUBLE_SHOOT)
-      bmp_blit(1, 53, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18);
+      bmp_blit(1, 53, 191, 18, 18, bonus[i].x, bonus[i].y, 18, 18);
     else if (bonus[i].type == WEAPON_GLUE_SHOOT)
-      bmp_blit(1, 11, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18);
+      bmp_blit(1, 11, 191, 18, 18, bonus[i].x, bonus[i].y, 18, 18);
     else if (bonus[i].type == BONUS_BOOM)
-      bmp_blit(1, 116, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18);
+      bmp_blit(1, 116, 191, 18, 18, bonus[i].x, bonus[i].y, 18, 18);
     else if (bonus[i].type == BONUS_FREEZE)
-      bmp_blit(1, 32, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18);
+      bmp_blit(1, 32, 191, 18, 18, bonus[i].x, bonus[i].y, 18, 18);
     else if (bonus[i].type == BONUS_LIFE)
-      bmp_blit(1, 74, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18);
+      bmp_blit(1, 74, 191, 18, 18, bonus[i].x, bonus[i].y, 18, 18);
     else if (bonus[i].type == BONUS_PROTECTION)
-      bmp_blit(1, 158, 191, 18, 18, bonus[i].posx, bonus[i].posy, 18, 18);
+      bmp_blit(1, 158, 191, 18, 18, bonus[i].x, bonus[i].y, 18, 18);
   }
 }

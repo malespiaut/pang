@@ -43,8 +43,8 @@ typedef struct si {
 
 typedef struct ss{
         bool active;	// Sprite utilisé ?
-        int posx;		// Position x
-        int posy;		// Position y
+        int x;		// Position x
+        int y;		// Position y
         int image;		// Image courante
         int animation[10][20]; // 10 animations de 20 frames (-1 = on boucle )
         int animation_speed[10];   // vitesse de l'animation
@@ -339,8 +339,8 @@ image_get(int n, int x, int y, int l, int h, int i)
 void
 sprite_init(int n, int x, int y, int i)
 {
-  sprites[n].posx = x;
-  sprites[n].posy = y;
+  sprites[n].x = x;
+  sprites[n].y = y;
   sprites[n].image = i;
   sprites[n].active = 1;
   sprites[n].current_animation = -1;
@@ -357,8 +357,8 @@ sprite_init_free(int x, int y, int i)
   {
     s++;
   }
-  sprites[s].posx = x;
-  sprites[s].posy = y;
+  sprites[s].x = x;
+  sprites[s].y = y;
   sprites[s].image = i;
   sprites[s].active = 1;
   sprites[s].current_animation = -1;
@@ -388,8 +388,8 @@ sprite_free_all(void)
 void
 sprite_move(int n, int x, int y)
 {
-  sprites[n].posx = x;
-  sprites[n].posy = y;
+  sprites[n].x = x;
+  sprites[n].y = y;
 }
 
 void
@@ -422,7 +422,7 @@ sprite_blit(int n)
       sprites[n].intern1 = 0;
     }
 
-    image_blit(sprites[n].image, sprites[n].posx, sprites[n].posy);
+    image_blit(sprites[n].image, sprites[n].x, sprites[n].y);
   }
 }
 
@@ -477,10 +477,10 @@ sprite_collides(int sprite1, int sprite2)
   int rect1_x, rect1_y;
   int rect2_x, rect2_y;
   int i, j, k, l;
-  int coorx_1 = sprites[sprite1].posx;
-  int coory_1 = sprites[sprite1].posy;
-  int coorx_2 = sprites[sprite2].posx;
-  int coory_2 = sprites[sprite2].posy;
+  int coorx_1 = sprites[sprite1].x;
+  int coory_1 = sprites[sprite1].y;
+  int coorx_2 = sprites[sprite2].x;
+  int coory_2 = sprites[sprite2].y;
   int sprite1w = images[sprites[sprite1].image].imagel;
   int sprite1h = images[sprites[sprite1].image].imageh;
   int sprite2w = images[sprites[sprite2].image].imagel;

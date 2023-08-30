@@ -5,8 +5,8 @@
 typedef struct bonus Bonus;
 struct bonus
 {
-  int posx;
-  int posy;
+  int x;
+  int y;
   int duree_de_vie;
   int xbox;
   int ybox;

@@ -49,8 +49,8 @@ createObject(int type, int x, int y, int value)
   }
 
   obj[i].type = type;
-  obj[i].posx = x;
-  obj[i].posy = y;
+  obj[i].x = x;
+  obj[i].y = y;
   obj[i].value = value;
   obj[i].active = 1;
 
@@ -80,11 +80,11 @@ showObject(int i)
       {
         char chaine[3];
         sprintf(chaine, "%d", obj[i].value);
-        bmp_blit(1, 247, 90, 7, 9, obj[i].posx, obj[i].posy, 7, 9);
+        bmp_blit(1, 247, 90, 7, 9, obj[i].x, obj[i].y, 7, 9);
 
-        showNumber(chaine, obj[i].posx + 8, obj[i].posy);
+        showNumber(chaine, obj[i].x + 8, obj[i].y);
 
-        obj[i].posy--;
+        obj[i].y--;
         obj[i].cpt--;
       }
       else
@@ -96,9 +96,9 @@ showObject(int i)
     {
       if (obj[i].cpt > 0)
       {
-        bmp_blit(1, 240, 12, 21, 13, obj[i].posx, obj[i].posy, 21, 13);
+        bmp_blit(1, 240, 12, 21, 13, obj[i].x, obj[i].y, 21, 13);
         obj[i].cpt--;
-        obj[i].posy--;
+        obj[i].y--;
       }
       else
       {

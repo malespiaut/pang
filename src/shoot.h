@@ -5,8 +5,8 @@
 typedef struct shoot Shoot;
 struct shoot
 {
-  int posx; /* Position x dans l'écran (à initialiser) */
-  int posy; /* Position y dans l'écran (à initialiser) */
+  int x; /* Position x dans l'écran (à initialiser) */
+  int y; /* Position y dans l'écran (à initialiser) */
   int xbox;
   int ybox;
   int hbox; /* Hauteur et largeur de la boite de collision */
@@ -14,7 +14,7 @@ struct shoot
   int type;
   bool active;
   int duree;
-  int posy_depart;
+  int y_depart;
 };
 
 #define MAX_SHOOT 15

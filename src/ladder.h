@@ -7,8 +7,8 @@
 typedef struct ladder Ladder;
 struct ladder
 {
-  int32_t posx;
-  int32_t posy;
+  int32_t x;
+  int32_t y;
   int32_t hauteur;
   int32_t largeur;
   bool active;

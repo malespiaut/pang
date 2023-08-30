@@ -19,13 +19,13 @@ showBall(int i)
   if (ball[i].active)
   {
 
-    //      fprintf(stderr,"posx: %d\n",(int)ball[i].posx);
-    //      fprintf(stderr,"posy: %d\n",(int)ball[i].posy);
+    //      fprintf(stderr,"x: %d\n",(int)ball[i].x);
+    //      fprintf(stderr,"y: %d\n",(int)ball[i].y);
 
-    sprite_move(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
+    sprite_move(ball[i].spriteno, (int)ball[i].x, (int)ball[i].y);
 
-    //      fprintf(stderr,"sposx: %d\n",sprites[0].posx);
-    //      fprintf(stderr,"sposy: %d\n",sprites[0].posy);
+    //      fprintf(stderr,"sx: %d\n",sprites[0].x);
+    //      fprintf(stderr,"sy: %d\n",sprites[0].y);
 
     sprite_id_set(ball[i].spriteno, ball[i].type);
     sprite_blit(ball[i].spriteno);
@@ -46,10 +46,10 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   int rect1_x, rect1_y;
   int rect2_x, rect2_y;
   int i, j, k, l;
-  int coorx_1 = sprites[sprite1].posx;
-  int coory_1 = sprites[sprite1].posy;
-  int coorx_2 = sprites[sprite2].posx;
-  int coory_2 = sprites[sprite2].posy;
+  int coorx_1 = sprites[sprite1].x;
+  int coory_1 = sprites[sprite1].y;
+  int coorx_2 = sprites[sprite2].x;
+  int coory_2 = sprites[sprite2].y;
   int sprite1w = images[sprites[sprite1].image].imagel;
   int sprite1h = images[sprites[sprite1].image].imageh;
   int sprite2w = images[sprites[sprite2].image].imagel;
@@ -170,7 +170,7 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
     /* Coté droit ou gauche ? */
     if (ligne == 2)
     {
-      if (rect1_x == sprites[sprite2].posx)
+      if (rect1_x == sprites[sprite2].x)
         cote = 3;
       else
         cote = 4;
@@ -229,19 +229,19 @@ explodeABall(int a)
   sound_play(kSound_BallPop, 1);
   /* Crée une nouvelle balle plus petite qui ira à gauche */
   int tmp2;
-  tmp2 = createBall(ball[a].posx, ball[a].posy, ball[a].type + 1, LEFT, UP);
+  tmp2 = createBall(ball[a].x, ball[a].y, ball[a].type + 1, LEFT, UP);
   ball[tmp2].hauteurmax_cpt = ball[tmp2].hauteurmax - (20);
   ball[tmp2].vel = 2.0;
   if (ball[a].bonus_parent != 0)
     ball[tmp2].bonus = ball[a].bonus_parent;
   /* Crée une nouvelle balle plus petite qui ira à droite */
-  tmp2 = createBall(ball[a].posx, ball[a].posy, ball[a].type + 1, RIGHT, UP);
+  tmp2 = createBall(ball[a].x, ball[a].y, ball[a].type + 1, RIGHT, UP);
   ball[tmp2].hauteurmax_cpt = ball[tmp2].hauteurmax - (20);
   ball[tmp2].vel = 2.0;
   /* Si la balle <a> qui explose contient un bonus, on le crée */
   if (ball[a].bonus != 0)
   {
-    createBonus(ball[a].bonus, (int)ball[a].posx + 10, (int)ball[a].posy + 10);
+    createBonus(ball[a].bonus, (int)ball[a].x + 10, (int)ball[a].y + 10);
   }
   /* On libère la balle (et le sprite associé) qui vient d'exploser */
   ball[a].active = 0;
@@ -324,7 +324,7 @@ explodeAllBall()
 }
 
 int
-createBigBall(double posx, double posy, int hdirection, int vdirection)
+createBigBall(double x, double y, int hdirection, int vdirection)
 {
   int i;
   i = 0;
@@ -333,8 +333,8 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
     i++;
   }
 
-  ball[i].posx = posx;
-  ball[i].posy = posy;
+  ball[i].x = x;
+  ball[i].y = y;
   ball[i].hauteurmax = 180;
   ball[i].hauteurmax_cpt = 160;
   ball[i].speedx = 1;
@@ -352,9 +352,9 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)ball[i].posx, (int)ball[i].posy, BIG);
-  ball[i].last_posx = posx;
-  ball[i].last_posy = posy;
+  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, BIG);
+  ball[i].last_x = x;
+  ball[i].last_y = y;
 
   ball[i].vel = -10.0;
   ball[i].vel_cst = 12.5;
@@ -378,7 +378,7 @@ createBigBall(double posx, double posy, int hdirection, int vdirection)
 }
 
 int
-createNormalBall(double posx, double posy, int hdirection, int vdirection)
+createNormalBall(double x, double y, int hdirection, int vdirection)
 {
   int i;
   i = 0;
@@ -387,8 +387,8 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
     i++;
   }
 
-  ball[i].posx = posx;
-  ball[i].posy = posy;
+  ball[i].x = x;
+  ball[i].y = y;
   ball[i].hauteurmax = 120;
   ball[i].hauteurmax_cpt = 100;
   ball[i].speedx = 1;
@@ -406,14 +406,14 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)posx, (int)posy, NORMAL);
+  ball[i].spriteno = sprite_init_free((int)x, (int)y, NORMAL);
 
   ball[i].vel = -10.0;
   ball[i].vel_cst = 10.0;
   ball[i].move = 2;
 
-  ball[i].last_posx = posx;
-  ball[i].last_posy = posy;
+  ball[i].last_x = x;
+  ball[i].last_y = y;
 
   if (hdirection == LEFT)
   {
@@ -431,7 +431,7 @@ createNormalBall(double posx, double posy, int hdirection, int vdirection)
 }
 
 int
-createSmallBall(double posx, double posy, int hdirection, int vdirection)
+createSmallBall(double x, double y, int hdirection, int vdirection)
 {
   int i;
   i = 0;
@@ -440,8 +440,8 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
     i++;
   }
 
-  ball[i].posx = posx;
-  ball[i].posy = posy;
+  ball[i].x = x;
+  ball[i].y = y;
   ball[i].hauteurmax = 80;
   ball[i].hauteurmax_cpt = 60;
   ball[i].speedx = 1;
@@ -459,14 +459,14 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)ball[i].posx, (int)ball[i].posy, SMALL);
+  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, SMALL);
 
   ball[i].vel = -8.0;
   ball[i].vel_cst = 8.0;
   ball[i].move = 2;
 
-  ball[i].last_posx = posx;
-  ball[i].last_posy = posy;
+  ball[i].last_x = x;
+  ball[i].last_y = y;
 
   if (hdirection == LEFT)
   {
@@ -484,7 +484,7 @@ createSmallBall(double posx, double posy, int hdirection, int vdirection)
 }
 
 int
-createMicroBall(double posx, double posy, int hdirection, int vdirection)
+createMicroBall(double x, double y, int hdirection, int vdirection)
 {
   int i;
 
@@ -494,8 +494,8 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
     i++;
   }
 
-  ball[i].posx = posx;
-  ball[i].posy = posy;
+  ball[i].x = x;
+  ball[i].y = y;
   ball[i].hauteurmax = 60;
   ball[i].hauteurmax_cpt = 30;
   ball[i].speedx = 1;
@@ -513,15 +513,15 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)ball[i].posx, (int)ball[i].posy, MICRO);
+  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, MICRO);
 
   ball[i].vel = -6.5;
   ball[i].vel_cst = 6.5;
 
   ball[i].move = 2;
 
-  ball[i].last_posx = posx;
-  ball[i].last_posy = posy;
+  ball[i].last_x = x;
+  ball[i].last_y = y;
 
   if (hdirection == LEFT)
   {
@@ -539,16 +539,16 @@ createMicroBall(double posx, double posy, int hdirection, int vdirection)
 }
 
 int
-createBall(double posx, double posy, int typeBall, int hdirection, int vdirection)
+createBall(double x, double y, int typeBall, int hdirection, int vdirection)
 {
   if (typeBall == BIG)
-    return (createBigBall(posx, posy, hdirection, vdirection));
+    return (createBigBall(x, y, hdirection, vdirection));
   if (typeBall == NORMAL)
-    return (createNormalBall(posx, posy, hdirection, vdirection));
+    return (createNormalBall(x, y, hdirection, vdirection));
   if (typeBall == SMALL)
-    return (createSmallBall(posx, posy, hdirection, vdirection));
+    return (createSmallBall(x, y, hdirection, vdirection));
   if (typeBall == MICRO)
-    return (createMicroBall(posx, posy, hdirection, vdirection));
+    return (createMicroBall(x, y, hdirection, vdirection));
   return 0;
 }
 
@@ -570,8 +570,8 @@ updateBalls(int i)
 
           Si (il n'y à pas eu de collision)
           {
-              ball[i].last_posx = ball[i].posx;
-                          ball[i].last_posy = ball[i].posy;
+              ball[i].last_x = ball[i].x;
+                          ball[i].last_y = ball[i].y;
           }
 
           Si (le joueur n'a pas de bonus freeze)
@@ -594,7 +594,7 @@ updateBalls(int i)
   {
     /* il faut récupérer la derniere position sans aucune collision
 Pour cela on teste si on est en collision, si ce n'est pas le
-cas, on mets à jour last_posx et last_posy. Sinon, on ne mets
+cas, on mets à jour last_x et last_y. Sinon, on ne mets
 rien à jour et on à les bonnes dernières coordonnées de la position
 sans collision.
 */
@@ -616,7 +616,7 @@ sans collision.
     {
       if (shoot[p].active)
       {
-        collide = isCollide(ball[i].xbox + (int)ball[i].posx, ball[i].ybox + (int)ball[i].posy, ball[i].hbox, ball[i].lbox, shoot[p].posx + shoot[p].xbox, shoot[p].posy + shoot[p].ybox, shoot[p].hbox, shoot[p].lbox);
+        collide = isCollide(ball[i].xbox + (int)ball[i].x, ball[i].ybox + (int)ball[i].y, ball[i].hbox, ball[i].lbox, shoot[p].x + shoot[p].xbox, shoot[p].y + shoot[p].ybox, shoot[p].hbox, shoot[p].lbox);
         if (collide != 0)
         {
           shoot[p].active = 0;
@@ -624,14 +624,14 @@ sans collision.
           if (ball[i].type < MICRO)
           {
             int tmp;
-            tmp = createBall(ball[i].posx, ball[i].posy, ball[i].type + 1, LEFT, UP);
+            tmp = createBall(ball[i].x, ball[i].y, ball[i].type + 1, LEFT, UP);
 
             if (player.bonus_freeze > 0)
             {
-              int old_posx = ball[i].posx;
-              int old_posy = ball[i].posy;
-              ball[tmp].posx = ball[i].posx + images[sprites[ball[tmp].spriteno].image].imagel;
-              sprite_move(ball[tmp].spriteno, (int)ball[i].posx + images[sprites[ball[tmp].spriteno].image].imagel, (int)ball[i].posy);
+              int old_x = ball[i].x;
+              int old_y = ball[i].y;
+              ball[tmp].x = ball[i].x + images[sprites[ball[tmp].spriteno].image].imagel;
+              sprite_move(ball[tmp].spriteno, (int)ball[i].x + images[sprites[ball[tmp].spriteno].image].imagel, (int)ball[i].y);
               int plate;
               int platec = 0;
               for (plate = 0; plate < MAX_PLATFORMS; plate++)
@@ -639,14 +639,14 @@ sans collision.
                 platec -= ballCollideWithPlatform(ball[tmp].spriteno, pform[plate].spriteno, tmp);
               }
               if (platec != 0)
-                sprite_move(ball[tmp].spriteno, (int)old_posx, (int)old_posy);
+                sprite_move(ball[tmp].spriteno, (int)old_x, (int)old_y);
             }
 
             ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20;
             ball[tmp].vel = 2.0;
             if (ball[i].bonus_parent != 0)
               ball[tmp].bonus = ball[i].bonus_parent;
-            tmp = createBall(ball[i].posx, ball[i].posy, ball[i].type + 1, RIGHT, UP);
+            tmp = createBall(ball[i].x, ball[i].y, ball[i].type + 1, RIGHT, UP);
             ball[tmp].hauteurmax_cpt = ball[tmp].hauteurmax - 20;
             ball[tmp].vel = 2.0;
           }
@@ -678,7 +678,7 @@ sans collision.
           player.derniere_balle = ball[i].type;
           if (player.multiplicateur > 1)
           {
-            createObject(OBJ_MUL, (int)ball[i].posx, (int)ball[i].posy, player.multiplicateur);
+            createObject(OBJ_MUL, (int)ball[i].x, (int)ball[i].y, player.multiplicateur);
           }
           /* il fo détruire la balle EN DERNIER ! Sinon une autre sera reprise à ça position */
           ball[i].active = 0;
@@ -688,12 +688,12 @@ sans collision.
             {
               if ((player.bonus_life == 0) && (player.bonus_life_level != currentLevel))
               {
-                createBonus(ball[i].bonus, (int)ball[i].posx + 5, (int)ball[i].posy + 5);
+                createBonus(ball[i].bonus, (int)ball[i].x + 5, (int)ball[i].y + 5);
               }
             }
             else
             {
-              createBonus(ball[i].bonus, (int)ball[i].posx + 5, (int)ball[i].posy + 5);
+              createBonus(ball[i].bonus, (int)ball[i].x + 5, (int)ball[i].y + 5);
             }
           }
           sprite_free_set(ball[i].spriteno);
@@ -716,9 +716,9 @@ sans collision.
           if (collide != 0)
           {
             y_a_t_il_eu_collision = 1;
-            ball[i].posx = ball[i].last_posx;
-            ball[i].posy = ball[i].last_posy;
-            sprite_move(ball[i].spriteno, (int)ball[i].posx, (int)ball[i].posy);
+            ball[i].x = ball[i].last_x;
+            ball[i].y = ball[i].last_y;
+            sprite_move(ball[i].spriteno, (int)ball[i].x, (int)ball[i].y);
             sortie2 = 1;
           }
         }
@@ -745,8 +745,8 @@ sans collision.
 
       if (y_a_t_il_eu_collision == 0)
       {
-        ball[i].last_posx = ball[i].posx;
-        ball[i].last_posy = ball[i].posy;
+        ball[i].last_x = ball[i].x;
+        ball[i].last_y = ball[i].y;
         ball[i].y_a_til_eu_collision_avant = 0;
         ball[i].nbtouch = 0;
       }
@@ -763,15 +763,15 @@ sans collision.
       }
 
       if (ball[i].nbtouch > 5)
-        ball[i].posx = ball[i].posx + ball[i].move;
+        ball[i].x = ball[i].x + ball[i].move;
 
-      ball[i].posx = ball[i].posx + ball[i].move;
+      ball[i].x = ball[i].x + ball[i].move;
       ball[i].vel = ball[i].vel - GRAV;
-      ball[i].posy = ball[i].posy - ball[i].vel;
+      ball[i].y = ball[i].y - ball[i].vel;
     }
     //	        fprintf(s	tderr,"move: %d\n",(int)ball[i].move);
     //	        fprintf(stderr,"vel: %d\n",(int)ball[i].vel);
-    //	        fprintf(stderr,"posx: %d\n",(int)ball[i].posx);
-    //	        fprintf(stderr,"posy: %d\n",(int)ball[i].posy);
+    //	        fprintf(stderr,"x: %d\n",(int)ball[i].x);
+    //	        fprintf(stderr,"y: %d\n",(int)ball[i].y);
   }
 }
