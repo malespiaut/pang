@@ -73,7 +73,7 @@ simage images[MAX_IMAGE]; // Les images découpées des BMP chargés
 stile tiles[MAX_TILE];       // Les tiles
 
 void
-bmp_blit(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
+bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
 {
   SDL_Rect dest;
   dest.x = dx;
@@ -87,7 +87,7 @@ bmp_blit(int imageBMPNo, int sx, int sy, int sw, int sh, int dx, int dy, int dw,
   src.h = sh;
   src.w = sw;
 
-  SDL_BlitSurface(bitmaps[imageBMPNo], &src, screen, &dest);
+  SDL_BlitSurface(bitmaps[i], &src, screen, &dest);
 }
 
 void
@@ -150,9 +150,9 @@ present_frame(void)
 
 // image 1 et 3 transparente
 int
-bmp_load(char* pathfilename, int noImage)
+bmp_load(char* pathfilename, int i)
 {
-  SDL_FreeSurface(bitmaps[noImage]);
+  SDL_FreeSurface(bitmaps[i]);
   SDL_Surface* temp;
 
   if ((temp = IMG_Load(pathfilename)) == NULL)
@@ -161,12 +161,12 @@ bmp_load(char* pathfilename, int noImage)
     exit(1);
   }
 
-  bitmaps[noImage] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
+  bitmaps[i] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
   SDL_FreeSurface(temp);
 
-  if ((noImage == 1) || (noImage == 3))
+  if ((i == 1) || (i == 3))
   {
-    SDL_SetColorKey(bitmaps[noImage], SDL_TRUE, 0xff00ff);
+    SDL_SetColorKey(bitmaps[i], SDL_TRUE, 0xff00ff);
   }
 
   return 0;
@@ -310,10 +310,10 @@ sprite_initEngine(void)
   }
 }
 
-// Recupère une image n° n en x,y de taille h,l dans l'image BMP n° imageNo
-// void image_get(int n,int x,int y,int l,int h,int imageNo)
+// Recupère une image n° n en x,y de taille h,l dans l'image BMP n° i
+// void image_get(int n,int x,int y,int l,int h,int i)
 void
-image_get(int n, int x, int y, int l, int h, int imageNo)
+image_get(int n, int x, int y, int l, int h, int i)
 {
   Uint32 rmask, gmask, bmask, amask;
 
@@ -341,7 +341,7 @@ image_get(int n, int x, int y, int l, int h, int imageNo)
   src.y = y;
   src.h = h;
   src.w = l;
-  SDL_BlitSurface(bitmaps[imageNo], &src, images[n].image, NULL);
+  SDL_BlitSurface(bitmaps[i], &src, images[n].image, NULL);
 
   images[n].imageh = h;
   images[n].imagel = l;
