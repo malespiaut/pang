@@ -50,10 +50,10 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   int coory_1 = sprites[sprite1].y;
   int coorx_2 = sprites[sprite2].x;
   int coory_2 = sprites[sprite2].y;
-  int sprite1w = images[sprites[sprite1].image].imagel;
-  int sprite1h = images[sprites[sprite1].image].imageh;
-  int sprite2w = images[sprites[sprite2].image].imagel;
-  int sprite2h = images[sprites[sprite2].image].imageh;
+  int sprite1w = images[sprites[sprite1].image].width;
+  int sprite1h = images[sprites[sprite1].image].height;
+  int sprite2w = images[sprites[sprite2].image].width;
+  int sprite2h = images[sprites[sprite2].image].height;
 
   if (!sprites[sprite1].active)
     return 0;
@@ -63,13 +63,13 @@ ballCollideWithPlatform(int sprite1, int sprite2, int b)
   /*Détection par bounding box
   Retourne 0 et sort de la fonction
   si les sprites ne possédent pas de zones superposées*/
-  if (coorx_1 > coorx_2 + images[sprites[sprite2].image].imagel)
+  if (coorx_1 > coorx_2 + images[sprites[sprite2].image].width)
     return 0;
-  if (coorx_1 + images[sprites[sprite1].image].imagel < coorx_2)
+  if (coorx_1 + images[sprites[sprite1].image].width < coorx_2)
     return 0;
-  if (coory_1 > coory_2 + images[sprites[sprite2].image].imageh)
+  if (coory_1 > coory_2 + images[sprites[sprite2].image].height)
     return 0;
-  if (coory_1 + images[sprites[sprite1].image].imageh < coory_2)
+  if (coory_1 + images[sprites[sprite1].image].height < coory_2)
     return 0;
 
   /*Le but des lignes suivantes est de définir un
@@ -630,8 +630,8 @@ sans collision.
             {
               int old_x = ball[i].x;
               int old_y = ball[i].y;
-              ball[tmp].x = ball[i].x + images[sprites[ball[tmp].spriteno].image].imagel;
-              sprite_move(ball[tmp].spriteno, (int)ball[i].x + images[sprites[ball[tmp].spriteno].image].imagel, (int)ball[i].y);
+              ball[tmp].x = ball[i].x + images[sprites[ball[tmp].spriteno].image].width;
+              sprite_move(ball[tmp].spriteno, (int)ball[i].x + images[sprites[ball[tmp].spriteno].image].width, (int)ball[i].y);
               int plate;
               int platec = 0;
               for (plate = 0; plate < kPlatform_COUNT; plate++)

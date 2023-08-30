@@ -31,8 +31,8 @@ extern int myEvent;
 
 /*
 typedef struct si {
-        int imageh;	// Hauteur
-        int imagel; // Largeur
+        int height;	// Hauteur
+        int width; // Largeur
         SDL_Surface *image; // L'image en elle mème
 } simage;
 
@@ -52,8 +52,8 @@ typedef struct ss{
 typedef struct image Image;
 struct image
 {
-  int imageh;         // Hauteur
-  int imagel;         // Largeur
+  int height;         // Hauteur
+  int width;         // Largeur
   SDL_Surface* image; // L'image en elle mème
 };
 

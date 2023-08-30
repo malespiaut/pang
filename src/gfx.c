@@ -61,14 +61,14 @@ image_blit(int i, int dx, int dy)
   SDL_Rect dest;
   dest.x = dx;
   dest.y = dy;
-  dest.h = images[i].imageh;
-  dest.w = images[i].imagel;
+  dest.h = images[i].height;
+  dest.w = images[i].width;
 
   SDL_Rect src;
   src.x = 0;
   src.y = 0;
-  src.h = images[i].imageh;
-  src.w = images[i].imagel;
+  src.h = images[i].height;
+  src.w = images[i].width;
 
   SDL_BlitSurface(images[i].image, &src, screen, &dest);
 }
@@ -296,8 +296,8 @@ image_get(int n, int x, int y, int l, int h, int i)
   src.w = l;
   SDL_BlitSurface(bitmaps[i], &src, images[n].image, NULL);
 
-  images[n].imageh = h;
-  images[n].imagel = l;
+  images[n].height = h;
+  images[n].width = l;
 }
 
 void
@@ -445,10 +445,10 @@ sprite_collides(int sprite1, int sprite2)
   int coory_1 = sprites[sprite1].y;
   int coorx_2 = sprites[sprite2].x;
   int coory_2 = sprites[sprite2].y;
-  int sprite1w = images[sprites[sprite1].image].imagel;
-  int sprite1h = images[sprites[sprite1].image].imageh;
-  int sprite2w = images[sprites[sprite2].image].imagel;
-  int sprite2h = images[sprites[sprite2].image].imageh;
+  int sprite1w = images[sprites[sprite1].image].width;
+  int sprite1h = images[sprites[sprite1].image].height;
+  int sprite2w = images[sprites[sprite2].image].width;
+  int sprite2h = images[sprites[sprite2].image].height;
 
   if (!sprites[sprite1].active)
     return 0;
@@ -458,13 +458,13 @@ sprite_collides(int sprite1, int sprite2)
   /*Détection par bounding box
   Retourne 0 et sort de la fonction
   si les sprites ne possédent pas de zones superposées*/
-  if (coorx_1 > coorx_2 + images[sprites[sprite2].image].imagel)
+  if (coorx_1 > coorx_2 + images[sprites[sprite2].image].width)
     return 0;
-  if (coorx_1 + images[sprites[sprite1].image].imagel < coorx_2)
+  if (coorx_1 + images[sprites[sprite1].image].width < coorx_2)
     return 0;
-  if (coory_1 > coory_2 + images[sprites[sprite2].image].imageh)
+  if (coory_1 > coory_2 + images[sprites[sprite2].image].height)
     return 0;
-  if (coory_1 + images[sprites[sprite1].image].imageh < coory_2)
+  if (coory_1 + images[sprites[sprite1].image].height < coory_2)
     return 0;
 
   /*Le but des lignes suivantes est de définir un

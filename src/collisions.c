@@ -7,10 +7,10 @@ checkBallCollisionWithBorder(int i)
 {
   int isCollide = 0;
   /* Collision avec le bas ? */
-  if (ball[i].y >= 200 - images[sprites[ball[i].spriteno].image].imageh)
+  if (ball[i].y >= 200 - images[sprites[ball[i].spriteno].image].height)
   {
     ball[i].vel = ball[i].vel_cst;
-    ball[i].y = 200 - images[sprites[ball[i].spriteno].image].imageh;
+    ball[i].y = 200 - images[sprites[ball[i].spriteno].image].height;
     isCollide = 1;
   }
 
@@ -30,10 +30,10 @@ checkBallCollisionWithBorder(int i)
   }
 
   /* Droite */
-  if (ball[i].x >= (320 - 8) - images[sprites[ball[i].spriteno].image].imagel)
+  if (ball[i].x >= (320 - 8) - images[sprites[ball[i].spriteno].image].width)
   {
     ball[i].move = -ball[i].move;
-    ball[i].x = (320 - 8) - images[sprites[ball[i].spriteno].image].imagel;
+    ball[i].x = (320 - 8) - images[sprites[ball[i].spriteno].image].width;
     isCollide = 1;
   }
 
