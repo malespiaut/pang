@@ -83,21 +83,21 @@ bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
 }
 
 void
-image_blit(int imagesNo, int dx, int dy)
+image_blit(int i, int dx, int dy)
 {
   SDL_Rect dest;
   dest.x = dx;
   dest.y = dy;
-  dest.h = images[imagesNo].imageh;
-  dest.w = images[imagesNo].imagel;
+  dest.h = images[i].imageh;
+  dest.w = images[i].imagel;
 
   SDL_Rect src;
   src.x = 0;
   src.y = 0;
-  src.h = images[imagesNo].imageh;
-  src.w = images[imagesNo].imagel;
+  src.h = images[i].imageh;
+  src.w = images[i].imagel;
 
-  SDL_BlitSurface(images[imagesNo].image, &src, screen, &dest);
+  SDL_BlitSurface(images[i].image, &src, screen, &dest);
 }
 
 void
@@ -140,12 +140,12 @@ present_frame(void)
 
 // image 1 et 3 transparente
 int
-bmp_load(char* pathfilename, int i)
+bmp_load(char* filename, int i)
 {
   SDL_FreeSurface(bitmaps[i]);
   SDL_Surface* temp;
 
-  if ((temp = IMG_Load(pathfilename)) == NULL)
+  if ((temp = IMG_Load(filename)) == NULL)
   {
     fprintf(stderr, "Error: %s\n", SDL_GetError());
     exit(1);

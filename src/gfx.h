@@ -70,7 +70,7 @@ extern Tile tiles[MAX_TILE];
 void present_frame(void);
 void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);
 void graphics_init(void);
-int bmp_load(char* pathfilename, int i);
+int bmp_load(char* filename, int i);
 void events_process(void);
 void sprite_initEngine(void);
 void image_get(int n, int x, int y, int l, int h, int i);
