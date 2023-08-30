@@ -8,7 +8,6 @@
 #include "gfx.h"
 #include "ladder.h"
 #include "levels.h"
-#include "main.h"
 #include "objects.h"
 #include "platform.h"
 #include "player.h"

@@ -3,7 +3,6 @@
 
 #include "gfx.h"
 #include "ladder.h"
-#include "main.h"
 #include "structures.h"
 
 Ladder ladder[MAX_LADDER];

@@ -2,7 +2,6 @@
 #include "bonus.h"
 #include "collisions.h"
 #include "gfx.h"
-#include "main.h"
 #include "objects.h"
 #include "platform.h"
 #include "shoot.h"

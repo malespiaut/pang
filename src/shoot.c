@@ -2,7 +2,6 @@
 #include "bonus.h"
 #include "collisions.h"
 #include "gfx.h"
-#include "main.h"
 #include "platform.h"
 #include "sound.h"
 #include "structures.h"

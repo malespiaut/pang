@@ -9,24 +9,15 @@
 #include "ui.h"
 
 void
-showScore(char* string, unsigned int x, unsigned int y)
+showScore(char* string, int x, int y)
 {
-  int positionxduzero = 148;
-  int positionyduzero = 226;
+  int score_x = 148;
+  int score_y = 226;
 
-  size_t temp = strlen(string);
-  for (size_t i = 0; i < temp; i++)
+  for (size_t i = 0; i < strlen(string); ++i)
   {
-    if (((*string - 48) * 13) == 0)
-    {
-      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero, positionyduzero, 13, 13, x + (i * 6), y, 13, 13);
-    }
-    else
-    {
-      blitBMPImageToScreen(1, ((*string - 48) * 14) + positionxduzero + 1, positionyduzero, 13, 13, x + (i * 6), y, 13, 13);
-    }
-
-    string++;
+    int number = string[i] - 48;
+    blitBMPImageToScreen(1, (number * 14) + score_x + 1, score_y, 13, 13, x + (i * 6), y, 13, 13);
   }
 }
 
