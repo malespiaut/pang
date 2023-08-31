@@ -10,23 +10,12 @@
 
 Ball ball[MAX_BALL];
 
-/*
- Copie à l'écran l'image de la balle numéro i
-*/
 void
 showBall(int i)
 {
   if (ball[i].active)
   {
-
-    //      fprintf(stderr,"x: %d\n",(int)ball[i].x);
-    //      fprintf(stderr,"y: %d\n",(int)ball[i].y);
-
     sprite_move(ball[i].spriteno, (int)ball[i].x, (int)ball[i].y);
-
-    //      fprintf(stderr,"sx: %d\n",sprites[0].x);
-    //      fprintf(stderr,"sy: %d\n",sprites[0].y);
-
     sprite_id_set(ball[i].spriteno, ball[i].type);
     sprite_blit(ball[i].spriteno);
   }
@@ -769,9 +758,5 @@ sans collision.
       ball[i].vel = ball[i].vel - GRAV;
       ball[i].y = ball[i].y - ball[i].vel;
     }
-    //	        fprintf(s	tderr,"move: %d\n",(int)ball[i].move);
-    //	        fprintf(stderr,"vel: %d\n",(int)ball[i].vel);
-    //	        fprintf(stderr,"x: %d\n",(int)ball[i].x);
-    //	        fprintf(stderr,"y: %d\n",(int)ball[i].y);
   }
 }

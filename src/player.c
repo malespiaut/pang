@@ -63,7 +63,6 @@ reInitPlayer(void)
   player.hbox = 28; /* Hauteur et largeur de la boite de collision */
   player.lbox = 18;
   player.weapon = WEAPON_NORMAL_SHOOT;
-  /*player.score=0;*/
   player.nbtir = 0; /* Nombre de tir en cours ... */
   player.etat = PLAYER_STOP;
   player.old_etat = -1;
@@ -85,9 +84,6 @@ reInitPlayer(void)
 void
 updatePlayer(void)
 {
-  // unsigned char keydata; // evilo
-
-  // int isOnLadder=0; // evilo
   int whereIsPlayer = 999;
   /* 0 - En bas de l'écran */
   /* 1 - En bas d'une échelle */
@@ -169,7 +165,6 @@ updatePlayer(void)
     player.y = platforms[platformCollide].y - 32;
   }
 
-  /*player.old_etat = player.etat;*/
   if ((keyLeft == 1) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
   {
     player.xbox = 8;
@@ -337,7 +332,6 @@ updatePlayer(void)
         if (ball[i].active)
         {
           if (sprite_collides(player.spriteno, ball[i].spriteno) == 1)
-          //        	keyAction4 = 1;
           {
             if (player.bonus_protection == 1)
             {
@@ -382,7 +376,6 @@ updatePlayer(void)
         else if (bonus[i].type == BONUS_BOOM)
         {
           player.bonus_boom = 1;
-          //                    player.bonus_freeze=0;
           bonus[i].active = 0;
         }
         else if (bonus[i].type == BONUS_FREEZE)
