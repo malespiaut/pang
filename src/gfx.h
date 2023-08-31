@@ -52,8 +52,8 @@ typedef struct ss{
 typedef struct image Image;
 struct image
 {
-  uint32_t height;      // Hauteur
-  uint32_t width;       // Largeur
+  uint16_t height;      // Hauteur
+  uint16_t width;       // Largeur
   SDL_Surface* surface; // L'image en elle mème
 };
 
