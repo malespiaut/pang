@@ -442,101 +442,34 @@ sprite_collides(int spriteindex1, int spriteindex2)
   Image* img1 = &images[spr1->index];
   Image* img2 = &images[spr2->index];
 
-  int rect1_x, rect1_y;
-  int rect2_x, rect2_y;
-  int i, j, k, l;
-
-  if (!spr1->active)
+  if (!spr1->active || !spr2->active)
   {
-    return false;
-  }
-  if (!spr2->active)
-  {
-    return false;
+    return false; // Invalid input
   }
 
-  /*Détection par bounding box
-  Retourne 0 et sort de la fonction
-  si les sprites ne possédent pas de zones superposées*/
-  if (spr1->x > spr2->x + img2->width)
-  {
-    return false;
-  }
-  if (spr1->x + img1->width < spr2->x)
-  {
-    return false;
-  }
-  if (spr1->y > spr2->y + img2->height)
-  {
-    return false;
-  }
-  if (spr1->y + img1->height < spr2->y)
+  // Check if sprites' bounding rectangles overlap
+  if (!SDL_HasIntersection(&(SDL_Rect){.x = spr1->x, .y = spr1->y, .w = img1->width, .h = img1->height}, &(SDL_Rect){.x = spr2->x, .y = spr2->y, .w = img2->width, .h = img2->height}))
   {
     return false;
   }
 
-  /*Le but des lignes suivantes est de définir un
-  rectangle qui englobe la zone d'affichage
-  commune aux deux sprites
-  On traite les coordonnées x du rectangle*/
+  SDL_Surface* surface1 = img1->surface;
+  SDL_Surface* surface2 = img2->surface;
 
-  if (spr1->x < spr2->x)
-  {
-    rect1_x = spr2->x;
-    if (spr1->x + img1->width >= spr2->x + img2->width)
-    {
-      rect2_x = spr2->x + img2->width;
-    }
-    else
-    {
-      rect2_x = spr1->x + img1->width;
-    }
-  }
-  else
-  {
-    rect1_x = spr1->x;
-    if (spr2->x + img2->width >= spr1->x + img1->width)
-    {
-      rect2_x = spr1->x + img1->width;
-    }
-    else
-    {
-      rect2_x = spr2->x + img2->width;
-    }
-  }
+  int start_x = SDL_max(spr1->x, spr2->x);
+  int end_x = SDL_min(spr1->x + img1->width, spr2->x + img2->width);
+  int start_y = SDL_max(spr1->y, spr2->y);
+  int end_y = SDL_min(spr1->y + img1->height, spr2->y + img2->height);
 
-  /*On traite les coordonnées y du rectangle*/
-  if (spr1->y < spr2->y)
+  for (int y = start_y; y < end_y; ++y)
   {
-    rect1_y = spr2->y;
-    if (spr1->y + img1->height >= spr2->y + img2->height)
+    for (int x = start_x; x < end_x; ++x)
     {
-      rect2_y = spr2->y + img2->height;
-    }
-    else
-    {
-      rect2_y = spr1->y + img1->height;
-    }
-  }
-  else
-  {
-    rect1_y = spr1->y;
-    if (spr2->y + img2->height > spr1->y + img1->height)
-    {
-      rect2_y = spr1->y + img1->height;
-    }
-    else
-    {
-      rect2_y = spr2->y + img2->height;
-    }
-  }
+      // Check if pixels at (x, y) in both sprites are non-transparent
+      Uint32 pixel1 = *(Uint32*)((Uint8*)surface1->pixels + y * surface1->pitch + x * sizeof(Uint32));
+      Uint32 pixel2 = *(Uint32*)((Uint8*)surface2->pixels + y * surface2->pitch + x * sizeof(Uint32));
 
-  for (i = rect1_x - spr1->x, j = rect1_x - spr2->x; i < rect2_x - spr1->x; i++, j++)
-  {
-    for (k = rect1_y - spr1->y, l = rect1_y - spr2->y; k < rect2_y - spr1->y; k++, l++)
-    {
-
-      if ((CollideTransparentPixelTest(img1->surface, i, k) != 0) && (CollideTransparentPixelTest(img2->surface, j, l)) != 0)
+      if ((pixel1 & surface1->format->Amask) != 0 && (pixel2 & surface2->format->Amask) != 0)
       {
         return true;
       }
