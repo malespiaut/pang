@@ -19,8 +19,8 @@
 bool g_quit = false;
 int fond_loaded = 0;
 
-static void
-game(void)
+int
+main(void)
 {
   int nbBall = 0;
   int pause = 0;
@@ -354,12 +354,6 @@ game(void)
     if (keyQuit == 1)
       g_quit = true;
   }
-}
-
-int
-main(void)
-{
-  game();
   sound_deinit();
 
   return 0;
