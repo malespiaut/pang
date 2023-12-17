@@ -29,7 +29,7 @@ main(void)
 
   srand(36547); /* seed random numbers */
 
-  graphics_init();
+  sdl_init();
   sound_init();
 
   sound_load(kSound_InGame);
@@ -355,6 +355,7 @@ main(void)
       g_quit = true;
   }
   sound_deinit();
+  sdl_deinit();
 
   return 0;
 }

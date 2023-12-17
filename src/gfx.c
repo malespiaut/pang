@@ -74,7 +74,7 @@ image_blit(int i, int dx, int dy)
 }
 
 void
-graphics_init(void)
+sdl_init(void)
 {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
   {
@@ -125,6 +125,16 @@ graphics_init(void)
   {
     SDL_Log("Unable to toggle cursor visibility: %s", SDL_GetError());
   }
+}
+
+void
+sdl_deinit(void)
+{
+  SDL_FreeSurface(g_screen);
+  SDL_DestroyTexture(g_texture);
+  SDL_DestroyRenderer(g_renderer);
+  SDL_DestroyWindow(g_window);
+  SDL_Quit();
 }
 
 void
