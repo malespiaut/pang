@@ -6,14 +6,17 @@
 
 #include <SDL.h>
 
+#define kScreenWidth 320
+#define kScreenHeight 240
+
 #define kSprite_COUNT 500
 #define kImage_COUNT 30
 
-extern SDL_Window* window;
-extern SDL_Renderer* renderer;
-extern SDL_Texture* texture;
-extern SDL_Surface* screen;
-extern SDL_Surface* bitmaps[10];
+extern SDL_Window* g_window;
+extern SDL_Renderer* g_renderer;
+extern SDL_Texture* g_texture;
+extern SDL_Surface* g_screen;
+extern SDL_Surface* g_bitmaps[10];
 
 extern int keyRight;
 extern int keyLeft;
@@ -73,8 +76,8 @@ struct sprite
   int intern1;
 };
 
-extern Sprite sprites[kSprite_COUNT];
-extern Image images[kImage_COUNT];
+extern Sprite g_sprites[kSprite_COUNT];
+extern Image g_images[kImage_COUNT];
 
 void present_frame(void);
 void bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh);

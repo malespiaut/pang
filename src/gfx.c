@@ -11,11 +11,11 @@
 #include "gfx.h"
 #include "structures.h"
 
-SDL_Window* window = NULL;
-SDL_Renderer* renderer = NULL;
-SDL_Texture* texture = NULL;
-SDL_Surface* screen = NULL;
-SDL_Surface* bitmaps[10] = {0};
+SDL_Window* g_window = NULL;
+SDL_Renderer* g_renderer = NULL;
+SDL_Texture* g_texture = NULL;
+SDL_Surface* g_screen = NULL;
+SDL_Surface* g_bitmaps[10] = {0};
 
 extern bool g_quit;
 
@@ -34,8 +34,8 @@ int keyActionPause = 0;
 
 int fpsshow = 0;
 
-Sprite sprites[kSprite_COUNT] = {0}; // Les sprites
-Image images[kImage_COUNT] = {0};    // Les images découpées des BMP chargés
+Sprite g_sprites[kSprite_COUNT] = {0}; // Les sprites
+Image g_images[kImage_COUNT] = {0};    // Les images découpées des BMP chargés
 
 void
 bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
@@ -52,7 +52,7 @@ bmp_blit(int i, int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh)
   src.h = sh;
   src.w = sw;
 
-  SDL_BlitSurface(bitmaps[i], &src, screen, &dest);
+  SDL_BlitSurface(g_bitmaps[i], &src, g_screen, &dest);
 }
 
 void
@@ -61,16 +61,16 @@ image_blit(int i, int dx, int dy)
   SDL_Rect dest;
   dest.x = dx;
   dest.y = dy;
-  dest.h = images[i].height;
-  dest.w = images[i].width;
+  dest.h = g_images[i].height;
+  dest.w = g_images[i].width;
 
   SDL_Rect src;
   src.x = 0;
   src.y = 0;
-  src.h = images[i].height;
-  src.w = images[i].width;
+  src.h = g_images[i].height;
+  src.w = g_images[i].width;
 
-  SDL_BlitSurface(images[i].surface, &src, screen, &dest);
+  SDL_BlitSurface(g_images[i].surface, &src, g_screen, &dest);
 }
 
 void
@@ -78,44 +78,69 @@ graphics_init(void)
 {
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
   {
-    fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
-    exit(1);
+    SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
   }
 
-  atexit(SDL_Quit);
-
-  window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 320, 240, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_UTILITY);
-
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
-  SDL_RenderSetLogicalSize(renderer, 320, 240);
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
-  texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, 320, 240);
-
-  screen = SDL_CreateRGBSurface(0, 320, 240, 32, 0, 0, 0, 0);
-
-  SDL_ShowCursor(0);
-  if (screen == NULL)
+  g_window = SDL_CreateWindow("Pang! for Linux", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, kScreenWidth, kScreenHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_UTILITY);
+  if (!g_window)
   {
-    fprintf(stderr, "Failed to create the \"screen\" surface, exiting now\n");
-    exit(1);
+    SDL_Log("Unable to create window: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
+
+  g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_PRESENTVSYNC);
+  if (!g_renderer)
+  {
+    SDL_Log("Unable to create renderer: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
+
+  if (SDL_RenderSetLogicalSize(g_renderer, kScreenWidth, kScreenHeight) != 0)
+  {
+    SDL_Log("Unable to set a device independant resolution for rendering: %s", SDL_GetError());
+  }
+
+  if (SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255) != 0)
+  {
+    SDL_Log("Unable to set the color used for drawing operations: %s", SDL_GetError());
+  }
+
+  g_texture = SDL_CreateTexture(g_renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, kScreenWidth, kScreenHeight);
+  if (!g_texture)
+  {
+    SDL_Log("Unable to create texture: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
+
+  // TODO: Remove RGB Surface later, use textures only.
+  g_screen = SDL_CreateRGBSurface(0, kScreenWidth, kScreenHeight, 32, 0, 0, 0, 0);
+  if (!g_screen)
+  {
+    SDL_Log("Unable to create surface: %s", SDL_GetError());
+    exit(EXIT_FAILURE);
+  }
+
+  if (SDL_ShowCursor(SDL_DISABLE) < 0)
+  {
+    SDL_Log("Unable to toggle cursor visibility: %s", SDL_GetError());
   }
 }
 
 void
 present_frame(void)
 {
-  SDL_UpdateTexture(texture, NULL, screen->pixels, sizeof(Uint32) * 320);
-  SDL_RenderClear(renderer);
-  SDL_RenderCopy(renderer, texture, NULL, NULL);
-  SDL_RenderPresent(renderer);
+  SDL_UpdateTexture(g_texture, NULL, g_screen->pixels, sizeof(Uint32) * kScreenWidth);
+  SDL_RenderClear(g_renderer);
+  SDL_RenderCopy(g_renderer, g_texture, NULL, NULL);
+  SDL_RenderPresent(g_renderer);
 }
 
 // image 1 et 3 transparente
 int
 bmp_load(char* filename, int i)
 {
-  SDL_FreeSurface(bitmaps[i]);
+  SDL_FreeSurface(g_bitmaps[i]);
   SDL_Surface* temp;
 
   if ((temp = IMG_Load(filename)) == NULL)
@@ -124,12 +149,12 @@ bmp_load(char* filename, int i)
     exit(1);
   }
 
-  bitmaps[i] = SDL_ConvertSurface(temp, screen->format, SDL_SWSURFACE);
+  g_bitmaps[i] = SDL_ConvertSurface(temp, g_screen->format, SDL_SWSURFACE);
   SDL_FreeSurface(temp);
 
   if ((i == 1) || (i == 3))
   {
-    SDL_SetColorKey(bitmaps[i], SDL_TRUE, 0xff00ff);
+    SDL_SetColorKey(g_bitmaps[i], SDL_TRUE, 0xff00ff);
   }
 
   return 0;
@@ -285,8 +310,8 @@ image_get(int n, int x, int y, int l, int h, int i)
 #endif
 
   // Si l'image est déja alloué, on la libère.
-  SDL_FreeSurface(images[n].surface);
-  images[n].surface = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
+  SDL_FreeSurface(g_images[n].surface);
+  g_images[n].surface = SDL_CreateRGBSurface(SDL_SWSURFACE, l, h, 32, rmask, gmask, bmask, amask);
 
   // On copie une portion de la BMP dans la nouvelle surface
   SDL_Rect src;
@@ -294,22 +319,22 @@ image_get(int n, int x, int y, int l, int h, int i)
   src.y = y;
   src.h = h;
   src.w = l;
-  SDL_BlitSurface(bitmaps[i], &src, images[n].surface, NULL);
+  SDL_BlitSurface(g_bitmaps[i], &src, g_images[n].surface, NULL);
 
-  images[n].height = h;
-  images[n].width = l;
+  g_images[n].height = h;
+  g_images[n].width = l;
 }
 
 void
 sprite_init(int n, int x, int y, int i)
 {
-  sprites[n].x = x;
-  sprites[n].y = y;
-  sprites[n].index = i;
-  sprites[n].active = 1;
-  sprites[n].current_animation = -1;
-  sprites[n].intern1 = 0;
-  sprites[n].current_animation_frame = -1;
+  g_sprites[n].x = x;
+  g_sprites[n].y = y;
+  g_sprites[n].index = i;
+  g_sprites[n].active = 1;
+  g_sprites[n].current_animation = -1;
+  g_sprites[n].intern1 = 0;
+  g_sprites[n].current_animation_frame = -1;
 }
 
 int
@@ -317,17 +342,17 @@ sprite_init_free(int x, int y, int i)
 {
   int s = 0;
 
-  while ((sprites[s].active) && (s < kSprite_COUNT))
+  while ((g_sprites[s].active) && (s < kSprite_COUNT))
   {
     s++;
   }
-  sprites[s].x = x;
-  sprites[s].y = y;
-  sprites[s].index = i;
-  sprites[s].active = 1;
-  sprites[s].current_animation = -1;
-  sprites[s].intern1 = 0;
-  sprites[s].current_animation_frame = -1;
+  g_sprites[s].x = x;
+  g_sprites[s].y = y;
+  g_sprites[s].index = i;
+  g_sprites[s].active = 1;
+  g_sprites[s].current_animation = -1;
+  g_sprites[s].intern1 = 0;
+  g_sprites[s].current_animation_frame = -1;
 
   return s;
 }
@@ -335,7 +360,7 @@ sprite_init_free(int x, int y, int i)
 void
 sprite_free_set(int n)
 {
-  sprites[n].active = 0;
+  g_sprites[n].active = 0;
 }
 
 void
@@ -345,48 +370,48 @@ sprite_free_all(void)
 
   for (i = 0; i < kSprite_COUNT; i++)
   {
-    sprites[i].active = 0;
+    g_sprites[i].active = 0;
   }
 }
 
 void
 sprite_move(int n, int x, int y)
 {
-  sprites[n].x = x;
-  sprites[n].y = y;
+  g_sprites[n].x = x;
+  g_sprites[n].y = y;
 }
 
 void
 sprite_id_set(int n, int i)
 {
-  sprites[n].index = i;
+  g_sprites[n].index = i;
 }
 
 void
 sprite_blit(int n)
 {
-  if (sprites[n].active)
+  if (g_sprites[n].active)
   {
-    if (sprites[n].current_animation != -1)
+    if (g_sprites[n].current_animation != -1)
     {
-      if (sprites[n].intern1 <= 0)
+      if (g_sprites[n].intern1 <= 0)
       {
-        sprites[n].current_animation_frame++;
-        if (sprites[n].current_animation_frame > 19)
-          sprites[n].current_animation_frame = 0;
-        if (sprites[n].animation[sprites[n].current_animation][sprites[n].current_animation_frame] == -1)
-          sprites[n].current_animation_frame = 0;
-        sprites[n].index = sprites[n].animation[sprites[n].current_animation][sprites[n].current_animation_frame];
-        sprites[n].intern1 = sprites[n].animation_speed[sprites[n].current_animation];
+        g_sprites[n].current_animation_frame++;
+        if (g_sprites[n].current_animation_frame > 19)
+          g_sprites[n].current_animation_frame = 0;
+        if (g_sprites[n].animation[g_sprites[n].current_animation][g_sprites[n].current_animation_frame] == -1)
+          g_sprites[n].current_animation_frame = 0;
+        g_sprites[n].index = g_sprites[n].animation[g_sprites[n].current_animation][g_sprites[n].current_animation_frame];
+        g_sprites[n].intern1 = g_sprites[n].animation_speed[g_sprites[n].current_animation];
       }
-      sprites[n].intern1--;
+      g_sprites[n].intern1--;
     }
     else
     {
-      sprites[n].intern1 = 0;
+      g_sprites[n].intern1 = 0;
     }
 
-    image_blit(sprites[n].index, sprites[n].x, sprites[n].y);
+    image_blit(g_sprites[n].index, g_sprites[n].x, g_sprites[n].y);
   }
 }
 
@@ -437,10 +462,10 @@ CollideTransparentPixelTest(SDL_Surface* surface, int u, int v)
 bool
 sprite_collides(int spriteindex1, int spriteindex2)
 {
-  Sprite* spr1 = &sprites[spriteindex1];
-  Sprite* spr2 = &sprites[spriteindex2];
-  Image* img1 = &images[spr1->index];
-  Image* img2 = &images[spr2->index];
+  Sprite* spr1 = &g_sprites[spriteindex1];
+  Sprite* spr2 = &g_sprites[spriteindex2];
+  Image* img1 = &g_images[spr1->index];
+  Image* img2 = &g_images[spr2->index];
 
   if (!spr1->active || !spr2->active)
   {
