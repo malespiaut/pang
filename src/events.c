@@ -3,7 +3,7 @@
 
 #include "events.h"
 
-KeyState gKeyStates[kKey_NUM_KEYS];
+KeyState gKeyStates[kKey_NUM_KEYS] = {0};
 
 int gKeyMap[kKey_NUM_KEYS] =
   {
@@ -65,7 +65,7 @@ events_process(void)
 
     bool downNow = false;
 
-    if (scancode && scancode < numkeys)
+    if (scancode && (scancode < numkeys))
     {
       downNow |= 0 != keystate[scancode];
     }
