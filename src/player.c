@@ -1,6 +1,7 @@
 #include "ball.h"
 #include "bonus.h"
 #include "collisions.h"
+#include "events.h"
 #include "gfx.h"
 #include "ladder.h"
 #include "objects.h"
@@ -165,7 +166,7 @@ updatePlayer(void)
     player.y = platforms[platformCollide].y - 32;
   }
 
-  if ((keyLeft == 1) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
+  if ((GetNewKey(kKey_L)) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
   {
     player.xbox = 8;
     player.ybox = 2;
@@ -207,7 +208,7 @@ updatePlayer(void)
     player.old_etat = player.etat;
     player.etat = PLAYER_LEFT;
   }
-  else if ((keyRight) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
+  else if ((GetNewKey(kKey_R)) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
   {
     player.xbox = 4;
     player.ybox = 2;
@@ -249,14 +250,14 @@ updatePlayer(void)
     player.old_etat = player.etat;
     player.etat = PLAYER_RIGHT;
   }
-  else if ((keyUp) && (whereIsPlayer > 0) && (whereIsPlayer < 3))
+  else if ((GetNewKey(kKey_U)) && (whereIsPlayer > 0) && (whereIsPlayer < 3))
   {
     player.y--;
     player.x = ladder[echelleCollide].x;
     player.old_etat = player.etat;
     player.etat = PLAYER_LADDER;
   }
-  else if ((keyDown) && (whereIsPlayer > 0) && (whereIsPlayer < 4))
+  else if ((GetNewKey(kKey_D)) && (whereIsPlayer > 0) && (whereIsPlayer < 4))
   {
     player.y += 1;
     player.x = ladder[echelleCollide].x;
@@ -277,7 +278,8 @@ updatePlayer(void)
     }
   }
 
-  if (((keyAction1 == 1) || (keyAction2 == 1)) && (player.shoot_timer == 0))
+  // if (((keyAction1 == 1) || (keyAction2 == 1)) && (player.shoot_timer == 0))
+  if ((GetNewKey(kKey_Shoot)) && (player.shoot_timer == 0))
 
   {
     player.xbox = 2;
@@ -311,8 +313,14 @@ updatePlayer(void)
   }
 
   /* Pour empecher le tir automatique ! */
+  if (GetNewKey(kKey_Shoot))
+  {
+    player.shoot_timer = 0;
+  }
+  /*
   if ((keyAction1 == 0) && (keyAction2 == 0))
     player.shoot_timer = 0;
+  */
 
   /* Test des collisions droite gauche*/
   if (player.x < 8)

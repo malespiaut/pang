@@ -11,7 +11,9 @@ int gKeyMap[kKey_NUM_KEYS] =
     [kKey_D] = SDL_SCANCODE_DOWN,
     [kKey_L] = SDL_SCANCODE_LEFT,
     [kKey_R] = SDL_SCANCODE_RIGHT,
+    [kKey_Shoot] = SDL_SCANCODE_SPACE,
     [kKey_Confirm] = SDL_SCANCODE_RETURN,
+    [kKey_Quit] = SDL_SCANCODE_ESCAPE,
 };
 
 void

@@ -11,7 +11,9 @@ enum Key
   kKey_D,
   kKey_L,
   kKey_R,
+  kKey_Shoot,
   kKey_Confirm,
+  kKey_Quit,
   kKey_NUM_KEYS,
 };
 typedef enum Key Key;

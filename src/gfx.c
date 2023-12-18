@@ -18,7 +18,7 @@ SDL_Surface* g_screen = NULL;
 SDL_Surface* g_bitmaps[10] = {0};
 
 extern bool g_quit;
-
+/*
 int keyRight = 0;
 int keyLeft = 0;
 int keyUp = 0;
@@ -33,7 +33,7 @@ int keyAction4 = 0;
 int keyActionPause = 0;
 
 int fpsshow = 0;
-
+*/
 Sprite g_sprites[kSprite_COUNT] = {0}; // Les sprites
 Image g_images[kImage_COUNT] = {0};    // Les images découpées des BMP chargés
 
@@ -169,136 +169,6 @@ bmp_load(char* filename, int i)
 
   return 0;
 }
-
-/*
-void
-events_process(void)
-{
-  SDL_Event event = {0};
-  while (SDL_PollEvent(&event))
-  {
-    switch (event.key.keysym.sym)
-    {
-      case SDLK_LEFT:
-        keyLeft = 1;
-        break;
-
-      case SDLK_RIGHT:
-        keyRight = 1;
-        break;
-
-      case SDLK_UP:
-        keyUp = 1;
-        break;
-
-      case SDLK_DOWN:
-        keyDown = 1;
-        break;
-
-      case SDLK_c:
-        keyAction1 = 1;
-        break;
-
-      case SDLK_v:
-        keyAction2 = 1;
-        break;
-
-      case SDLK_b:
-        keyAction3 = 1;
-        break;
-
-      case SDLK_n:
-        keyAction4 = 1;
-        break;
-
-      case SDLK_p:
-        keyActionPause = 1;
-        keyAction4 = 1;
-        break;
-
-      case SDLK_ESCAPE:
-        g_quit = true;
-        break;
-
-      default:
-        break;
-    }
-
-    switch (event.type)
-    {
-      case SDL_KEYDOWN:
-        switch (event.key.keysym.sym)
-        {
-          case SDLK_f:
-            fpsshow = (fpsshow + 1) % 2;
-            printf("fpsshow: %d\n", fpsshow);
-            break;
-
-          default:
-            break;
-        }
-        break;
-
-      case SDL_KEYUP:
-        switch (event.key.keysym.sym)
-        {
-          case SDLK_LEFT:
-            keyLeft = 0;
-            break;
-
-          case SDLK_RIGHT:
-            keyRight = 0;
-            break;
-
-          case SDLK_UP:
-            keyUp = 0;
-            break;
-
-          case SDLK_DOWN:
-            keyDown = 0;
-            break;
-
-          case SDLK_c:
-            keyAction1 = 0;
-            break;
-
-          case SDLK_v:
-            keyAction2 = 0;
-            break;
-
-          case SDLK_b:
-            keyAction3 = 0;
-            break;
-
-          case SDLK_n:
-            keyAction4 = 0;
-            break;
-
-          case SDLK_p:
-            keyActionPause = 0;
-            keyAction4 = 0;
-            break;
-
-          case SDLK_ESCAPE:
-            g_quit = true;
-            break;
-
-          default:
-            break;
-        }
-        break;
-
-      case SDL_QUIT:
-        keyQuit = 1;
-        g_quit = true;
-        break;
-
-      default:
-        break;
-    }
-  }
-}
-*/
 
 // Recupère une image n° n en x,y de taille h,l dans l'image BMP n° i
 // void image_get(int n,int x,int y,int l,int h,int i)

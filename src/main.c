@@ -24,7 +24,6 @@ int
 main(void)
 {
   int nbBall = 0;
-  int pause = 0;
 
   gbl_evt = EVT_TITLE;
 
@@ -83,41 +82,15 @@ main(void)
 
       bmp_blit(2, 0, 0, 320, 240, 0, 0, 320, 240);
 
-      // present_frame();
-      while (keyAction1 == 0 && keyQuit == 0)
+      if (GetNewKey(kKey_Confirm))
       {
-        events_process();
+        gbl_evt = EVT_NULL;
+        initPlayer();
+        initLevel(currentLevel);
       }
-      while (keyAction1 == 1 && keyQuit == 0)
-      {
-        events_process();
-      }
-
-      gbl_evt = EVT_NULL;
-      initPlayer();
-      initLevel(currentLevel);
     }
     else if (gbl_evt == EVT_NULL)
     {
-      while (keyAction4 == 1)
-      {
-        pause = 1;
-        events_process();
-      }
-
-      while (pause == 1)
-      {
-        events_process();
-        if (keyAction4 == 1)
-        {
-          while (keyAction4 == 1)
-          {
-            events_process();
-          }
-          pause = 0;
-        }
-      }
-
       sound_play(kSound_InGame, -1);
 
       int old_score = player.score;
@@ -251,7 +224,6 @@ main(void)
           player.x++;
         }
         cpt++;
-        // present_frame();
       }
       sound_clear(kSound_InGame, kSoundClear_Force);
       sprite_free_all();
@@ -260,7 +232,9 @@ main(void)
       initLevel(currentLevel);
       gbl_evt = EVT_NULL;
       if (player.nblive <= 0)
+      {
         gbl_evt = EVT_GAME_OVER;
+      }
     }
     else if (gbl_evt == EVT_NEXT_LEVEL)
     {
@@ -282,25 +256,16 @@ main(void)
       bmp_blit(1, 242, 65, 38, 11, 110, 217, 38, 11); // Affiche SCORE:
       showScore(chaine, 183, 217);
 
-      // present_frame();
-
-      events_process();
-      while (keyAction1 == 0)
+      if (GetNewKey(kKey_Confirm))
       {
-        events_process();
+        currentLevel++;
+        if (currentLevel > MAX_LEVEL)
+          currentLevel = 1;
+        reInitPlayer();
+        initLevel(currentLevel);
+        gbl_evt = EVT_NULL;
+        sound_clear(kSound_NextLevel, kSoundClear_Force);
       }
-      while (keyAction1 == 1)
-      {
-        events_process();
-      }
-
-      currentLevel++;
-      if (currentLevel > MAX_LEVEL)
-        currentLevel = 1;
-      reInitPlayer();
-      initLevel(currentLevel);
-      gbl_evt = EVT_NULL;
-      sound_clear(kSound_NextLevel, kSoundClear_Force);
     }
     else if (gbl_evt == EVT_GAME_OVER)
     {
@@ -323,38 +288,38 @@ main(void)
         sprintf(chaine, "%d", currentLevel);
         bmp_blit(1, 99, 44, 36, 14, (110 + 20), 224, 36, 14); // Affiche LEVEL:
         showScore(chaine, (80 + 70 + 20), 224);
-
-        // present_frame();
       }
-      while (keyAction1 == 0)
+      if (GetNewKey(kKey_Confirm))
       {
-        events_process();
+        sound_clear(kSound_GameOver, kSoundClear_Force);
+        initPlayer();
+        initLevel(1);
+        gbl_evt = EVT_TITLE;
+        currentLevel = 1;
       }
-      while (keyAction1 == 1)
-      {
-        events_process();
-      }
-      sound_clear(kSound_GameOver, kSoundClear_Force);
-      initPlayer();
-      initLevel(1);
-      gbl_evt = EVT_TITLE;
-      currentLevel = 1;
     }
-    if (fpsshow == 1)
-      showfps();
+
+    // XXX Present frame once
     present_frame();
     sound_clear(kSound_Shoot, kSoundClear_DontForce);
     sound_clear(kSound_BallPop, kSoundClear_DontForce);
     onetwo++;
     if (onetwo > 5)
+    {
       onetwo = 0;
+    }
     gbl_timer++;
     if (gbl_timer == 51)
+    {
       gbl_timer = 1;
+    }
 
     events_process();
-    if (keyQuit == 1)
+
+    if (GetNewKey(kKey_Quit))
+    {
       g_quit = true;
+    }
   }
   sound_deinit();
   sdl_deinit();
