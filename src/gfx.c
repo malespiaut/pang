@@ -170,6 +170,7 @@ bmp_load(char* filename, int i)
   return 0;
 }
 
+/*
 void
 events_process(void)
 {
@@ -297,6 +298,7 @@ events_process(void)
     }
   }
 }
+*/
 
 // Recupère une image n° n en x,y de taille h,l dans l'image BMP n° i
 // void image_get(int n,int x,int y,int l,int h,int i)

@@ -5,6 +5,7 @@
 
 #include "ball.h"
 #include "bonus.h"
+#include "events.h"
 #include "gfx.h"
 #include "ladder.h"
 #include "levels.h"
@@ -27,6 +28,7 @@ main(void)
 
   gbl_evt = EVT_TITLE;
 
+  // TODO: Implement xorshiro
   srand(36547); /* seed random numbers */
 
   sdl_init();
@@ -81,7 +83,7 @@ main(void)
 
       bmp_blit(2, 0, 0, 320, 240, 0, 0, 320, 240);
 
-      present_frame();
+      // present_frame();
       while (keyAction1 == 0 && keyQuit == 0)
       {
         events_process();
@@ -249,7 +251,7 @@ main(void)
           player.x++;
         }
         cpt++;
-        present_frame();
+        // present_frame();
       }
       sound_clear(kSound_InGame, kSoundClear_Force);
       sprite_free_all();
@@ -280,7 +282,7 @@ main(void)
       bmp_blit(1, 242, 65, 38, 11, 110, 217, 38, 11); // Affiche SCORE:
       showScore(chaine, 183, 217);
 
-      present_frame();
+      // present_frame();
 
       events_process();
       while (keyAction1 == 0)
@@ -322,7 +324,7 @@ main(void)
         bmp_blit(1, 99, 44, 36, 14, (110 + 20), 224, 36, 14); // Affiche LEVEL:
         showScore(chaine, (80 + 70 + 20), 224);
 
-        present_frame();
+        // present_frame();
       }
       while (keyAction1 == 0)
       {
