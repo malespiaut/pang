@@ -24,9 +24,9 @@ createPlatform(int x, int y, int typepf)
     i++;
   }
 
-  if (typepf == PF_INCASSABLE)
+  if (typepf == kImage_PlatformUnbreakable)
   {
-    platforms[i].type = PF_INCASSABLE;
+    platforms[i].type = kImage_PlatformUnbreakable;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 8;
@@ -34,9 +34,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_CASSABLE)
+  else if (typepf == kImage_PlatformBreakable)
   {
-    platforms[i].type = PF_CASSABLE;
+    platforms[i].type = kImage_PlatformBreakable;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 8;
@@ -44,9 +44,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_CASSABLEV)
+  else if (typepf == kImage_PlatformBreakableVertical)
   {
-    platforms[i].type = PF_CASSABLEV;
+    platforms[i].type = kImage_PlatformBreakableVertical;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 32;
@@ -54,9 +54,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_INCASSABLEV)
+  else if (typepf == kImage_PlatformUnbreakableVertical)
   {
-    platforms[i].type = PF_INCASSABLEV;
+    platforms[i].type = kImage_PlatformUnbreakableVertical;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 32;
@@ -64,9 +64,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_MOYEN_INCASSABLE)
+  else if (typepf == kImage_PlatformMediumUnbreakable)
   {
-    platforms[i].type = PF_MOYEN_INCASSABLE;
+    platforms[i].type = kImage_PlatformMediumUnbreakable;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 8;
@@ -74,9 +74,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_MOYEN_CASSABLE)
+  else if (typepf == kImage_PlatformMediumBreakable)
   {
-    platforms[i].type = PF_MOYEN_CASSABLE;
+    platforms[i].type = kImage_PlatformMediumBreakable;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 8;
@@ -84,9 +84,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_MICRO_INCASSABLE)
+  else if (typepf == kImage_PlatformMicroUnbreakable)
   {
-    platforms[i].type = PF_MICRO_INCASSABLE;
+    platforms[i].type = kImage_PlatformMicroUnbreakable;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 8;
@@ -94,9 +94,9 @@ createPlatform(int x, int y, int typepf)
     platforms[i].active = 1;
     platforms[i].bonus = 0;
   }
-  else if (typepf == PF_MICRO_CASSABLE)
+  else if (typepf == kImage_PlatformMicroBreakable)
   {
-    platforms[i].type = PF_MICRO_CASSABLE;
+    platforms[i].type = kImage_PlatformMicroBreakable;
     platforms[i].x = x;
     platforms[i].y = y;
     platforms[i].hauteur = 8;

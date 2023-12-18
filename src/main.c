@@ -41,29 +41,29 @@ main(void)
 
   bmp_load("romdisk/sprites.png", 1);
 
-  image_get(ANIM_RIGHT1, 70, 117, 31, 32, 1);
-  image_get(ANIM_RIGHT2, 118, 117, 31, 32, 1);
-  image_get(ANIM_RIGHT3, 164, 117, 31, 32, 1);
-  image_get(ANIM_LEFT1, 70, 153, 31, 32, 1);
-  image_get(ANIM_LEFT2, 118, 153, 31, 32, 1);
-  image_get(ANIM_LEFT3, 164, 153, 31, 32, 1);
-  image_get(ANIM_SHOOT, 67, 70, 31, 32, 1);
-  image_get(ANIM_STOP, 67, 70, 31, 32, 1);
-  image_get(ANIM_DEAD, 168, 54, 48, 40, 1);
-  image_get(BIG, 10, 7, 48, 40, 1);
-  image_get(NORMAL, 70, 6, 32, 26, 1);
-  image_get(SMALL, 109, 20, 16, 14, 1);
-  image_get(MICRO, 131, 28, 8, 7, 1);
-  image_get(PF_CASSABLE, 20, 78, 32, 8, 1);
-  image_get(PF_INCASSABLE, 20, 88, 32, 8, 1);
-  image_get(PF_CASSABLEV, 11, 102, 8, 32, 1);
-  image_get(PF_INCASSABLEV, 21, 102, 8, 32, 1);
-  image_get(PF_MOYEN_INCASSABLE, 38, 102, 16, 8, 1);
-  image_get(PF_MOYEN_CASSABLE, 38, 112, 16, 8, 1);
-  image_get(PF_MICRO_INCASSABLE, 45, 122, 8, 8, 1);
-  image_get(PF_MICRO_CASSABLE, 45, 132, 8, 8, 1);
-  image_get(ANIM_LADDER1, 200, 191, 26, 32, 1);
-  image_get(ANIM_LADDER2, 230, 191, 26, 32, 1);
+  image_get(kImage_AnimRight1, 70, 117, 31, 32, 1);
+  image_get(kImage_AnimRight2, 118, 117, 31, 32, 1);
+  image_get(kImage_AnimRight3, 164, 117, 31, 32, 1);
+  image_get(kImage_AnimLeft1, 70, 153, 31, 32, 1);
+  image_get(kImage_AnimLeft2, 118, 153, 31, 32, 1);
+  image_get(kImage_AnimLeft3, 164, 153, 31, 32, 1);
+  image_get(kImage_AnimShoot, 67, 70, 31, 32, 1);
+  image_get(kImage_AnimStop, 67, 70, 31, 32, 1);
+  image_get(kImage_AnimDead, 168, 54, 48, 40, 1);
+  image_get(kImage_Big, 10, 7, 48, 40, 1);
+  image_get(kImage_Normal, 70, 6, 32, 26, 1);
+  image_get(kImage_Small, 109, 20, 16, 14, 1);
+  image_get(kImage_Micro, 131, 28, 8, 7, 1);
+  image_get(kImage_PlatformBreakable, 20, 78, 32, 8, 1);
+  image_get(kImage_PlatformUnbreakable, 20, 88, 32, 8, 1);
+  image_get(kImage_PlatformBreakableVertical, 11, 102, 8, 32, 1);
+  image_get(kImage_PlatformUnbreakableVertical, 21, 102, 8, 32, 1);
+  image_get(kImage_PlatformMediumUnbreakable, 38, 102, 16, 8, 1);
+  image_get(kImage_PlatformMediumBreakable, 38, 112, 16, 8, 1);
+  image_get(kImage_PlatformMicroUnbreakable, 45, 122, 8, 8, 1);
+  image_get(kImage_PlatformMicroBreakable, 45, 132, 8, 8, 1);
+  image_get(kImage_AnimLadder1, 200, 191, 26, 32, 1);
+  image_get(kImage_AnimLadder2, 230, 191, 26, 32, 1);
 
   initBalls();
   initPlatforms();
@@ -215,7 +215,7 @@ main(void)
 
         showPlayer();
         if (cpt > 20)
-          player.anim_courante = ANIM_DEAD;
+          player.anim_courante = kImage_AnimDead;
         if ((cpt > 20) && (cpt < 40))
           player.y--;
         if (cpt > 40)

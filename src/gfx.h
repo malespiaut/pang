@@ -10,7 +10,6 @@
 #define kScreenHeight 240
 
 #define kSprite_COUNT 500
-#define kImage_COUNT 30
 
 extern SDL_Window* g_window;
 extern SDL_Renderer* g_renderer;
@@ -18,20 +17,35 @@ extern SDL_Texture* g_texture;
 extern SDL_Surface* g_screen;
 extern SDL_Surface* g_bitmaps[10];
 
-/*
-extern int keyRight;
-extern int keyLeft;
-extern int keyUp;
-extern int keyDown;
-extern int keyQuit;
+enum eImage
+{
+  kImage_Big,
+  kImage_Normal,
+  kImage_Small,
+  kImage_Micro,
+  kImage_AnimShoot,
+  kImage_AnimLeft1,
+  kImage_AnimLeft2,
+  kImage_AnimLeft3,
+  kImage_AnimRight1,
+  kImage_AnimRight2,
+  kImage_AnimRight3,
+  kImage_AnimDead,
+  kImage_AnimStop,
+  kImage_PlatformBreakable,
+  kImage_PlatformUnbreakable,
+  kImage_PlatformBreakableVertical,
+  kImage_PlatformUnbreakableVertical,
+  kImage_PlatformMediumBreakable,
+  kImage_PlatformMediumUnbreakable,
+  kImage_PlatformMicroBreakable,
+  kImage_PlatformMicroUnbreakable,
+  kImage_AnimLadder1,
+  kImage_AnimLadder2,
+  kImage_COUNT,
+};
+typedef enum eImage eImage;
 
-extern int keyAction1;
-extern int keyAction2;
-extern int keyAction3;
-extern int keyAction4;
-extern int fpsshow;
-extern int keyActionPause;
-*/
 extern int myEvent;
 
 /*

@@ -39,7 +39,7 @@ initPlayer(void)
   player.nbtir = 0; /* Nombre de tir en cours ... */
   player.etat = PLAYER_STOP;
   player.old_etat = -1;
-  player.anim_courante = ANIM_RIGHT1;
+  player.anim_courante = kImage_AnimRight1;
   player.derniere_balle = 0;
   player.multiplicateur = 1;
   player.shoot_timer = 0;
@@ -67,7 +67,7 @@ reInitPlayer(void)
   player.nbtir = 0; /* Nombre de tir en cours ... */
   player.etat = PLAYER_STOP;
   player.old_etat = -1;
-  player.anim_courante = ANIM_RIGHT1;
+  player.anim_courante = kImage_AnimRight1;
   player.derniere_balle = 0;
   player.multiplicateur = 1;
   player.shoot_timer = 0;
@@ -166,7 +166,7 @@ updatePlayer(void)
     player.y = platforms[platformCollide].y - 32;
   }
 
-  if ((GetNewKey(kKey_L)) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
+  if ((GetNewKey(kKey_L)) && (player.anim_courante != kImage_AnimShoot) && (whereIsPlayer != 2))
   {
     player.xbox = 8;
     player.ybox = 2;
@@ -208,7 +208,7 @@ updatePlayer(void)
     player.old_etat = player.etat;
     player.etat = PLAYER_LEFT;
   }
-  else if ((GetNewKey(kKey_R)) && (player.anim_courante != ANIM_SHOOT) && (whereIsPlayer != 2))
+  else if ((GetNewKey(kKey_R)) && (player.anim_courante != kImage_AnimShoot) && (whereIsPlayer != 2))
   {
     player.xbox = 4;
     player.ybox = 2;
@@ -269,12 +269,12 @@ updatePlayer(void)
     if (whereIsPlayer != 2)
     {
       player.etat = PLAYER_STOP;
-      player.anim_courante = ANIM_STOP;
+      player.anim_courante = kImage_AnimStop;
     }
     else
     {
       player.etat = PLAYER_STOP;
-      player.anim_courante = ANIM_LADDER1;
+      player.anim_courante = kImage_AnimLadder1;
     }
   }
 
@@ -290,7 +290,7 @@ updatePlayer(void)
     {
       createShoot(WEAPON_NORMAL_SHOOT);
       player.nbtir++;
-      player.anim_courante = ANIM_SHOOT;
+      player.anim_courante = kImage_AnimShoot;
       player.anim_cpt = 5;
       player.shoot_timer = 1;
     }
@@ -298,7 +298,7 @@ updatePlayer(void)
     {
       createShoot(WEAPON_GLUE_SHOOT);
       player.nbtir++;
-      player.anim_courante = ANIM_SHOOT;
+      player.anim_courante = kImage_AnimShoot;
       player.anim_cpt = 5;
       player.shoot_timer = 1;
     }
@@ -306,7 +306,7 @@ updatePlayer(void)
     {
       createShoot(WEAPON_DOUBLE_SHOOT);
       player.nbtir++;
-      player.anim_courante = ANIM_SHOOT;
+      player.anim_courante = kImage_AnimShoot;
       player.anim_cpt = 5;
       player.shoot_timer = 1;
     }
@@ -426,7 +426,7 @@ updatePlayer(void)
   };
 
   /* Mise à jour de l'animation */
-  if (player.anim_courante != ANIM_SHOOT)
+  if (player.anim_courante != kImage_AnimShoot)
   {
     if (player.etat == PLAYER_RIGHT)
     {
@@ -436,13 +436,13 @@ updatePlayer(void)
         {
           player.anim_courante++;
 
-          if (player.anim_courante > ANIM_RIGHT3)
-            player.anim_courante = ANIM_RIGHT1;
+          if (player.anim_courante > kImage_AnimRight3)
+            player.anim_courante = kImage_AnimRight1;
         }
       }
       else
       {
-        player.anim_courante = ANIM_RIGHT1;
+        player.anim_courante = kImage_AnimRight1;
       }
     }
     if (player.etat == PLAYER_LEFT)
@@ -452,13 +452,13 @@ updatePlayer(void)
         if (gbl_timer % 5 == 0)
         {
           player.anim_courante++;
-          if (player.anim_courante > ANIM_LEFT3)
-            player.anim_courante = ANIM_LEFT1;
+          if (player.anim_courante > kImage_AnimLeft3)
+            player.anim_courante = kImage_AnimLeft1;
         }
       }
       else
       {
-        player.anim_courante = ANIM_LEFT1;
+        player.anim_courante = kImage_AnimLeft1;
       }
     }
     if (player.etat == PLAYER_LADDER)
@@ -468,28 +468,28 @@ updatePlayer(void)
         if (gbl_timer % 5 == 0)
         {
           player.anim_courante++;
-          if (player.anim_courante > ANIM_LADDER2)
-            player.anim_courante = ANIM_LADDER1;
+          if (player.anim_courante > kImage_AnimLadder2)
+            player.anim_courante = kImage_AnimLadder1;
         }
       }
       else
       {
-        player.anim_courante = ANIM_LADDER1;
+        player.anim_courante = kImage_AnimLadder1;
       }
     }
   }
 
-  if (player.anim_courante == ANIM_SHOOT)
+  if (player.anim_courante == kImage_AnimShoot)
   {
     player.anim_cpt--;
     if (player.anim_cpt == 0)
     {
       if (player.old_etat == PLAYER_RIGHT)
-        player.anim_courante = ANIM_RIGHT1;
+        player.anim_courante = kImage_AnimRight1;
       else if (player.old_etat == PLAYER_LEFT)
-        player.anim_courante = ANIM_LEFT1;
+        player.anim_courante = kImage_AnimLeft1;
       else
-        player.anim_courante = ANIM_LADDER1;
+        player.anim_courante = kImage_AnimLadder1;
     }
   }
 }
@@ -499,7 +499,7 @@ showPlayer(void)
 {
   sprite_move(0, player.x, player.y);
   sprite_id_set(0, player.anim_courante);
-  if ((player.anim_courante == ANIM_RIGHT1) || (player.anim_courante == ANIM_RIGHT2) || (player.anim_courante == ANIM_RIGHT3))
+  if ((player.anim_courante == kImage_AnimRight1) || (player.anim_courante == kImage_AnimRight2) || (player.anim_courante == kImage_AnimRight3))
     sprite_blit(player.spriteno);
   else
     sprite_blit(player.spriteno);

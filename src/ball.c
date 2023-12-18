@@ -246,7 +246,7 @@ explodeAllBall()
   int b = 0;
   while (sortie == 0)
   {
-    if ((ball[b].type == BIG) && (ball[b].active))
+    if ((ball[b].type == kImage_Big) && (ball[b].active))
     {
       trouve = b;
       sortie = 1;
@@ -268,7 +268,7 @@ explodeAllBall()
     sortie = 0;
     while (sortie == 0)
     {
-      if ((ball[b].type == NORMAL) && (ball[b].active))
+      if ((ball[b].type == kImage_Normal) && (ball[b].active))
       {
         trouve = b;
         sortie = 1;
@@ -289,7 +289,7 @@ explodeAllBall()
       sortie = 0;
       while (sortie == 0)
       {
-        if ((ball[b].type == SMALL) && (ball[b].active))
+        if ((ball[b].type == kImage_Small) && (ball[b].active))
         {
           trouve = b;
           sortie = 1;
@@ -337,11 +337,11 @@ createBigBall(float x, float y, int hdirection, int vdirection)
   ball[i].ybox = 4;
   ball[i].hbox = (40 - 6);
   ball[i].lbox = (48 - 10);
-  ball[i].type = BIG;
+  ball[i].type = kImage_Big;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, BIG);
+  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, kImage_Big);
   ball[i].last_x = x;
   ball[i].last_y = y;
 
@@ -391,11 +391,11 @@ createNormalBall(float x, float y, int hdirection, int vdirection)
   ball[i].ybox = 3;
   ball[i].hbox = (26 - 6);
   ball[i].lbox = (32 - 6);
-  ball[i].type = NORMAL;
+  ball[i].type = kImage_Normal;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)x, (int)y, NORMAL);
+  ball[i].spriteno = sprite_init_free((int)x, (int)y, kImage_Normal);
 
   ball[i].vel = -10.0;
   ball[i].vel_cst = 10.0;
@@ -444,11 +444,11 @@ createSmallBall(float x, float y, int hdirection, int vdirection)
   ball[i].ybox = 1;
   ball[i].hbox = (14 - 3);
   ball[i].lbox = (16 - 3);
-  ball[i].type = SMALL;
+  ball[i].type = kImage_Small;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, SMALL);
+  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, kImage_Small);
 
   ball[i].vel = -8.0;
   ball[i].vel_cst = 8.0;
@@ -498,11 +498,11 @@ createMicroBall(float x, float y, int hdirection, int vdirection)
   ball[i].ybox = 1;
   ball[i].hbox = (5);
   ball[i].lbox = (6);
-  ball[i].type = MICRO;
+  ball[i].type = kImage_Micro;
   ball[i].suspend = 0;
   ball[i].bonus = 0;
   ball[i].bonus_parent = 0;
-  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, MICRO);
+  ball[i].spriteno = sprite_init_free((int)ball[i].x, (int)ball[i].y, kImage_Micro);
 
   ball[i].vel = -6.5;
   ball[i].vel_cst = 6.5;
@@ -530,13 +530,13 @@ createMicroBall(float x, float y, int hdirection, int vdirection)
 int
 createBall(float x, float y, int typeBall, int hdirection, int vdirection)
 {
-  if (typeBall == BIG)
+  if (typeBall == kImage_Big)
     return (createBigBall(x, y, hdirection, vdirection));
-  if (typeBall == NORMAL)
+  if (typeBall == kImage_Normal)
     return (createNormalBall(x, y, hdirection, vdirection));
-  if (typeBall == SMALL)
+  if (typeBall == kImage_Small)
     return (createSmallBall(x, y, hdirection, vdirection));
-  if (typeBall == MICRO)
+  if (typeBall == kImage_Micro)
     return (createMicroBall(x, y, hdirection, vdirection));
   return 0;
 }
@@ -610,7 +610,7 @@ sans collision.
         {
           shoot[p].active = 0;
           player.nbtir--;
-          if (ball[i].type < MICRO)
+          if (ball[i].type < kImage_Micro)
           {
             int tmp;
             tmp = createBall(ball[i].x, ball[i].y, ball[i].type + 1, LEFT, UP);
@@ -648,19 +648,19 @@ sans collision.
           {
             player.multiplicateur = 1;
           }
-          if (ball[i].type == MICRO)
+          if (ball[i].type == kImage_Micro)
           {
             player.score = player.score + (4 * player.multiplicateur);
           }
-          else if (ball[i].type == SMALL)
+          else if (ball[i].type == kImage_Small)
           {
             player.score = player.score + (3 * player.multiplicateur);
           }
-          else if (ball[i].type == NORMAL)
+          else if (ball[i].type == kImage_Normal)
           {
             player.score = player.score + (2 * player.multiplicateur);
           }
-          else if (ball[i].type == BIG)
+          else if (ball[i].type == kImage_Big)
           {
             player.score = player.score + (1 * player.multiplicateur);
           }

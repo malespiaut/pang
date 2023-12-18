@@ -10,26 +10,10 @@
 
 #define MAX_OBJECTS 10
 
-#define BIG 1
-#define NORMAL 2
-#define SMALL 3
-#define MICRO 4
 #define WEAPON_NORMAL_SHOOT 1
 #define WEAPON_DOUBLE_SHOOT 2
 #define WEAPON_GLUE_SHOOT 3
 #define WEAPON_GUN_SHOOT 4
-
-#define ANIM_SHOOT 10
-#define ANIM_LEFT1 11
-#define ANIM_LEFT2 12
-#define ANIM_LEFT3 13
-#define ANIM_RIGHT1 14
-#define ANIM_RIGHT2 15
-#define ANIM_RIGHT3 16
-#define ANIM_DEAD 17
-#define ANIM_STOP 18
-#define ANIM_LADDER1 30
-#define ANIM_LADDER2 31
 
 #define PLAYER_LEFT 1
 #define PLAYER_RIGHT 2
@@ -42,15 +26,6 @@
 #define EVT_LOOSE_LIFE 1
 #define EVT_GAME_OVER 2
 #define EVT_NEXT_LEVEL 4
-
-#define PF_INCASSABLE 20
-#define PF_CASSABLE 21
-#define PF_CASSABLEV 22
-#define PF_INCASSABLEV 23
-#define PF_MOYEN_INCASSABLE 24
-#define PF_MOYEN_CASSABLE 25
-#define PF_MICRO_INCASSABLE 26
-#define PF_MICRO_CASSABLE 27
 
 #define LEFT -1
 #define RIGHT 1

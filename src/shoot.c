@@ -95,17 +95,17 @@ updateShoot(int i)
                 player.nbtir = 0;
             }
           }
-          // Si c un grappin et un PF_INCASSABLE on laisse le grapin.
+          // Si c un grappin et un kImage_PlatformUnbreakable on laisse le grapin.
           if (shoot[i].type == WEAPON_GLUE_SHOOT)
           {
-            if ((platforms[p].type == PF_INCASSABLE) || (platforms[p].type == PF_INCASSABLEV) || (platforms[p].type == PF_MOYEN_INCASSABLE) || (platforms[p].type == PF_MICRO_INCASSABLE))
+            if ((platforms[p].type == kImage_PlatformUnbreakable) || (platforms[p].type == kImage_PlatformUnbreakableVertical) || (platforms[p].type == kImage_PlatformMediumUnbreakable) || (platforms[p].type == kImage_PlatformMicroUnbreakable))
             {
               if (shoot[i].duree == -1)
                 shoot[i].duree = 120;
             }
           }
           // Si c une plateforme normale, quelquesoit le shoot, on le dégage.
-          if ((platforms[p].type == PF_CASSABLE) || (platforms[p].type == PF_CASSABLEV) || (platforms[p].type == PF_MOYEN_CASSABLE) || (platforms[p].type == PF_MICRO_CASSABLE))
+          if ((platforms[p].type == kImage_PlatformBreakable) || (platforms[p].type == kImage_PlatformBreakableVertical) || (platforms[p].type == kImage_PlatformMediumBreakable) || (platforms[p].type == kImage_PlatformMicroBreakable))
           {
             if (shoot[i].active)
             {
