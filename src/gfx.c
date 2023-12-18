@@ -18,22 +18,6 @@ SDL_Surface* g_screen = NULL;
 SDL_Surface* g_bitmaps[10] = {0};
 
 extern bool g_quit;
-/*
-int keyRight = 0;
-int keyLeft = 0;
-int keyUp = 0;
-int keyDown = 0;
-int keyQuit = 0;
-
-int keyAction1 = 0;
-int keyAction2 = 0;
-int keyAction3 = 0;
-int keyAction4 = 0;
-
-int keyActionPause = 0;
-
-int fpsshow = 0;
-*/
 Sprite g_sprites[kSprite_COUNT] = {0}; // Les sprites
 Image g_images[kImage_COUNT] = {0};    // Les images découpées des BMP chargés
 
